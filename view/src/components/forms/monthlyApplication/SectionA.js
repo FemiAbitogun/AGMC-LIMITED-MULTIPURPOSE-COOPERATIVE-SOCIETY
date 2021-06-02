@@ -183,7 +183,7 @@ function SectionA() {
             </div>
 
 
-            {/* permanent home address */}
+            {/* state of origin local govt area */}
             <div className="row mt-4 container" >
 
                 <div className="col-4">

@@ -1,7 +1,4 @@
 
-
-
-const { json } = require('express');
 const fs = require('fs');
 const { upload } = require('../../fileHelper')
 
@@ -35,105 +32,90 @@ const getAllSuscriberAccount = async (req, res) => {
 // CREATE USER
 const createSuscriberAccount = async (req, res) => {
     try {
-
         var customerImage = fs.readFileSync(req.file.path);
         const encoded = customerImage.toString('base64')
         const result = {
             img: new Buffer.from(encoded, 'base64')
         }
-
-        /* might work without using multer
-        const encoded = JSON.parse(req.file.path);
-        const result = new Buffer.from(encoded, 'base64')
-        */
         // res.contentType('image/jpeg')
-        // res.send(result.img);
-
+        //res.send(result.img);
+                const {
+                    branch,
+                    formNo,
+                    fullName,
+                    residentialAddress,
+                    email,
+                    phone,
+                    occupation,
+                    maritalStatus,
+                    religion,
+                    gender,
+                    birthday,
+                    permanentHomeAddress,
+                    stateOfOrigin,
+                    LGA,
+                    homeTown,
+                    prefferDaysOfMeeting,
+                    contributionPlan,
+                    bankName,
+                    accountNumber,
+                    BVN,
+                    meansOfIdentification,
+                    idCardNo,
+                    kinFullname,
+                    kinAddress,
+                    kinEmail,
+                    kinPhone,
+                    kinOccupation,
+                    kinOfficeAddress,
+                    kinRelationshipType,
+                    kinYearOfrelationship,
+                } = req.body;
+     
+                const newUserSuscriber = new Suscriber({
         
-
-        const{
-            branch,
-            stateCode,
-            unitCode,
-            formNo,
-            fullName,
-            residentialAddress,
-            email,
-            phone,
-            occupation,
-            maritalStatus,
-            religion,
-            gender,
-            birthday,
-            permanentHomeAddress,
-            stateOfOrigin,
-            LGA,
-            homeTown,
-            prefferDaysOfMeeting,
-            contributionPlan,
-            bankName,
-            accountNumber,
-            BVN,
-            meansOfIdentification,
-            idCardNo,
-            kinFullname,
-            kinAddress,
-            kinEmail,
-            kinPhone,
-            kinOccupation,
-            kinOfficeAddress,
-            kinRelationshipType,
-            kinYearOfrelationship,
-        } = req.body;
-
-
-
-        const newUserSuscriber = new Suscriber({
-
-            customerImage: result.img,
-            branch,
-            stateCode,
-            unitCode,
-            formNo,
-            fullName,
-            residentialAddress,
-            email,
-            phone,
-            occupation,
-            maritalStatus,
-            religion,
-            gender,
-            birthday,
-            permanentHomeAddress,
-            stateOfOrigin,
-            LGA,
-            homeTown,
-            prefferDaysOfMeeting,
-            contributionPlan,
-            bankName,
-            accountNumber,
-            BVN,
-            meansOfIdentification,
-            idCardNo,
-            kinFullname,
-            kinAddress,
-            kinEmail,
-            kinPhone,
-            kinOccupation,
-            kinOfficeAddress,
-            kinRelationshipType,
-            kinYearOfrelationship,
-        })
-        const savedSuscriber = await newUserSuscriber.save();
-
-        res.status(201).json("saved successfully");
-
+                    customerImage: result.img,
+                    branch,
+                    formNo,
+                    fullName,
+                    residentialAddress,
+                    email,
+                    phone,
+                    occupation,
+                    maritalStatus,
+                    religion,
+                    gender,
+                    birthday,
+                    permanentHomeAddress,
+                    stateOfOrigin,
+                    LGA,
+                    homeTown,
+        
+        
+                    prefferDaysOfMeeting,
+                    contributionPlan,
+                    bankName,
+                    accountNumber,
+                    BVN,
+                    meansOfIdentification,
+                    idCardNo,
+                    kinFullname,
+                    kinAddress,
+                    kinEmail,
+                    kinPhone,
+                    kinOccupation,
+                    kinOfficeAddress,
+                    kinRelationshipType,
+                    kinYearOfrelationship,
+                })
+                const savedSuscriber = await newUserSuscriber.save();
+        
 
 
     }
     catch (err) {
         res.status(500).json({
-            errorMessage: " error saving datas to database...."
+            errorMessage: err.message
         })
     }
 

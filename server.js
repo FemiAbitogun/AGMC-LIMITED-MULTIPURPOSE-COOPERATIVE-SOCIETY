@@ -3,7 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv=require('dotenv').config();
-
+const PARSER= require('body-parser');
 
 
 const app = express();
@@ -12,7 +12,6 @@ app.use(cors({
     credentials:true
 }));
 app.use(express.json());
-
 
 
 
@@ -26,13 +25,7 @@ app.listen(PORT, () => {
 
 
 
-/*
-mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true }, (err) => {
-    if (err)
-        return console.log("error connecting to database")
-    console.log('connection to database succesful.....')
-});
-*/
+
 const {databaseConfig} = require('./databaseConnection/databaseConfig');
 databaseConfig();
 
@@ -41,27 +34,31 @@ databaseConfig();
 
 app.use(express.static('public'));
 
+
 app.get('/',async(req,res)=>{
    res.sendFile('index.html')
-
-
 })
 
 
+ 
 //login and authentication routes............
-app.use('/authenticateUser',require('./routes/Account/AuthenticateUsers'));
+app.use('/api/authenticateUser',require('./routes/Account/AuthenticateUsers'));
 
 
 
-//management route
 
 /*monthly contribution */
-app.use('/monthlyContribution',require('./routes/Management_team/monthlyContribution'));
+app.use('/api/monthlyContribution',require('./routes/Management_team/monthlyContribution'));
+
+
+
+
+
 
 /*daily contribution */
-app.use('/dailyContribution', require('./routes/Management_team/dailyContributionRegistration'));
+app.use('/api/dailyContribution', require('./routes/Management_team/dailyContributionRegistration'));
 
 /*admissionIntoUnit */
-app.use('/admission', require('./routes/Management_team/admissionIntoUnit'));
+app.use('/api/admission', require('./routes/Management_team/admissionIntoUnit'));
 
 

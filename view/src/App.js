@@ -1,10 +1,15 @@
 import './App.css';
+import React, { useContext } from 'react';
 import Routes from './components/routes/Routes';
+import AuthContext, { authorized } from './context/AuthContext';
 
 function App() {
+
   return (
     <div className="container">
-      <Routes />
+      <AuthContext>
+        <Routes/>
+      </AuthContext>
     </div>
   );
 }

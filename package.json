@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "client":"cd view && npm run start",
+    "start2": "concurrently \"npm run dev\" \"npm run client\""
   },
   "keywords": [],
   "author": "",

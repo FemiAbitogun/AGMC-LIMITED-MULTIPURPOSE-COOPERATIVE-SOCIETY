@@ -52,9 +52,6 @@ app.use('/api/monthlyContribution',require('./routes/Management_team/monthlyCont
 
 
 
-
-
-
 /*daily contribution */
 app.use('/api/dailyContribution', require('./routes/Management_team/dailyContributionRegistration'));
 

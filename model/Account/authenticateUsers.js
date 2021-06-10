@@ -11,7 +11,7 @@ const userSchema =new Mongoose.Schema({
         type: String,
         required: true
     },
-    rollName:
+    roleName:
     {
         type: String,
         required: true

@@ -1,7 +1,4 @@
 
-
-
-
 const router = require('express').Router();
 
 const {  getAllAdmissionIntoUnit, createAdmissionIntoUnit, deleteAdmissionIntoUnit } = require('../../controller/MarketingDepartment/admissionIntoUnit');

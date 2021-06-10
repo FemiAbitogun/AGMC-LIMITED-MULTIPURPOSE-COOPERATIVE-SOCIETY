@@ -4,17 +4,17 @@ const AdmissionIntoUnitModel = require('../../model/Management_team/Marketing_de
 
 const getAllAdmissionIntoUnit = async (req, res) => {
     try {
-        const AllAdmissionIntoUnit = AdmissionIntoUnitModel.find();
+        const AllAdmissionIntoUnit =await AdmissionIntoUnitModel.find();
         if (!AllAdmissionIntoUnit)
             return res.status(500).json({
                 errorMessage: "can not find AdmissionIntoUnit"
             })
 
-        return res.status(200).json(AdmissionIntoUnit);
+        return res.status(200).json(AllAdmissionIntoUnit);
     }
     catch (err) {
         res.status(500).json({
-            errorMessage: " error getting AdmissionIntoUnit from database..."
+            errorMessage: err.message
         })
     }
 
@@ -29,31 +29,31 @@ const getAllAdmissionIntoUnit = async (req, res) => {
 // CREATE USER
 const createAdmissionIntoUnit = async (req, res) => {
     try {
-
-        // from front end......
         const {
-            dateOfRegistration,
+            registrationNumber,
+            dateOfAdmission,
+            refferalFileNumber,
             fullName,
-            phoneNumber, 
-            unitCode,
-            contributionCategory, 
-            dateOfFirstDisbursment, 
-            paymentMethod,
+            phoneNumber,
+            amount,
+            total,
+            loanQualify
         } = req.body;
 
 
         // store in database......
         const newAdmissionIntoUnit = new AdmissionIntoUnitModel({
-            dateOfRegistration,
+            registrationNumber,
+            dateOfAdmission,
+            refferalFileNumber,
             fullName,
-            phoneNumber, 
-            unitCode,
-            contributionCategory, 
-            dateOfFirstDisbursment, 
-            paymentMethod,
+            phoneNumber,
+            amount,
+            total,
+            loanQualify
         })
+        
         const savednewUser = await newAdmissionIntoUnit.save();
-
         res.status(201).json("saved successfully");
 
 
@@ -61,7 +61,7 @@ const createAdmissionIntoUnit = async (req, res) => {
     }
     catch (err) {
         res.status(500).json({
-            errorMessage: " error saving datas to database...."
+            errorMessage: err.message
         })
     }
 

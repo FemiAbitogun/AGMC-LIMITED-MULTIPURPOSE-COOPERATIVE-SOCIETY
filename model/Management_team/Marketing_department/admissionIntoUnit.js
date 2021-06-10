@@ -3,7 +3,18 @@ const mongoose = require('mongoose');
 
 
 const admissionIntoUnitSchema = new mongoose.Schema({
-    dateOfRegistration: {
+   
+    registrationNumber: {
+        type: String,
+        required: true
+    },
+
+    dateOfAdmission: {
+        type: String,
+        required: true
+    },
+
+    refferalFileNumber: {
         type: String,
         required: true
     },
@@ -17,22 +28,18 @@ const admissionIntoUnitSchema = new mongoose.Schema({
         required: true
     },
 
-    unitCode: {
+    amount: {
         type: String,
         required: true
     },
 
-    contributionCategory: {
+    total: {
         type: String,
         required: true
     },
 
-    dateOfFirstDisbursment: {
-        type: String,
-        required: true
-    },
 
-    paymentMethod: {
+    loanQualify: {
         type: String,
         required: true
     }

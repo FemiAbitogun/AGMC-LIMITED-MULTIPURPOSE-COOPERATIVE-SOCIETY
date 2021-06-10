@@ -3,8 +3,7 @@ import { formContext } from "../components/forms/monthlyFillForm/SectionA"
 import { formContextB } from "../components/forms/monthlyFillForm/SectionB"
 import { formContextC } from "../components/forms/monthlyFillForm/SectionC"
 import { formContextD } from "../components/forms/monthlyFillForm/SectionD"
-import { postForm } from "../api/postMonthlyForm"
-
+import { postForm } from "../api/marketing/postMonthlyForm"
 
 
 
@@ -92,14 +91,11 @@ function MonthlyBaseData() {
         
     }
 
-
-
-
-
-    
     return (
-        <div>
-            <input type="button" value="submit form" onClick={(e) => { sendToPostForm(e) }} />
+        <div className="row container mt-4">
+            <div className="col-sm-4">
+            <input type="button" className="btn btn-danger" value="submit form" onClick={(e) => { sendToPostForm(e) }} />
+            </div>
         </div>
     )
 }

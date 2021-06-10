@@ -7,7 +7,7 @@ const Suscriber = require('../../model/Management_team/Marketing_department/mont
 
 const getAllSuscriberAccount = async (req, res) => {
     try {
-        const allSuscribers = Suscriber.find();
+        const allSuscribers =await Suscriber.find();
         if (!allSuscribers)
             return res.status(500).json({
                 errorMessage: "can not find users"
@@ -28,91 +28,105 @@ const getAllSuscriberAccount = async (req, res) => {
 
 
 
-
 // CREATE USER
 const createSuscriberAccount = async (req, res) => {
     try {
-        var customerImage = fs.readFileSync(req.file.path);
+        //var customerImage = fs.readFileSync(req.file.path);
+        var customerImage = fs.readFile(req.file.path,'utf8',async (err, data) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+            const encoded = data.toString('base64');
+            const result = {
+                img: new Buffer.from(encoded, 'base64')
+            }
+
+
+            const {
+                branch,
+                formNo,
+                fullName,
+                residentialAddress,
+                email,
+                phone,
+                occupation,
+                maritalStatus,
+                religion,
+                gender,
+                birthday,
+                permanentHomeAddress,
+                stateOfOrigin,
+                LGA,
+                homeTown,
+                prefferDaysOfMeeting,
+                contributionPlan,
+                bankName,
+                accountNumber,
+                BVN,
+                meansOfIdentification,
+                idCardNo,
+                kinFullname,
+                kinAddress,
+                kinEmail,
+                kinPhone,
+                kinOccupation,
+                kinOfficeAddress,
+                kinRelationshipType,
+                kinYearOfrelationship,
+            } = req.body;
+
+            const newUserSuscriber = new Suscriber({
+
+                customerImage: result.img,
+                branch,
+                formNo,
+                fullName,
+                residentialAddress,
+                email,
+                phone,
+                occupation,
+                maritalStatus,
+                religion,
+                gender,
+                birthday,
+                permanentHomeAddress,
+                stateOfOrigin,
+                LGA,
+                homeTown,
+
+
+                prefferDaysOfMeeting,
+                contributionPlan,
+                bankName,
+                accountNumber,
+                BVN,
+                meansOfIdentification,
+                idCardNo,
+                kinFullname,
+                kinAddress,
+                kinEmail,
+                kinPhone,
+                kinOccupation,
+                kinOfficeAddress,
+                kinRelationshipType,
+                kinYearOfrelationship,
+            })
+            const savedSuscriber = await newUserSuscriber.save();
+        })//   var customerImage = fs.readFile(req.file.path, 'utf8', (err, data)..
+
+        /*
         const encoded = customerImage.toString('base64')
         const result = {
             img: new Buffer.from(encoded, 'base64')
         }
-        // res.contentType('image/jpeg')
-        //res.send(result.img);
-                const {
-                    branch,
-                    formNo,
-                    fullName,
-                    residentialAddress,
-                    email,
-                    phone,
-                    occupation,
-                    maritalStatus,
-                    religion,
-                    gender,
-                    birthday,
-                    permanentHomeAddress,
-                    stateOfOrigin,
-                    LGA,
-                    homeTown,
-                    prefferDaysOfMeeting,
-                    contributionPlan,
-                    bankName,
-                    accountNumber,
-                    BVN,
-                    meansOfIdentification,
-                    idCardNo,
-                    kinFullname,
-                    kinAddress,
-                    kinEmail,
-                    kinPhone,
-                    kinOccupation,
-                    kinOfficeAddress,
-                    kinRelationshipType,
-                    kinYearOfrelationship,
-                } = req.body;
-     
-                const newUserSuscriber = new Suscriber({
-        
-                    customerImage: result.img,
-                    branch,
-                    formNo,
-                    fullName,
-                    residentialAddress,
-                    email,
-                    phone,
-                    occupation,
-                    maritalStatus,
-                    religion,
-                    gender,
-                    birthday,
-                    permanentHomeAddress,
-                    stateOfOrigin,
-                    LGA,
-                    homeTown,
-        
-        
-                    prefferDaysOfMeeting,
-                    contributionPlan,
-                    bankName,
-                    accountNumber,
-                    BVN,
-                    meansOfIdentification,
-                    idCardNo,
-                    kinFullname,
-                    kinAddress,
-                    kinEmail,
-                    kinPhone,
-                    kinOccupation,
-                    kinOfficeAddress,
-                    kinRelationshipType,
-                    kinYearOfrelationship,
-                })
-                const savedSuscriber = await newUserSuscriber.save();
-        
+        */
+        // res.contentType('image/jpeg'); //res.send(result.img);
+    
+    } //const createSuscriberAccount();
 
 
-    }
     catch (err) {
         res.status(500).json({
             errorMessage: err.message
@@ -120,7 +134,6 @@ const createSuscriberAccount = async (req, res) => {
     }
 
 }
-
 
 
 

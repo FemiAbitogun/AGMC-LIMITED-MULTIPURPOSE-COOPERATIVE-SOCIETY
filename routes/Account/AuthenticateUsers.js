@@ -1,10 +1,14 @@
 
 const router= require('express').Router();
 
-const { getAllUserAccount,createUserAccount,deleteUserAccount } = require('../../controller/Account/authenticateUser');
+const {confirm,getAllUserAccount,createUserAccount,deleteUserAccount,loginUserAccount } = require('../../controller/Account/authenticateUser');
 
 router.get('/', getAllUserAccount);
-router.post('/',createUserAccount);
+router.post('/confirm',confirm);
+
+router.post('/create',createUserAccount);
+router.post('/login',loginUserAccount);
+
 router.delete('/delete/:id',deleteUserAccount);
 
 

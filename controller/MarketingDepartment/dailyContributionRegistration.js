@@ -1,13 +1,12 @@
 
 
 const DailyContributionModel = require('../../model/Management_team/Marketing_department/dailyContributionRegistration');
-// getAllDailyContributor   createDailyContributor deleteDailyContributor
 
 const getAllDailyContributor = async (req, res) => {
     try {
-        const AllDailyContribution = DailyContributionModel.find();
+        const AllDailyContribution =await DailyContributionModel.find();
         if (!AllDailyContribution)
-            return res.status(500).json({
+            return res.status(400).json({
                 errorMessage: "can not find daily contributors"
             })
 

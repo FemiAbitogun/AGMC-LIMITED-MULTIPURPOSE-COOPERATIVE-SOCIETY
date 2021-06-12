@@ -32,14 +32,14 @@ databaseConfig();
 
 
 
-app.use(express.static('public'));
+app.use('/uploads',express.static('uploads'));
 
 
 app.get('/',async(req,res)=>{
    res.sendFile('index.html')
 })
 
-
+ 
  
 //login and authentication routes............
 app.use('/api/authenticateUser',require('./routes/Account/AuthenticateUsers'));

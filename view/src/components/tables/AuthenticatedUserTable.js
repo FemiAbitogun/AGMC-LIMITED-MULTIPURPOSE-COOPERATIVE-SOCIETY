@@ -7,7 +7,7 @@ function AuthenticatedUserTable() {
 
     useEffect(() => {
         getDailyContributor();
-    });
+    },[]);
 
     const getDailyContributor = async () => {
         var { data } = await axios.get("http://localhost:9000/api/authenticateUser")

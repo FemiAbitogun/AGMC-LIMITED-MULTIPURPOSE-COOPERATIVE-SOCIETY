@@ -1,5 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from "axios"
+import ReactDOM from 'react-dom';
+import './Table.css';
+
+
 
 
 
@@ -17,7 +21,12 @@ function MonthlyContributionTable() {
     async function getMonthlyAccount() {
         var { data } = await axios.get(url)
         setUserData(data)
+        // { responseType: 'blob' }
+    }
 
+    async function getImage() {
+        var { dataImage } = await axios.get(url, { responseType: 'blob' })
+        // <img src={URL.createObjectURL(user.customerImage)} />
     }
 
 
@@ -25,10 +34,15 @@ function MonthlyContributionTable() {
     function displayMonthlyAccount() {
 
         return userData.map((user) => {
-
+            console.log(user.customerImagePath)
             return (
                 <div key={user._id} className="container table mt-4">
+
+                    <img src={`http://localhost:9000/${user.customerImagePath}`} />
+
+
                     <table className="table container">
+
                         <tbody>
 
                             <tr>
@@ -101,7 +115,12 @@ function MonthlyContributionTable() {
                                 <td>{user.idCardNo}</td>
                             </tr>
 
-                            <tr><th scope="row"><h5>NEXT OF KIN INFORMATION</h5> </th></tr>
+
+                            <div className="row nav">
+                                <h5 className="text-danger">NEXT OF KIN INFORMATION</h5>
+                            </div>
+
+
                             <tr>
                                 <th scope="row">Address</th>
                                 <td>{user.kinAddress}</td>
@@ -122,7 +141,7 @@ function MonthlyContributionTable() {
                                 <td>{user.kinYearOfrelationship}</td>
                             </tr>
                         </tbody>
-                        <input type="submit" value="delete" className="btn btn-success"
+                        <input type="submit" value="delete" className="btn btn-danger"
                             onClick={() => { deleteMethod(user._id) }} />
                     </table>
 
@@ -145,7 +164,7 @@ function MonthlyContributionTable() {
 
     return (
         <div className="container">
-            <div className=" container row"><h4>MONTHLY SUSCRIBERS TABLE</h4></div>
+            <div className=" container row text-center text-success"><h4>MONTHLY SUSCRIBERS LIST</h4></div>
             <div className="container row">
                 {displayMonthlyAccount()}
             </div>

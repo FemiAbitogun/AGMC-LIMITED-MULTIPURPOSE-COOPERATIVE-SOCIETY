@@ -7,7 +7,7 @@ const Suscriber = require('../../model/Management_team/Marketing_department/mont
 
 const getAllSuscriberAccount = async (req, res) => {
     try {
-        const allSuscribers =await Suscriber.find();
+        const allSuscribers = await Suscriber.find();
         if (!allSuscribers)
             return res.status(500).json({
                 errorMessage: "can not find users"
@@ -23,6 +23,39 @@ const getAllSuscriberAccount = async (req, res) => {
 
 }
 
+//get photo
+
+const getPhoto = async (req, res) => {
+    try {
+
+        const id = req.params.id;
+        const result = await Suscriber.findOne({ _id: id });
+        // const result = await Suscriber.find();
+
+        if (!result)
+            return res.status(500).json({
+                errorMessage: "can not find photo"
+            })
+
+        res.contentType('image/jpeg');
+
+        // res.contentType('image/jpg');
+
+        res.send(result.customerImagePath );
+    }
+    catch (err) {
+        res.status(500).json({
+            errorMessage: err.message
+        })
+    }
+
+}
+
+
+
+
+
+
 
 
 
@@ -32,7 +65,7 @@ const getAllSuscriberAccount = async (req, res) => {
 const createSuscriberAccount = async (req, res) => {
     try {
         //var customerImage = fs.readFileSync(req.file.path);
-        var customerImage = fs.readFile(req.file.path,'utf8',async (err, data) => {
+        var customerImage = fs.readFile(req.file.path, 'utf8', async (err, data) => {
             if (err) {
                 console.error(err);
                 return;
@@ -80,6 +113,8 @@ const createSuscriberAccount = async (req, res) => {
             const newUserSuscriber = new Suscriber({
 
                 customerImage: result.img,
+                customerImagePath: req.file.path,
+
                 branch,
                 formNo,
                 fullName,
@@ -123,7 +158,7 @@ const createSuscriberAccount = async (req, res) => {
         }
         */
         // res.contentType('image/jpeg'); //res.send(result.img);
-    
+
     } //const createSuscriberAccount();
 
 
@@ -161,7 +196,7 @@ const deleteSuscriberAccount = async (req, res) => {
 
 
 
-module.exports = { getAllSuscriberAccount, createSuscriberAccount, deleteSuscriberAccount };
+module.exports = { getPhoto, getAllSuscriberAccount, createSuscriberAccount, deleteSuscriberAccount };
 
 
 

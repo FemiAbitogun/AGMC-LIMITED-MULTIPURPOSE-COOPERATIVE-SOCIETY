@@ -8,6 +8,11 @@ const monthlyRegistrationSchema = new Mongoose.Schema({
     customerImage: {
         type: Buffer,
     },
+
+    customerImagePath: {
+        type:String ,
+    },
+
     branch: {
         type: String,
     },

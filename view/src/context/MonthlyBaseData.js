@@ -3,9 +3,11 @@ import { formContext } from "../components/forms/monthlyFillForm/SectionA"
 import { formContextB } from "../components/forms/monthlyFillForm/SectionB"
 import { formContextC } from "../components/forms/monthlyFillForm/SectionC"
 import { formContextD } from "../components/forms/monthlyFillForm/SectionD"
-import { postForm,postRef1Image } from "../api/marketing/postMonthlyForm"
+import { postForm, postRef1Image, postRef2Image} from "../api/marketing/postMonthlyForm"
 import { useHistory } from 'react-router-dom'
-import Referee1, { formContextRef1 } from "../components/forms/monthlyFillForm/Referee1"
+import { formContextRef1 } from "../components/forms/monthlyFillForm/Referee1"
+import { formContextRef2 } from "../components/forms/monthlyFillForm/Referee2"
+
 
 
 
@@ -63,6 +65,18 @@ function MonthlyBaseData() {
     } = useContext(formContextRef1)
 
 
+    const {
+        referee2Image,
+        referee2FullName,
+        referee2HomeAddress,
+        referee2WorkAddress,
+        referee2Business,
+        referee2Email,
+        referee2Religion,
+        referee2Phone,
+        referee2Relationship
+    } = useContext(formContextRef2)
+
 
 
 
@@ -75,6 +89,8 @@ function MonthlyBaseData() {
         e.preventDefault();
         const formData = new FormData();
         const formDataRef1 = new FormData();
+        const formDataRef2 = new FormData();
+
 
 
 
@@ -131,11 +147,35 @@ function MonthlyBaseData() {
             formData.append("referee1Phone", referee1Phone);
             formData.append("referee1Relationship", referee1Relationship);
 
+
+            formData.append("referee2FullName", referee2FullName);
+            formData.append("referee2HomeAddress", referee2HomeAddress);
+            formData.append("referee2WorkAddress", referee2WorkAddress);
+            formData.append("referee2Business", referee2Business);
+            formData.append("referee2Email", referee2Email);
+            formData.append("referee2Religion", referee2Religion);
+            formData.append("referee2Phone", referee2Phone);
+            formData.append("referee2Relationship", referee2Relationship);
+
+
+
+
+
+
+
+
             //append ref1 image
             formDataRef1.append("referee1Image", referee1Image);
+            
+            //append ref2 image
+            formDataRef2.append("referee2Image", referee2Image);
 
-            postForm(formData);
+
+
             postRef1Image(formDataRef1);
+            postRef2Image(formDataRef2);
+            postForm(formData);
+            
 
             history.push('/monthlySuscriberTable')
 

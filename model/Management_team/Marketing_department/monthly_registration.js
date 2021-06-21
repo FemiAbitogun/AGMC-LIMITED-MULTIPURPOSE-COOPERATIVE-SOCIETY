@@ -147,119 +147,77 @@ const monthlyRegistrationSchema = new Mongoose.Schema({
 
     //SECTION  C       /* refree details */
 
-
-
-    refreeImage1: {
-        type: Buffer,
+    referee1ImagePath: {
+        type: String
+    },
+    referee1FullName: {
+        type: String
     },
 
-    refreeFullName1: {
-        type: String,
-
-    },
-
-    refreeAddress1: {
-        type: String,
-
-    },
-
-    refreePlaceOfWork1: {
-        type: String,
-
-    },
-    refreeOccupation1: {
-        type: String,
-
-    },
-
-    refreeEmail1: {
-        type: String,
-
-    },
-    refreePhone1: {
+    referee1HomeAddress: {
         type: String,
     },
 
-    refreeReligion1: {
+    referee1WorkAddress: {
+        type: String,
+    },
+    referee1Business: {
+        type: String,
+    },
+    referee1Email: {
         type: String,
 
     },
-
-    refreeRelationship1: {
-        type: String,
-
-    },
-
-    //refree 2
-
-    refreeImage2: {
-        type: Buffer,
-    },
-
-    refreeFullName2: {
+    referee1Phone: {
         type: String,
     },
 
-    refreeAddress2: {
-        type: String,
-
-    },
-
-    refreePlaceOfWork2: {
-        type: String,
-
-    },
-    refreeOccupation2: {
+    referee1Religion: {
         type: String,
     },
 
-    refreeEmail2: {
-        type: String,
-
-    },
-    refreePhone2: {
+    referee1Relationship: {
         type: String,
     },
 
-    refreeReligion2: {
+
+
+
+    // refree 2...........
+    referee2ImagePath: {
+        type: String
+    },
+    referee2FullName: {
+        type: String
+    },
+
+    referee2HomeAddress: {
+        type: String,
+    },
+
+    referee2WorkAddress: {
+        type: String,
+    },
+    referee2Business: {
+        type: String,
+    },
+    referee2Email: {
         type: String,
 
     },
-
-    refreeRelationship2: {
+    referee2Phone: {
         type: String,
+    },
 
+    referee2Religion: {
+        type: String,
+    },
+
+    referee2Relationship: {
+        type: String,
     },
 
 
-    /* office use only */
-
-    referalFullName: {
-        type: String,
-
-    },
-
-    referalCode: {
-        type: String,
-
-    },
-
-
-    referalDateOfAdmission: {
-        type: String,
-
-    },
-
-
-    referalUnitSecretary: {
-        type: String,
-
-    },
-
-    referalUnitChairman: {
-        type: String,
-
-    },
 
 
 

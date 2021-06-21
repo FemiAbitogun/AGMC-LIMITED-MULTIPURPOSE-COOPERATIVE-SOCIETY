@@ -23,6 +23,25 @@ const getAllSuscriberAccount = async (req, res) => {
 
 
 
+let newUserSuscriber = new Suscriber();
+
+
+async function referee1ImageSuscriberAccount(req, res) {
+
+    newUserSuscriber.referee1ImagePath = req.file.path;
+    return res.status(200).send();
+
+}
+
+async function referee2ImageSuscriberAccount(req, res) {
+
+    newUserSuscriber.referee2ImagePath = req.file.path;
+    return res.status(200).send();
+
+}
+
+
+
 
 // CREATE USER
 const createSuscriberAccount = async (req, res) => {
@@ -77,10 +96,38 @@ const createSuscriberAccount = async (req, res) => {
             kinOfficeAddress,
             kinRelationshipType,
             kinYearOfrelationship,
+
+
+            referee1FullName,
+            referee1HomeAddress,
+            referee1WorkAddress,
+            referee1Business,
+            referee1Email,
+            referee1Religion,
+            referee1Phone,
+            referee1Relationship,
+
+
+
+            referee2FullName,
+            referee2HomeAddress,
+            referee2WorkAddress,
+            referee2Business,
+            referee2Email,
+            referee2Religion,
+            referee2Phone,
+            referee2Relationship
+
+
         } = req.body;
 
 
-        const newUserSuscriber = new Suscriber({
+        newUserSuscriber = new Suscriber({
+            customerImagePath: customerImagePath,
+            referee1ImagePath: newUserSuscriber.referee1ImagePath,
+            referee2ImagePath: newUserSuscriber.referee2ImagePath,
+
+
             referalCode,
             customerImagePath: customerImagePath,
             branch,
@@ -115,9 +162,33 @@ const createSuscriberAccount = async (req, res) => {
             kinOfficeAddress,
             kinRelationshipType,
             kinYearOfrelationship,
+
+
+            referee1FullName,
+            referee1HomeAddress,
+            referee1WorkAddress,
+            referee1Business,
+            referee1Email,
+            referee1Religion,
+            referee1Phone,
+            referee1Relationship,
+
+
+
+
+            referee2FullName,
+            referee2HomeAddress,
+            referee2WorkAddress,
+            referee2Business,
+            referee2Email,
+            referee2Religion,
+            referee2Phone,
+            referee2Relationship
+
         })
         const savedSuscriber = await newUserSuscriber.save();
-        res.status(201).json("saved successfully");
+        //return res.status(201).json("saved successfully");
+        console.log(savedSuscriber)
 
     } //const createSuscriberAccount();
 
@@ -158,7 +229,13 @@ const deleteSuscriberAccount = async (req, res) => {
 
 
 
-module.exports = { getAllSuscriberAccount, createSuscriberAccount, deleteSuscriberAccount };
+module.exports = {
+    referee1ImageSuscriberAccount,
+    referee2ImageSuscriberAccount,
+    getAllSuscriberAccount,
+    createSuscriberAccount,
+    deleteSuscriberAccount
+};
 
 
 

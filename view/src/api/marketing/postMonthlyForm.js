@@ -24,8 +24,18 @@ export const postForm = async (body) => {
 
 export const postRef1Image = async (body) => {
 
-    const result = await axios.post(
-        url,
+    const result = await axios.post("http://localhost:9000/api/monthlyContribution/referee1",
+        body,
+        config
+    );
+
+
+}
+
+
+export const postRef2Image = async (body) => {
+
+    const result = await axios.post("http://localhost:9000/api/monthlyContribution/referee2",
         body,
         config
     );

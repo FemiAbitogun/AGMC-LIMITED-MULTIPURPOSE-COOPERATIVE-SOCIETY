@@ -6,6 +6,8 @@ import SectionB from '../forms/monthlyFillForm/SectionB'
 import SectionC from '../forms/monthlyFillForm/SectionC'
 import SectionD from '../forms/monthlyFillForm/SectionD'
 import Referee1 from '../forms/monthlyFillForm/Referee1'
+import Referee2 from '../forms/monthlyFillForm/Referee2'
+
 
 import axios from 'axios'
 
@@ -58,7 +60,9 @@ function MonthlyForm() {
                         <SectionD>
 
                             <Referee1>
-                                <MonthlyBaseData />
+                                <Referee2>
+                                    <MonthlyBaseData />
+                                </Referee2>
                             </Referee1>
 
                         </SectionD>

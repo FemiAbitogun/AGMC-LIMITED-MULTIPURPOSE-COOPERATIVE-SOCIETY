@@ -5,12 +5,13 @@ const Mongoose = require('mongoose');
 
 const monthlyRegistrationSchema = new Mongoose.Schema({
 
-    customerImage: {
-        type: Buffer,
+
+    referalCode: {
+        type: String,
     },
 
     customerImagePath: {
-        type:String ,
+        type: String,
     },
 
     branch: {
@@ -110,7 +111,7 @@ const monthlyRegistrationSchema = new Mongoose.Schema({
 
 
     //SECTION D  /* SPOUSE or  next of kin infotmation*/
-   
+
     kinFullname: {
         type: String,
     },
@@ -146,7 +147,7 @@ const monthlyRegistrationSchema = new Mongoose.Schema({
 
     //SECTION  C       /* refree details */
 
-    
+
 
     refreeImage1: {
         type: Buffer,
@@ -154,7 +155,7 @@ const monthlyRegistrationSchema = new Mongoose.Schema({
 
     refreeFullName1: {
         type: String,
-        
+
     },
 
     refreeAddress1: {

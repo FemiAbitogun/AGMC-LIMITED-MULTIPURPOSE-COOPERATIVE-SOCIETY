@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import axios from "axios"
 
 function AuthenticatedUserTable() {
@@ -7,7 +7,7 @@ function AuthenticatedUserTable() {
 
     useEffect(() => {
         getDailyContributor();
-    },[]);
+    },[userData]);
 
     const getDailyContributor = async () => {
         var { data } = await axios.get("http://localhost:9000/api/authenticateUser")

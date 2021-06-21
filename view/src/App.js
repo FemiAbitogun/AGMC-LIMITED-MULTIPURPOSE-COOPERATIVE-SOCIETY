@@ -1,4 +1,5 @@
 import './App.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React, { useContext } from 'react';
 import Routes from './components/routes/Routes';

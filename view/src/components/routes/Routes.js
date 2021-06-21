@@ -30,6 +30,9 @@ function Routes() {
                     <Route exact path="/" component={LoginForm} />
                     <Route path="/Home" component={Home} />
 
+                    <Route path="/createUser" component={CreateNewUserForm} />
+
+
                     {
                         auth != "" ?
                             <>

@@ -18,8 +18,17 @@ export const postForm = async (body) => {
         config
     );
 
-  
 
+}
+
+
+export const postRef1Image = async (body) => {
+
+    const result = await axios.post(
+        url,
+        body,
+        config
+    );
 
 
 }

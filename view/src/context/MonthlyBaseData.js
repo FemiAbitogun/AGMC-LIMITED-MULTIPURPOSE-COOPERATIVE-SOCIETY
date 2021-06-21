@@ -3,10 +3,9 @@ import { formContext } from "../components/forms/monthlyFillForm/SectionA"
 import { formContextB } from "../components/forms/monthlyFillForm/SectionB"
 import { formContextC } from "../components/forms/monthlyFillForm/SectionC"
 import { formContextD } from "../components/forms/monthlyFillForm/SectionD"
-import { postForm } from "../api/marketing/postMonthlyForm"
-import MonthlyContributionTable from "../components/tables/MonthlyContributionTable"
+import { postForm,postRef1Image } from "../api/marketing/postMonthlyForm"
 import { useHistory } from 'react-router-dom'
-
+import Referee1, { formContextRef1 } from "../components/forms/monthlyFillForm/Referee1"
 
 
 
@@ -14,12 +13,9 @@ function MonthlyBaseData() {
 
     const history = useHistory();
 
-    try {
-
-    } catch (error) {
-
-    }
-    const { customerImage,
+    const {
+        referalCode,
+        customerImage,
         branch,
         formNo,
         fullName,
@@ -54,16 +50,38 @@ function MonthlyBaseData() {
         kinYearOfrelationship } = useContext(formContextD)
 
 
+    const {
+        referee1Image,
+        referee1FullName,
+        referee1HomeAddress,
+        referee1WorkAddress,
+        referee1Business,
+        referee1Email,
+        referee1Religion,
+        referee1Phone,
+        referee1Relationship
+    } = useContext(formContextRef1)
+
+
+
+
+
+
+
+
 
 
     const sendToPostForm = async (e) => {
         e.preventDefault();
         const formData = new FormData();
+        const formDataRef1 = new FormData();
 
 
 
 
         try {
+
+            formData.append("referalCode", referalCode);
             formData.append("customerImage", customerImage);
             formData.append("branch", branch);
             formData.append("formNo", formNo);
@@ -100,7 +118,25 @@ function MonthlyBaseData() {
             formData.append("kinOfficeAddress", kinOfficeAddress);
             formData.append("kinRelationshipType", kinRelationshipType);
             formData.append("kinYearOfrelationship", kinYearOfrelationship);
+
+
+
+
+            formData.append("referee1FullName", referee1FullName);
+            formData.append("referee1HomeAddress", referee1HomeAddress);
+            formData.append("referee1WorkAddress", referee1WorkAddress);
+            formData.append("referee1Business", referee1Business);
+            formData.append("referee1Email", referee1Email);
+            formData.append("referee1Religion", referee1Religion);
+            formData.append("referee1Phone", referee1Phone);
+            formData.append("referee1Relationship", referee1Relationship);
+
+            //append ref1 image
+            formDataRef1.append("referee1Image", referee1Image);
+
             postForm(formData);
+            postRef1Image(formDataRef1);
+
             history.push('/monthlySuscriberTable')
 
         }

@@ -11,7 +11,7 @@ function AdmissionToUnitTable() {
 
     useEffect(() => {
         getAdmissionToUnit();
-    }, []);
+    }, [userData]);
 
 
     const getAdmissionToUnit = async () => {

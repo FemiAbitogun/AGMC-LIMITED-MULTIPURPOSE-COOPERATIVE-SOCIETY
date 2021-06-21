@@ -1,9 +1,11 @@
-import React, {useState, createContext} from 'react'
+import React, { useState, createContext } from 'react'
 
 export const formContext = createContext("");
 
 
 function SectionA(props) {
+    const [referalCode, setReferalCode] = useState("");
+
     const [customerImage, setCustomerImage] = useState("");
     const [branch, setBranch] = useState("");
     const [formNo, setFormNo] = useState("");
@@ -51,17 +53,28 @@ function SectionA(props) {
     return (
         <div>
 
-            <div className="row container">
-                <input type="file" name="customerImage" onChange={function (e) {
-                    _setCustomerImage(e.target.files[0]);
-                }} className="form-control" />
+            <div className="row container mb-3">
+                <label htmlFor="ReferalCode" className="col-sm-2 col-form-label">Referal Code</label>
+                <div className="col-sm-3">
+                    <input type="text" onChange={(e) => { setReferalCode(e.target.value) }} className="form-control " />
+                </div>
             </div>
+
+
+            <div className="row container">
+                <div className="col-sm-4">
+                    <input type="file" name="customerImage" onChange={function (e) {
+                        _setCustomerImage(e.target.files[0]);
+                    }} className="form-control" />
+                </div>
+            </div>
+
 
             <div className="row mt-4 container"  >
 
                 {/* state branch */}
                 <div className="col-6 container">
-                    <label  htmlFor="branch" className="col-sm-4 col-form-label">State/Branch</label>
+                    <label htmlFor="branch" className="col-sm-4 col-form-label">State/Branch</label>
                     <div className="col-sm-8" >
                         <input type="text" onChange={(e) => { _setBranch(e) }} className="form-control " />
                     </div>
@@ -130,7 +143,7 @@ function SectionA(props) {
 
                 <div className="row mt-4 container ">
                     <div className="col-xs-3">
-                        <input type="radio" name="maritalStatus" onClick={(e) => { _setMaritalStatus("Married") }}  /> <span>Married</span>
+                        <input type="radio" name="maritalStatus" onClick={(e) => { _setMaritalStatus("Married") }} /> <span>Married</span>
                     </div>
 
                     <div className="col-xs-3">
@@ -165,11 +178,11 @@ function SectionA(props) {
                 </div>
 
                 <div className="col-2">
-                    <input type="radio" name="gender" onClick={(e) => { _setGender("Male") }}  /><span>Male</span>
+                    <input type="radio" name="gender" onClick={(e) => { _setGender("Male") }} /><span>Male</span>
                 </div>
 
                 <div className="col-2">
-                    <input type="radio" name="gender" onClick={(e) => { _setGender("Female") }}  /><span>Female</span>
+                    <input type="radio" name="gender" onClick={(e) => { _setGender("Female") }} /><span>Female</span>
 
                 </div>
             </div>
@@ -192,13 +205,13 @@ function SectionA(props) {
                 </div>
 
                 <div className="col-2">
-                    <input type="radio" name="religion" onClick={(e) => { _setReligion("Muslim") }}  /><span>Muslim</span>
+                    <input type="radio" name="religion" onClick={(e) => { _setReligion("Muslim") }} /><span>Muslim</span>
 
                 </div>
 
 
                 <div className="col-2">
-                    <input type="radio" name="religion" onClick={(e) => { _setReligion("Other") }}  /><span> Other</span>
+                    <input type="radio" name="religion" onClick={(e) => { _setReligion("Other") }} /><span> Other</span>
                 </div>
             </div>
 
@@ -242,6 +255,7 @@ function SectionA(props) {
 
 
             <formContext.Provider value={{
+                referalCode,
                 customerImage,
                 branch,
                 formNo,

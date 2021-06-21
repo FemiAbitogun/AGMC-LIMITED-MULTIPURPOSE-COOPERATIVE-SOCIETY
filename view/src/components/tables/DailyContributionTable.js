@@ -12,7 +12,7 @@ function DailyContributionTable() {
 
         getDailyContributor();
 
-    })
+    }, [userData])
 
 
     const getDailyContributor = async () => {

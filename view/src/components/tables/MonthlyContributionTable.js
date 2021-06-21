@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from "axios"
-import ReactDOM from 'react-dom';
 import './Table.css';
 
 
@@ -8,36 +7,34 @@ import './Table.css';
 
 
 function MonthlyContributionTable() {
+
+
     const url = "http://localhost:9000/api/monthlyContribution"
 
     const [userData, setUserData] = useState([]);
 
-
     useEffect(() => {
         getMonthlyAccount();
-    }, [])
+    }, [userData])
 
 
     async function getMonthlyAccount() {
         var { data } = await axios.get(url)
         setUserData(data)
-        // { responseType: 'blob' }
     }
-
-    async function getImage() {
-        var { dataImage } = await axios.get(url, { responseType: 'blob' })
-        // <img src={URL.createObjectURL(user.customerImage)} />
-    }
-
 
 
     function displayMonthlyAccount() {
 
         return userData.map((user) => {
-            console.log(user.customerImagePath)
+
             return (
                 <div key={user._id} className="container table mt-4">
 
+                    <div className=" container row mb-4">
+                        <text className="blockquote"> {user.referalCode}</text>
+
+                    </div>
                     <img src={`http://localhost:9000/${user.customerImagePath}`} />
 
 

@@ -137,11 +137,78 @@ function MonthlyContributionTable() {
                                 <th scope="row">Years Of Relationship</th>
                                 <td>{user.kinYearOfrelationship}</td>
                             </tr>
+
+
+
+                            <div className="row nav">
+                                <h5 className="text-danger">REFEREE 1 INFORMATION</h5>
+                            </div>
+
+
+                            <img src={`http://localhost:9000/${user.referee1ImagePath}`} />
+
+                            <tr>
+                                <th scope="row">FullName</th>
+                                <td>{user.referee1FullName}</td>
+                                <th scope="row">Home Address</th>
+                                <td>{user.referee1HomeAddress}</td>
+                                <th scope="row">WorkAddress</th>
+                                <td>{user.referee1WorkAddress}</td>
+                                <th scope="row">Business</th>
+                                <td>{user.referee1Business}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{user.referee1Email}</td>
+                                <th scope="row">Religion</th>
+                                <td>{user.referee1Religion}</td>
+                                <th scope="row">Phone</th>
+                                <td>{user.referee1Phone}</td>
+                                <th scope="row">Relationship</th>
+                                <td>{user.referee1Relationship}</td>
+
+                            </tr>
+
+
+
+                            <div className="row nav">
+                                <h5 className="text-danger">REFEREE 2 INFORMATION</h5>
+                            </div>
+
+
+                            <img src={`http://localhost:9000/${user.referee2ImagePath}`} />
+
+                            <tr>
+                                <th scope="row">FullName</th>
+                                <td>{user.referee2FullName}</td>
+                                <th scope="row">Home Address</th>
+                                <td>{user.referee2HomeAddress}</td>
+                                <th scope="row">WorkAddress</th>
+                                <td>{user.referee2WorkAddress}</td>
+                                <th scope="row">Business</th>
+                                <td>{user.referee2Business}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{user.referee2Email}</td>
+                                <th scope="row">Religion</th>
+                                <td>{user.referee2Religion}</td>
+                                <th scope="row">Phone</th>
+                                <td>{user.referee2Phone}</td>
+                                <th scope="row">Relationship</th>
+                                <td>{user.referee2Relationship}</td>
+
+                            </tr>
+
+
                         </tbody>
-                        <input type="submit" value="delete" className="btn btn-danger"
-                            onClick={() => { deleteMethod(user._id) }} />
+
                     </table>
 
+                    <input type="submit" value="delete" className="btn btn-danger"
+                        onClick={() => { deleteMethod(user._id) }} />
                     <br className="mt-4"></br>
 
                 </div>

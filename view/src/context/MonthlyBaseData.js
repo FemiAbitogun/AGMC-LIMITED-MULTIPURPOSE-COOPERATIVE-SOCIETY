@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { formContext } from "../components/forms/monthlyFillForm/SectionA"
 import { formContextB } from "../components/forms/monthlyFillForm/SectionB"
 import { formContextC } from "../components/forms/monthlyFillForm/SectionC"
@@ -7,6 +7,7 @@ import { postForm, postRef1Image, postRef2Image} from "../api/marketing/postMont
 import { useHistory } from 'react-router-dom'
 import { formContextRef1 } from "../components/forms/monthlyFillForm/Referee1"
 import { formContextRef2 } from "../components/forms/monthlyFillForm/Referee2"
+import { authorized } from "./AuthContext"
 
 
 
@@ -15,6 +16,14 @@ function MonthlyBaseData() {
 
     const history = useHistory();
 
+    const { auth } = useContext(authorized)
+    useEffect(() => {
+        auth === "" && history.push('/')
+    }, [auth])
+
+
+    
+    
     const {
         referalCode,
         customerImage,
@@ -176,13 +185,14 @@ function MonthlyBaseData() {
             postRef2Image(formDataRef2);
             postForm(formData);
             
-
             history.push('/monthlySuscriberTable')
 
         }
         catch (error) {
             history.push('/monthlySuscriberTable')
         }
+
+
 
 
 

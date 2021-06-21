@@ -21,9 +21,10 @@ function AdmissionIntoUnit() {
         }
     }
 
+
     useEffect(() => {
         checkOut();
-    }, [auth])
+    }, [])
 
 
     return (

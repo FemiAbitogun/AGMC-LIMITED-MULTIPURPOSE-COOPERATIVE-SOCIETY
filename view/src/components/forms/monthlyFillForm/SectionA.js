@@ -51,6 +51,12 @@ function SectionA(props) {
 
 
     return (
+
+
+
+
+
+
         <div>
 
             <div className="row container mb-3">
@@ -250,6 +256,20 @@ function SectionA(props) {
                     <input type="text" onChange={(e) => { _setHomeTown(e) }} placeholder="Home Town" className="form-control" />
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

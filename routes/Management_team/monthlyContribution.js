@@ -4,9 +4,13 @@
 const router = require('express').Router();
 const {upload} = require('../../fileHelper');
 
-const {referee1ImageSuscriberAccount,referee2ImageSuscriberAccount,getAllSuscriberAccount, createSuscriberAccount, deleteSuscriberAccount } = require('../../controller/MarketingDepartment/MonthlyContribution');
+const {referee1ImageSuscriberAccount,referee2ImageSuscriberAccount,getAllSuscriberAccount, createSuscriberAccount, deleteSuscriberAccount ,
+    getSuscriberAccountById
+
+} = require('../../controller/MarketingDepartment/MonthlyContribution');
 
 router.get('/', getAllSuscriberAccount);
+router.get('/:id', getSuscriberAccountById);
 
 
 //router.post('/', createSuscriberAccount); ERROR YOU HAVE THIS ROUTE CONSUMING BAD!!

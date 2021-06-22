@@ -3,7 +3,7 @@ import { formContext } from "../components/forms/monthlyFillForm/SectionA"
 import { formContextB } from "../components/forms/monthlyFillForm/SectionB"
 import { formContextC } from "../components/forms/monthlyFillForm/SectionC"
 import { formContextD } from "../components/forms/monthlyFillForm/SectionD"
-import { postForm, postRef1Image, postRef2Image} from "../api/marketing/postMonthlyForm"
+import { postForm, postRef1Image, postRef2Image } from "../api/marketing/postMonthlyForm"
 import { useHistory } from 'react-router-dom'
 import { formContextRef1 } from "../components/forms/monthlyFillForm/Referee1"
 import { formContextRef2 } from "../components/forms/monthlyFillForm/Referee2"
@@ -19,11 +19,11 @@ function MonthlyBaseData() {
     const { auth } = useContext(authorized)
     useEffect(() => {
         auth === "" && history.push('/')
-    }, [auth])
+    }, [])
 
 
-    
-    
+
+
     const {
         referalCode,
         customerImage,
@@ -175,7 +175,7 @@ function MonthlyBaseData() {
 
             //append ref1 image
             formDataRef1.append("referee1Image", referee1Image);
-            
+
             //append ref2 image
             formDataRef2.append("referee2Image", referee2Image);
 
@@ -184,7 +184,7 @@ function MonthlyBaseData() {
             postRef1Image(formDataRef1);
             postRef2Image(formDataRef2);
             postForm(formData);
-            
+
             history.push('/monthlySuscriberTable')
 
         }
@@ -192,18 +192,23 @@ function MonthlyBaseData() {
             history.push('/monthlySuscriberTable')
         }
 
-
-
-
-
-
-
     }
+
+    function cancel() {
+        history.push("/home")
+    }
+
+
+
 
     return (
         <div className="row container mt-4">
             <div className="col-sm-4">
-                <input type="button" className="btn btn-danger" value="submit form" onClick={(e) => { sendToPostForm(e) }} />
+                <input type="button" className="btn btn-danger" value="Submit Form" onClick={(e) => { sendToPostForm(e) }} />
+            </div>
+
+            <div className="col-sm-4">
+                <input type="button" className="btn btn-warning" value="Cancel Form" onClick={(e) => { cancel() }} />
             </div>
         </div>
     )

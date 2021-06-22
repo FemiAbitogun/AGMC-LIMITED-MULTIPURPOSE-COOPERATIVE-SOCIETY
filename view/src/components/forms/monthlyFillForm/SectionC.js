@@ -39,7 +39,7 @@ function SectionC(props) {
         <div>
 
 
-            {/*  Preffer Days of meeting*/}
+            {/* BANK DETAIL*/}
             <div className="row mt-4 container form-group" >
 
                 <div className="col-xs-4">

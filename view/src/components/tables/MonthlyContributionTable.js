@@ -2,11 +2,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from "axios"
 import './Table.css';
 
+import { Link } from 'react-router-dom'
+
+
+
 
 
 
 
 function MonthlyContributionTable() {
+
 
 
     const url = "http://localhost:9000/api/monthlyContribution"
@@ -24,6 +29,13 @@ function MonthlyContributionTable() {
     }
 
 
+
+
+
+
+
+
+
     function displayMonthlyAccount() {
 
         return userData.map((user) => {
@@ -32,9 +44,9 @@ function MonthlyContributionTable() {
                 <div key={user._id} className="container table mt-4">
 
                     <div className=" container row mb-4">
-                        <text className="blockquote"> {user.referalCode}</text>
-
+                      <h3>{user.referalCode} </h3>  
                     </div>
+                    
                     <img src={`http://localhost:9000/${user.customerImagePath}`} />
 
 
@@ -93,7 +105,7 @@ function MonthlyContributionTable() {
                                 <th scope="row">Home Town</th>
                                 <td>{user.homeTown}</td>
 
-                                <th scope="row">Preffer Days O fMeeting</th>
+                                <th scope="row">Preffer Days Of Meeting</th>
                                 <td>{user.prefferDaysOfMeeting}</td>
                             </tr>
 
@@ -172,6 +184,7 @@ function MonthlyContributionTable() {
 
 
 
+
                             <div className="row nav">
                                 <h5 className="text-danger">REFEREE 2 INFORMATION</h5>
                             </div>
@@ -207,8 +220,13 @@ function MonthlyContributionTable() {
 
                     </table>
 
-                    <input type="submit" value="delete" className="btn btn-danger"
+                    <input type="button" value="DELETE" className="btn btn-danger"
                         onClick={() => { deleteMethod(user._id) }} />
+
+                    <span>
+                        <button className="btn btn-warning m-3"><Link to={`/edit/${user._id}`}>E D I T</Link> </button>
+                    </span>
+
                     <br className="mt-4"></br>
 
                 </div>
@@ -217,6 +235,20 @@ function MonthlyContributionTable() {
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

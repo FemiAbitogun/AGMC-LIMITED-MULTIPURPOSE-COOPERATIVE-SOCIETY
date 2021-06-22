@@ -23,6 +23,35 @@ const getAllSuscriberAccount = async (req, res) => {
 
 
 
+// get suscriber account by id................
+const getSuscriberAccountById = async (req, res) => {
+    try {
+        const suscriber = await Suscriber.findById(req.params.id);
+        if (!suscriber)
+            return res.status(500).json({
+                errorMessage: "can not find users"
+            })
+
+        return res.status(200).json(suscriber);
+    }
+    catch (err) {
+        res.status(500).json({
+            errorMessage: " error getting suscriber from database...."
+        })
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
 let newUserSuscriber = new Suscriber();
 
 
@@ -234,7 +263,11 @@ module.exports = {
     referee2ImageSuscriberAccount,
     getAllSuscriberAccount,
     createSuscriberAccount,
-    deleteSuscriberAccount
+    deleteSuscriberAccount,
+
+
+
+    getSuscriberAccountById
 };
 
 

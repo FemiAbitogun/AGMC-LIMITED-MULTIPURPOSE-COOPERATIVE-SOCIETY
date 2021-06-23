@@ -183,10 +183,7 @@ function SectionA() {
 
         return (
             <div>
-                {/* <input type="text"
-                    value={customerImagePath}
-                    onChange={(e) => { setCustomerImagePath(e.target.value) }}
-                /> */}
+             
                 {/*  */}
 
                 <div className="row container mt-3">
@@ -379,15 +376,15 @@ function SectionA() {
                 <div className="row mt-4 container" >
 
                     <div className="col-4">
-                        <input type="text" onChange={(e) => { setStateOfOrigin(e) }} placeholder="State of Origin " className="form-control" />
+                        <input value={stateOfOrigin} type="text" onChange={(e) => { setStateOfOrigin(e) }} placeholder="State of Origin " className="form-control" />
                     </div>
 
                     <div className="col-4">
-                        <input type="text" onChange={(e) => { setLGA(e) }} placeholder="LGA" className="form-control" />
+                        <input value={LGA} type="text" onChange={(e) => { setLGA(e) }} placeholder="LGA" className="form-control" />
                     </div>
 
                     <div className="col-4">
-                        <input type="text" onChange={(e) => { setHomeTown(e) }} placeholder="Home Town" className="form-control" />
+                        <input value={homeTown} type="text" onChange={(e) => { setHomeTown(e) }} placeholder="Home Town" className="form-control" />
                     </div>
                 </div>
 

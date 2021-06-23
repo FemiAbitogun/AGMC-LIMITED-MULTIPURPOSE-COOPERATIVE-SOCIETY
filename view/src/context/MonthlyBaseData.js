@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect,useState } from "react"
 import { formContext } from "../components/forms/monthlyFillForm/SectionA"
 import { formContextB } from "../components/forms/monthlyFillForm/SectionB"
 import { formContextC } from "../components/forms/monthlyFillForm/SectionC"
@@ -16,8 +16,22 @@ function MonthlyBaseData() {
 
     const history = useHistory();
 
+
+    const [value, setValue] = useState();
+
+    const refresh = () => {
+     
+        setValue({});
+        
+    }
+
+
+
     const { auth } = useContext(authorized)
+
     useEffect(() => {
+        refresh();
+       // window.location.reload();
         auth === "" && history.push('/')
     }, [])
 

@@ -1,18 +1,34 @@
-import React, { useState, createContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { useParams, useHistory } from 'react-router-dom';
 
 
 
+import { editMonthlySuscriber, editCustomerImage, editRef1Image, editRef2Image } from "../../../../api/marketing/editAPIs/monthlySuscriberEdit"
 
 
-function SectionA() {
+
+
+function EditMonthlySuscriber() {
 
 
     const history = useHistory();
 
     const { id } = useParams();
 
+
+    useEffect(() => {
+
+        async function _getMonthlyAccountById() {
+            await getMonthlyAccountById()
+        }
+        _getMonthlyAccountById();
+
+    }, []);
+
+
+
+    //text fields...........
     const [referalCode, setReferalCode] = useState("");
     const [customerImagePath, setCustomerImagePath] = useState("");
     const [branch, setBranch] = useState("");
@@ -45,7 +61,6 @@ function SectionA() {
     const [accountNumber, setAccountNumber] = useState("");
     const [meansOfIdentification, setMeansOfIdentification] = useState("");
     const [idCardNo, setIdCardNo] = useState("");
-
 
 
     // SECTION D
@@ -87,19 +102,10 @@ function SectionA() {
 
 
 
-
-
-
-
-    useEffect(() => {
-
-        async function _getMonthlyAccountById() {
-            await getMonthlyAccountById()
-        }
-        _getMonthlyAccountById();
-
-    }, []);
-
+    //photos
+    const [customerPhoto, setCustomerPhoto] = useState("");
+    const [referee1, setRef1Photo] = useState("");
+    const [referee2, setRef2Photo] = useState("");
 
 
 
@@ -173,9 +179,133 @@ function SectionA() {
 
     }
 
+
+
+    const sendToPatchForm = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+
+
+        try {
+
+            formData.append("referalCode", referalCode);
+            formData.append("branch", branch);
+            formData.append("formNo", formNo);
+            formData.append("fullName", fullName);
+            formData.append("residentialAddress", residentialAddress);
+            formData.append("email", email);
+            formData.append("phone", phone);
+            formData.append("occupation", occupation);
+            formData.append("maritalStatus", maritalStatus);
+            formData.append("religion", religion);
+            formData.append("gender", gender);
+            formData.append("birthday", birthday);
+            formData.append("permanentHomeAddress", permanentHomeAddress);
+            formData.append("stateOfOrigin", stateOfOrigin);
+            formData.append("LGA", LGA);
+            formData.append("homeTown", homeTown);
+
+
+            // section b.....................
+            formData.append("prefferDaysOfMeeting", prefferDaysOfMeeting);
+            formData.append("contributionPlan", contributionPlan);
+
+            //section c..........................
+            formData.append("BVN", BVN);
+            formData.append("accountNumber", accountNumber);
+            formData.append("meansOfIdentification", meansOfIdentification);
+            formData.append("idCardNo", idCardNo);
+            formData.append("bankName", bankName);
+            // secrion d..............................
+            formData.append("kinFullname", kinFullname);
+            formData.append("kinEmail", kinEmail);
+            formData.append("kinAddress", kinAddress);
+            formData.append("kinOccupation", kinOccupation);
+            formData.append("kinOfficeAddress", kinOfficeAddress);
+            formData.append("kinRelationshipType", kinRelationshipType);
+            formData.append("kinYearOfrelationship", kinYearOfrelationship);
+
+
+
+
+
+            // REFREEE 2
+
+
+            formData.append("referee1FullName", referee1FullName);
+            formData.append("referee1HomeAddress", referee1HomeAddress);
+            formData.append("referee1WorkAddress", referee1WorkAddress);
+            formData.append("referee1Business", referee1Business);
+            formData.append("referee1Email", referee1Email);
+            formData.append("referee1Religion", referee1Religion);
+            formData.append("referee1Phone", referee1Phone);
+            formData.append("referee1Relationship", referee1Relationship);
+
+
+
+
+            formData.append("referee2FullName", referee2FullName);
+            formData.append("referee2HomeAddress", referee2HomeAddress);
+            formData.append("referee2WorkAddress", referee2WorkAddress);
+            formData.append("referee2Business", referee2Business);
+            formData.append("referee2Email", referee2Email);
+            formData.append("referee2Religion", referee2Religion);
+            formData.append("referee2Phone", referee2Phone);
+            formData.append("referee2Relationship", referee2Relationship);
+
+
+            await editMonthlySuscriber(formData);
+
+
+            const editCustomerPhoto = new FormData();
+            const editREF1Photo = new FormData();
+            const editREF2Photo = new FormData();
+
+
+
+            customerPhoto && editCustomerPhoto.append("customerImage", customerPhoto)
+                && await editCustomerImage(editCustomerPhoto);
+
+            //REF 1
+            referee1 && editREF1Photo.append("referee1", referee1)
+                && await editCustomerImage(editREF1Photo);
+
+
+            //REF 2
+            referee2 && editREF2Photo.append("referee2", referee2)
+                && await editCustomerImage(editREF2Photo);
+
+
+
+
+            history.push('/monthlySuscriberTable')
+
+        }
+        catch (error) {
+            history.push('/monthlySuscriberTable')
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+    // 
+
     function cancel() {
         history.push("/home")
+
+
+        // 
     }
+
+
+
 
 
 
@@ -183,13 +313,25 @@ function SectionA() {
 
         return (
             <div>
-             
+
                 {/*  */}
 
-                <div className="row container mt-3">
+                <div className="row container mt-3 mb-3">
                     <label htmlFor="ReferalCode" className="col-sm-2 col-form-label">Referal Code</label>
                     <div className="col-sm-3">
                         <input type="text" value={referalCode} onChange={(e) => { setReferalCode(e.target.value) }} className="form-control " />
+                    </div>
+                </div>
+
+                <div className="row container mt-4">
+                    <div className="col-sm-2 ">
+                        <img src={`http://localhost:9000/${customerImagePath}`} />
+                    </div>
+
+                    <div className="col-sm-4  offset-2">
+                        <input type="file" name="customerImage" onChange={function (e) {
+                            setCustomerPhoto(e.target.files[0]);
+                        }} className="form-control" />
                     </div>
                 </div>
 
@@ -619,12 +761,29 @@ function SectionA() {
 
                 {/* referal..1 */}
 
+                <div className="col-sm-3 mt-4 ">
+                    <h5>REF 1</h5>
+                </div>
+
+
+
+                <div className="row container mt-4">
+                    <div className="col-sm-2 ">
+                        <div className="col-sm-2">
+                            <img src={`http://localhost:9000/${referee1ImagePath}`} />
+                        </div>
+                    </div>
+                    <div className="col-sm-4  offset-2">
+                        <input type="file" name="customerImage" onChange={function (e) {
+                            setRef1Photo(e.target.files[0]);
+                        }} className="form-control" />
+                    </div>
+                </div>
+
+
+
 
                 <div className="row mt-4 container form-group" >
-
-                    <div className="col-sm-3 ">
-                        <h5>REF 1</h5>
-                    </div>
 
                     <div className="col-xs-4 mb-3">
                         <input value={referee1FullName} type="text" placeholder="Full Name" className="form-control" required onChange={(e) => { setReferee1FullName(e.target.value) }} />
@@ -694,11 +853,32 @@ function SectionA() {
                 {/* referal..2 */}
 
 
+                <div className="col-sm-3 ">
+                    <h5>REF 2</h5>
+                </div>
+
+
+                <div className="row container mt-4">
+
+                    <div className="col-sm-2 ">
+                        <div className="col-sm-2">
+                            <img src={`http://localhost:9000/${referee2ImagePath}`} />
+                        </div>
+                    </div>
+
+
+                    <div className="col-sm-4  offset-2">
+                        <input type="file" name="customerImage" onChange={function (e) {
+                            setRef2Photo(e.target.files[0]);
+                        }} className="form-control" />
+                    </div>
+
+                </div>
+
+
+
                 <div className="row mt-4 container form-group" >
 
-                    <div className="col-sm-3 ">
-                        <h5>REF 2</h5>
-                    </div>
 
                     <div className="col-xs-4 mb-3">
                         <input value={referee2FullName} type="text" placeholder="Full Name" className="form-control" required onChange={(e) => { setReferee2FullName(e.target.value) }} />
@@ -757,7 +937,7 @@ function SectionA() {
 
                 <div className="row container mt-2">
                     <div className="col-sm-4">
-                        <input type="button" className="btn btn-danger" value="Edit Edit" onClick={(e) => { }} />
+                        <input type="button" className="btn btn-danger" value=" Edit " onClick={(e) => { }} />
                     </div>
 
                     <div className="col-sm-4">
@@ -797,4 +977,4 @@ function SectionA() {
 
 }
 
-export default SectionA
+export default EditMonthlySuscriber

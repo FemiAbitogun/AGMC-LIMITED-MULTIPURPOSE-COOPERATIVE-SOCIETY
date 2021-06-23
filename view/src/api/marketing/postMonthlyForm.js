@@ -10,6 +10,7 @@ const config = {
         "Content-Type": "multipart/form-data"
     }
 }
+
 export const postForm = async (body) => {
 
     const result = await axios.post(

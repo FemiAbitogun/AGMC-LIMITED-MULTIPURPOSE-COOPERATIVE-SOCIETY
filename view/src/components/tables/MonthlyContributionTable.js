@@ -43,10 +43,19 @@ function MonthlyContributionTable() {
             return (
                 <div key={user._id} className="container table mt-4">
 
-                    <div className=" container row mb-4">
-                      <h3>{user.referalCode} </h3>  
+                    <div className="row container mt-2 mb-2 bg-success">
+
+                        <div className="col-sm-3">
+                            <label htmlFor="ReferalCode" className="form-label"> <h4>Referal Code</h4> </label>
+                        </div>
+
+                        <div className="col-sm-3 ">
+                            <h5 className="">{user.referalCode} </h5>
+                        </div>
+
                     </div>
-                    
+
+
                     <img src={`http://localhost:9000/${user.customerImagePath}`} />
 
 
@@ -224,7 +233,7 @@ function MonthlyContributionTable() {
                         onClick={() => { deleteMethod(user._id) }} />
 
                     <span>
-                        <button className="btn btn-warning m-3"><Link to={`/edit/${user._id}`}>E D I T</Link> </button>
+                        <button className="btn btn-warning m-3"><Link to={`/edit/monthlySuscriber/${user._id}`}>E D I T</Link> </button>
                     </span>
 
                     <br className="mt-4"></br>

@@ -11,7 +11,7 @@ import CreateNewUserForm from '../forms/authorization/CreateNewUserForm'
 import AuthenticatedUserTable from '../tables/AuthenticatedUserTable'
 import MonthlyContributionTable from '../tables/MonthlyContributionTable'
 
-import SectionA from '../editForms/marketing/monthly/EditMonthTable'
+import EditMonthlySuscriber from '../editForms/marketing/monthly/EditMonthTable'
 
 function Routes() {
 
@@ -45,8 +45,8 @@ function Routes() {
                                 <Route path="/userList" component={AuthenticatedUserTable} />
                                 <Route path="/monthlySuscriberTable" component={MonthlyContributionTable} />
 
-                                <Route path="/edit/:id">
-                                    <SectionA />
+                                <Route path="/edit/monthlySuscriber/:id">
+                                    <EditMonthlySuscriber />
                                 </Route>
 
                             </> : <LoginForm />

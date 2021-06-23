@@ -12,6 +12,7 @@ import { authorized } from "./AuthContext"
 
 
 
+
 function MonthlyBaseData() {
 
     const history = useHistory();

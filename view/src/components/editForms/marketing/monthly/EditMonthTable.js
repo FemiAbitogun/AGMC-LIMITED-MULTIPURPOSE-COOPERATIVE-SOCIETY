@@ -112,70 +112,90 @@ function EditMonthlySuscriber() {
     async function getMonthlyAccountById() {
         var { data } = await axios.get("http://localhost:9000/api/monthlyContribution/" + id)
 
-        setReferalCode(data.referalCode);
-        setCustomerImagePath(data.customerImagePath);
-        setBranch(data.branch);
-        setFormNo(data.formNo);
-        setFullName(data.fullName);
-        setResidentialAddress(data.residentialAddress);
-        SetEmail(data.email);
-        setPhone(data.phone);
-        setOccupation(data.occupation);
-        setMaritalStatus(data.maritalStatus);
-        setReligion(data.religion);
-        setGender(data.gender);
-        setBirthday(data.birthday);
-        setPermanentHomeAddress(data.permanentHomeAddress);
-        setStateOfOrigin(data.stateOfOrigin);
-        setLGA(data.LGA);
-        setHomeTown(data.homeTown);
 
-        //SECTION B
-        setPrefferDaysOfMeeting(data.prefferDaysOfMeeting);
-        setContributionPlan(data.contributionPlan);
+        try {
 
+            if (data) {
 
-        //SECTION C
-        setBVN(data.BVN);
-        setBankName(data.bankName);
-        setAccountNumber(data.accountNumber);
-        setMeansOfIdentification(data.meansOfIdentification);
-        setIdCardNo(data.idCardNo);
+                setReferalCode(data.referalCode);
+                setCustomerImagePath(data.customerImagePath);
+                setBranch(data.branch);
+                setFormNo(data.formNo);
+                setFullName(data.fullName);
+                setResidentialAddress(data.residentialAddress);
+                SetEmail(data.email);
+                setPhone(data.phone);
+                setOccupation(data.occupation);
+                setMaritalStatus(data.maritalStatus);
+                setReligion(data.religion);
+                setGender(data.gender);
+                setBirthday(data.birthday);
+                setPermanentHomeAddress(data.permanentHomeAddress);
+                setStateOfOrigin(data.stateOfOrigin);
+                setLGA(data.LGA);
+                setHomeTown(data.homeTown);
+
+                //SECTION B
+                setPrefferDaysOfMeeting(data.prefferDaysOfMeeting);
+                setContributionPlan(data.contributionPlan);
 
 
-        //SECTION D
-        setKinFullname(data.kinFullname);
-        setKinPhone(data.kinPhone);
-        setKinAddress(data.kinAddress);
-        setKinEmail(data.kinEmail);
-        setKinOccupation(data.kinOccupation);
-        setKinOfficeAddress(data.kinOfficeAddress);
-        setKinRelationshipType(data.kinRelationshipType);
-        setKinYearOfrelationship(data.kinYearOfrelationship);
+                //SECTION C
+                setBVN(data.BVN);
+                setBankName(data.bankName);
+                setAccountNumber(data.accountNumber);
+                setMeansOfIdentification(data.meansOfIdentification);
+                setIdCardNo(data.idCardNo);
 
 
-        //REFERAL1 
-        setReferee1ImagePath(data.referee1ImagePath);
-        setReferee1FullName(data.referee1FullName);
-        setReferee1HomeAddress(data.referee1HomeAddress);
-        setReferee1WorkAddress(data.referee1WorkAddress);
-        setReferee1Business(data.referee1Business);
-        setReferee1Email(data.referee1Email);
-        setReferee1Religion(data.referee1Religion);
-        setReferee1Phone(data.referee1Phone);
-        setReferee1Relationship(data.referee1Relationship);
+                //SECTION D
+                setKinFullname(data.kinFullname);
+                setKinPhone(data.kinPhone);
+                setKinAddress(data.kinAddress);
+                setKinEmail(data.kinEmail);
+                setKinOccupation(data.kinOccupation);
+                setKinOfficeAddress(data.kinOfficeAddress);
+                setKinRelationshipType(data.kinRelationshipType);
+                setKinYearOfrelationship(data.kinYearOfrelationship);
 
 
-        //REFERAL2
-        setReferee2ImagePath(data.referee2ImagePath);
-        setReferee2FullName(data.referee2FullName);
-        setReferee2HomeAddress(data.referee2HomeAddress);
-        setReferee2WorkAddress(data.referee2WorkAddress);
-        setReferee2Business(data.referee2Business);
-        setReferee2Email(data.referee2Email);
-        setReferee2Religion(data.referee2Religion);
-        setReferee2Phone(data.referee2Phone);
-        setReferee2Relationship(data.referee2Relationship);
+                //REFERAL1 
+                setReferee1ImagePath(data.referee1ImagePath);
+                setReferee1FullName(data.referee1FullName);
+                setReferee1HomeAddress(data.referee1HomeAddress);
+                setReferee1WorkAddress(data.referee1WorkAddress);
+                setReferee1Business(data.referee1Business);
+                setReferee1Email(data.referee1Email);
+                setReferee1Religion(data.referee1Religion);
+                setReferee1Phone(data.referee1Phone);
+                setReferee1Relationship(data.referee1Relationship);
+
+
+                //REFERAL2
+                setReferee2ImagePath(data.referee2ImagePath);
+                setReferee2FullName(data.referee2FullName);
+                setReferee2HomeAddress(data.referee2HomeAddress);
+                setReferee2WorkAddress(data.referee2WorkAddress);
+                setReferee2Business(data.referee2Business);
+                setReferee2Email(data.referee2Email);
+                setReferee2Religion(data.referee2Religion);
+                setReferee2Phone(data.referee2Phone);
+                setReferee2Relationship(data.referee2Relationship);
+
+
+            }
+
+
+
+
+
+        }
+        catch (err) {
+
+            return null
+        }
+
+
 
     }
 
@@ -260,19 +280,26 @@ function EditMonthlySuscriber() {
             const editREF2Photo = new FormData();
 
 
-            editCustomerPhoto.append("customerImage", customerPhoto)
-             await editCustomerImage(editCustomerPhoto, id);
+            if (customerPhoto !== "") {
+                editCustomerPhoto.append("customerImage", customerPhoto)
+                await editCustomerImage(editCustomerPhoto, id);
+            }
+
 
             //REF 1
-            editREF1Photo.append("referee1Image", referee1)
-            await editRef1Image(editREF1Photo, id);
+            if (referee1 !== "") {
+                editREF1Photo.append("referee1Image", referee1)
+                await editRef1Image(editREF1Photo, id);
+            }
 
 
             //REF 2
-            editREF2Photo.append("referee2Image", referee2)
-            await editRef2Image(editREF2Photo, id);
+            if (referee2 !== "") {
+                editREF2Photo.append("referee2Image", referee2)
+                await editRef2Image(editREF2Photo, id);
+            }
 
-            history.push('/monthlySuscriberTable')
+            return history.push('/monthlySuscriberTable')
 
         }
 

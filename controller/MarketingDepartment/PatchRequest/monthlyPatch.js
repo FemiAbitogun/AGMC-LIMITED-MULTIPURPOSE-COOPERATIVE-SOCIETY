@@ -168,7 +168,7 @@ const editRef2Image = async (req, res) => {
         if(req.file !==null || req.file !==undefined){
             let referee2ImagePath = req.file.path;
             _suscriber.referee2ImagePath = referee2ImagePath;
-            console.log("edit 2 is fired")
+        
             return res.status(200).json();
         }
 
@@ -191,8 +191,6 @@ const editRef1Image = async (req, res) => {
         if(req.file !==null || req.file !==undefined){
             let referee1ImagePath = req.file.path;
             _suscriber.referee1ImagePath = referee1ImagePath;
-            console.log("edit 1 is fired")
-
             return res.status(200).json();
         }
         return null

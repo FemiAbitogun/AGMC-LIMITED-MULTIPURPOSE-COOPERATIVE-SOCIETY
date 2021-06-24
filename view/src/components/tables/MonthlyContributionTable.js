@@ -25,7 +25,9 @@ function MonthlyContributionTable() {
 
     async function getMonthlyAccount() {
         var { data } = await axios.get(url)
-        setUserData(data)
+
+        data && setUserData(data)
+
     }
 
 

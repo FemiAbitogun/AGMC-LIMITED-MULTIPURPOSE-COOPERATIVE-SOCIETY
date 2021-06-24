@@ -5,7 +5,7 @@ import MonthlyForm from '../marketing/MonthlyForm'
 import DailyContribution from '../marketing/DailyContribution'
 import AdmissionIntoUnit from '../marketing/AdmissionIntoUnit'
 import LoginForm from '../forms/authorization/LoginForm'
-import AuthContext, { authorized } from '../../context/AuthContext'
+import { authorized } from '../../context/AuthContext'
 import Navbar from '../Navbar'
 import CreateNewUserForm from '../forms/authorization/CreateNewUserForm'
 import AuthenticatedUserTable from '../tables/AuthenticatedUserTable'
@@ -45,12 +45,13 @@ function Routes() {
                                 <Route path="/userList" component={AuthenticatedUserTable} />
                                 <Route path="/monthlySuscriberTable" component={MonthlyContributionTable} />
 
-                                <Route path="/edit/monthlySuscriber/:id">
+                                <Route path="/edit/:id">
                                     <EditMonthlySuscriber />
                                 </Route>
 
                             </> : <LoginForm />
                     }
+
 
 
 

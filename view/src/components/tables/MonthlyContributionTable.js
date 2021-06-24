@@ -233,7 +233,7 @@ function MonthlyContributionTable() {
                         onClick={() => { deleteMethod(user._id) }} />
 
                     <span>
-                        <button className="btn btn-warning m-3"><Link to={`/edit/monthlySuscriber/${user._id}`}>E D I T</Link> </button>
+                        <button className="btn btn-warning m-3"><Link to={`/edit/${user._id}`}>E D I T</Link> </button>
                     </span>
 
                     <br className="mt-4"></br>

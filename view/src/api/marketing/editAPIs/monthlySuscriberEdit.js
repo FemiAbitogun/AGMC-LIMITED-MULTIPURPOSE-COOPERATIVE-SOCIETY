@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = "http://localhost:9000/api/monthlyContribution/edit/month"
+const url = "http://localhost:9000/api/monthlyContribution/edit/monthly/"
 
 
 const config = {
@@ -11,10 +11,10 @@ const config = {
 
 
 
-export const editMonthlySuscriber = async (body) => {
+export const editMonthlySuscriber = async (body,id) => {
 
     const result = await axios.patch(
-        url,
+        url+id,
         body,
         config
     );
@@ -24,9 +24,9 @@ export const editMonthlySuscriber = async (body) => {
 
 
 
-export const editCustomerImage = async (body) => {
+export const editCustomerImage = async (body,id) => {
 
-    const result = await axios.patch(url + "/referee1",
+    const result = await axios.patch(url + "customerImage/"+id,
         body,
         config
     );
@@ -36,9 +36,9 @@ export const editCustomerImage = async (body) => {
 
 
 
-export const editRef1Image = async (body) => {
+export const editRef1Image = async (body,id) => {
 
-    const result = await axios.patch(url + "/referee1",
+    const result = await axios.patch(url + "referee1/"+id,
         body,
         config
     );
@@ -47,9 +47,9 @@ export const editRef1Image = async (body) => {
 }
 
 
-export const editRef2Image = async (body) => {
+export const editRef2Image = async (body,id) => {
 
-    const result = await axios.patch(url + "/referee1",
+    const result = await axios.patch(url + "referee2/"+id,
         body,
         config
     );

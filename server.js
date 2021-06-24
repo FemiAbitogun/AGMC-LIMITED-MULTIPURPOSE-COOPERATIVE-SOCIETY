@@ -59,3 +59,9 @@ app.use('/api/dailyContribution', require('./routes/Management_team/dailyContrib
 app.use('/api/admission', require('./routes/Management_team/admissionIntoUnit'));
 
 
+
+//edit
+/*monthly contribution */
+//const url = "http://localhost:9000/api/monthlyContribution/edit/monthly/"
+app.use('/api/monthlyContribution/edit/',require('./routes/Management_team/Patch/monthly'));
+

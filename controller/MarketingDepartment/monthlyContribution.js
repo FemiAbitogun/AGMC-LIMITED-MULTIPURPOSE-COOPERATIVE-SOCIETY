@@ -216,8 +216,8 @@ const createSuscriberAccount = async (req, res) => {
 
         })
         const savedSuscriber = await newUserSuscriber.save();
-        //return res.status(201).json("saved successfully");
-        console.log(savedSuscriber)
+        return res.status(201).json("saved successfully");
+      
 
     } //const createSuscriberAccount();
 

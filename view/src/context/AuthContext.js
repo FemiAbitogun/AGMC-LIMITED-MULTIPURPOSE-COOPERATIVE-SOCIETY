@@ -1,5 +1,4 @@
 import React, { useState, createContext, useEffect } from 'react'
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -28,7 +27,7 @@ function AuthContext(props) {
     async function checkOut() {
         let _name = localStorage.getItem("name");
 
-        if (_name !="") {
+        if (_name !=="") {
             const body = { name: _name }
             const { data } = await axios.post(url2, body);
             if (data) {

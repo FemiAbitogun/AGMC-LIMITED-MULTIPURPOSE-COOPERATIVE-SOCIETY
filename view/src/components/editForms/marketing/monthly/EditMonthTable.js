@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 
 
 
-import { editMonthlySuscriber, editCustomerImage, editRef1Image, editRef2Image } from "../../../../api/marketing/editAPIs/monthlySuscriberEdit"
+import { editMonthlySuscriber, editCustomerImage, editRef2Image, editRef1Image } from "../../../../api/marketing/editAPIs/monthlySuscriberEdit"
 
 
 
@@ -183,11 +183,9 @@ function EditMonthlySuscriber() {
 
     const sendToPatchForm = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-
 
         try {
-
+            const formData = new FormData();
             formData.append("referalCode", referalCode);
             formData.append("branch", branch);
             formData.append("formNo", formNo);
@@ -254,7 +252,7 @@ function EditMonthlySuscriber() {
             formData.append("referee2Relationship", referee2Relationship);
 
 
-            await editMonthlySuscriber(formData);
+            await editMonthlySuscriber(formData, id);
 
 
             const editCustomerPhoto = new FormData();
@@ -262,28 +260,30 @@ function EditMonthlySuscriber() {
             const editREF2Photo = new FormData();
 
 
-
-            customerPhoto && editCustomerPhoto.append("customerImage", customerPhoto)
-                && await editCustomerImage(editCustomerPhoto);
+            editCustomerPhoto.append("customerImage", customerPhoto)
+             await editCustomerImage(editCustomerPhoto, id);
 
             //REF 1
-            referee1 && editREF1Photo.append("referee1", referee1)
-                && await editCustomerImage(editREF1Photo);
+            editREF1Photo.append("referee1Image", referee1)
+            await editRef1Image(editREF1Photo, id);
 
 
             //REF 2
-            referee2 && editREF2Photo.append("referee2", referee2)
-                && await editCustomerImage(editREF2Photo);
-
-
-
+            editREF2Photo.append("referee2Image", referee2)
+            await editRef2Image(editREF2Photo, id);
 
             history.push('/monthlySuscriberTable')
 
         }
+
+
+
         catch (error) {
-            history.push('/monthlySuscriberTable')
+            console.log(error.message)
         }
+
+
+
 
     }
 
@@ -937,7 +937,7 @@ function EditMonthlySuscriber() {
 
                 <div className="row container mt-2">
                     <div className="col-sm-4">
-                        <input type="button" className="btn btn-danger" value=" Edit " onClick={(e) => { }} />
+                        <input type="button" className="btn btn-danger" value=" Edit " onClick={(e) => { sendToPatchForm(e) }} />
                     </div>
 
                     <div className="col-sm-4">

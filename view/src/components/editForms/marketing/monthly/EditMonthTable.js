@@ -108,11 +108,16 @@ function EditMonthlySuscriber() {
     const [referee2, setRef2Photo] = useState("");
 
 
+    const [_data, setData] = useState({
+        data: ""
+    });
 
     async function getMonthlyAccountById() {
         var { data } = await axios.get("http://localhost:9000/api/monthlyContribution/" + id)
 
+        setData(data)
 
+        console.log(_data);
         try {
 
             if (data) {
@@ -192,7 +197,7 @@ function EditMonthlySuscriber() {
         }
         catch (err) {
 
-            return null
+            return console.log(err.message)
         }
 
 
@@ -228,13 +233,13 @@ function EditMonthlySuscriber() {
                 prefferDaysOfMeeting,
                 contributionPlan,
 
-                BVN, bankName, accountNumber, 
+                BVN, bankName, accountNumber,
                 meansOfIdentification, idCardNo,
 
 
-                kinFullname,kinPhone, kinAddress, kinEmail,
+                kinFullname, kinPhone, kinAddress, kinEmail,
                 kinOccupation,
-                kinOfficeAddress, 
+                kinOfficeAddress,
                 kinRelationshipType, kinYearOfrelationship,
 
 
@@ -261,28 +266,29 @@ function EditMonthlySuscriber() {
             await editMonthlySuscriber(body, id);
 
 
+
             const editCustomerPhoto = new FormData();
             const editREF1Photo = new FormData();
             const editREF2Photo = new FormData();
 
 
-            if (customerPhoto !== "") {
+            if (customerPhoto) {
                 editCustomerPhoto.append("customerImage", customerPhoto)
-                await editCustomerImage(editCustomerPhoto, id);
+                editCustomerImage(editCustomerPhoto, id);
             }
 
 
             //REF 1
-            if (referee1 !== "") {
+            if (referee1) {
                 editREF1Photo.append("referee1Image", referee1)
-                await editRef1Image(editREF1Photo, id);
+                editRef1Image(editREF1Photo, id);
             }
 
 
             //REF 2
-            if (referee2 !== "") {
+            if (referee2) {
                 editREF2Photo.append("referee2Image", referee2)
-                await editRef2Image(editREF2Photo, id);
+                editRef2Image(editREF2Photo, id);
             }
 
             return history.push('/monthlySuscriberTable')
@@ -979,7 +985,13 @@ function EditMonthlySuscriber() {
 
     return (
 
-        <div>{display()}</div>
+        <div>
+
+            {_data === "" ? <div>LOADING.....</div> : display()}
+
+
+
+        </div>
 
 
     )

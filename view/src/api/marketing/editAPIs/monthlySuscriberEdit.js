@@ -18,7 +18,7 @@ export const editMonthlySuscriber = async (body, id) => {
         body
     );
 
-    console.log(result)
+    
 
 }
 

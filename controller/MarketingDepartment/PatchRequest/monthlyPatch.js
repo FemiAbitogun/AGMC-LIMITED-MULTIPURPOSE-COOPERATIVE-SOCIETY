@@ -4,17 +4,14 @@ const Suscriber = require('../../../model/Management_team/Marketing_department/m
 
 
 
-let _suscriber = new Suscriber();
-_suscriber.customerImagePath = "";
-_suscriber.referee2ImagePath = "";
-_suscriber.referee1ImagePath = "";
 
 const editCustomerImage = async (req, res) => {
     try {
 
-        let customerImagePath = req.file.path;
-        _suscriber.customerImagePath = customerImagePath;
-        return res.status(200).json();
+        let suscriber = await Suscriber.findById(req.params.id);
+        suscriber.customerImagePath = req.file.path;
+        await suscriber.save();
+        console.log("customer image" + req.file.path)
 
     }
     catch (err) {
@@ -31,12 +28,12 @@ const editCustomerImage = async (req, res) => {
 const editRef2Image = async (req, res) => {
     try {
 
+        let suscriber = await Suscriber.findById(req.params.id);
+        suscriber.referee2ImagePath = req.file.path;
+        await suscriber.save();
 
-        let referee2ImagePath = req.file.path;
-        _suscriber.referee2ImagePath = referee2ImagePath;
 
-        return res.status(200).json();
-
+        console.log("ref2 image" + req.file.path)
 
 
     }
@@ -55,10 +52,13 @@ const editRef1Image = async (req, res) => {
     try {
 
 
-        let referee1ImagePath = req.file.path;
-        _suscriber.referee1ImagePath = referee1ImagePath;
-        return res.status(200).json();
+        let suscriber = await Suscriber.findById(req.params.id);
+        suscriber.referee1ImagePath = req.file.path;
+        await suscriber.save();
 
+
+
+        console.log("ref1 image" + req.file.path)
 
     }
     catch (err) {
@@ -77,19 +77,6 @@ const editMonthlySuscriber = async (req, res) => {
     try {
 
         let suscriber = await Suscriber.findById(req.params.id);
-
-
-        // suscriber.customerImagePath = _suscriber.customerImagePath;
-
-
-        // suscriber.referee2ImagePath = _suscriber.referee2ImagePath
-
-
-        // suscriber.referee1ImagePath = _suscriber.referee1ImagePath
-
-
-
-
 
         suscriber.referalCode = req.body.referalCode,
             suscriber.branch = req.body.branch
@@ -138,9 +125,7 @@ const editMonthlySuscriber = async (req, res) => {
         suscriber.referee2Religion = req.body.referee2Religion
         suscriber.referee2Phone = req.body.referee2Phone
         suscriber.referee2Relationship = req.body.referee2Relationship;
-
-
-        const editedSuscriber = await suscriber.save();
+        await suscriber.save();
 
         return res.status(200).json({});
 

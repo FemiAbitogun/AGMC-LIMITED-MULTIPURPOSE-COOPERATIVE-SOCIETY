@@ -5,127 +5,143 @@ const Suscriber = require('../../../model/Management_team/Marketing_department/m
 
 
 let _suscriber = new Suscriber();
+_suscriber.customerImagePath = "";
+_suscriber.referee2ImagePath = "";
+_suscriber.referee1ImagePath = "";
+
+const editCustomerImage = async (req, res) => {
+    try {
+
+        let customerImagePath = req.file.path;
+        _suscriber.customerImagePath = customerImagePath;
+        return res.status(200).json();
+
+    }
+    catch (err) {
+        res.status(500).json({
+            errorMessage: " "
+        })
+
+
+    }
+
+}
+
+
+const editRef2Image = async (req, res) => {
+    try {
+
+
+        let referee2ImagePath = req.file.path;
+        _suscriber.referee2ImagePath = referee2ImagePath;
+
+        return res.status(200).json();
+
+
+
+    }
+    catch (err) {
+        res.status(500).json({
+            errorMessage: " "
+        })
+
+
+    }
+
+}
+
+
+const editRef1Image = async (req, res) => {
+    try {
+
+
+        let referee1ImagePath = req.file.path;
+        _suscriber.referee1ImagePath = referee1ImagePath;
+        return res.status(200).json();
+
+
+    }
+    catch (err) {
+        res.status(500).json({
+            errorMessage: " ."
+        })
+
+
+    }
+
+}
+
 
 
 const editMonthlySuscriber = async (req, res) => {
     try {
 
-        const suscriber = await Suscriber.findById(req.params.id);
+        let suscriber = await Suscriber.findById(req.params.id);
 
-        let {
-            referalCode,
-            branch,
-            formNo,
-            fullName,
-            residentialAddress,
-            email,
-            phone,
-            occupation,
-            maritalStatus,
-            religion,
-            gender,
-            birthday,
-            permanentHomeAddress,
-            stateOfOrigin,
-            LGA,
-            homeTown,
-            prefferDaysOfMeeting,
-            contributionPlan,
-            bankName,
-            accountNumber,
-            BVN,
-            meansOfIdentification,
-            idCardNo,
-            kinFullname,
-            kinAddress,
-            kinEmail,
-            kinPhone,
-            kinOccupation,
-            kinOfficeAddress,
-            kinRelationshipType,
-            kinYearOfrelationship,
-            referee1FullName,
-            referee1HomeAddress,
-            referee1WorkAddress,
-            referee1Business,
-            referee1Email,
-            referee1Religion,
-            referee1Phone,
-            referee1Relationship,
-            referee2FullName,
-            referee2HomeAddress,
-            referee2WorkAddress,
-            referee2Business,
-            referee2Email,
-            referee2Religion,
-            referee2Phone,
-            referee2Relationship
 
-        } = req.body;
+        // suscriber.customerImagePath = _suscriber.customerImagePath;
 
-        suscriber.referalCode = referalCode,
-            suscriber.branch = branch
-        suscriber.formNo = formNo
-        suscriber.fullName = fullName
-        suscriber.residentialAddress = residentialAddress
-        suscriber.email = email
-        suscriber.phone = phone
-        suscriber.occupation = occupation
-        suscriber.maritalStatus = maritalStatus
-        suscriber.religion = religion
-        suscriber.gender = gender
-        suscriber.birthday = birthday
-        suscriber.permanentHomeAddress = permanentHomeAddress
-        suscriber.stateOfOrigin = stateOfOrigin
-        suscriber.LGA = LGA
-        suscriber.homeTown = homeTown
-        suscriber.prefferDaysOfMeeting = prefferDaysOfMeeting
-        suscriber.contributionPlan = contributionPlan
-        suscriber.bankName = bankName
-        suscriber.accountNumber = accountNumber
-        suscriber.BVN = BVN
-        suscriber.meansOfIdentification = meansOfIdentification
-        suscriber.idCardNo = idCardNo
-        suscriber.kinFullname = kinFullname
-        suscriber.kinAddress = kinAddress
-        suscriber.kinEmail = kinEmail
-        suscriber.kinPhone = kinPhone
-        suscriber.kinOccupation = kinOccupation
-        suscriber.kinOfficeAddress = kinOfficeAddress
-        suscriber.kinRelationshipType = kinRelationshipType
-        suscriber.kinYearOfrelationship = kinYearOfrelationship
-        suscriber.referee1FullName = referee1FullName
-        suscriber.referee1HomeAddress = referee1HomeAddress
-        suscriber.referee1WorkAddress = referee1WorkAddress
-        suscriber.referee1Business = referee1Business
-        suscriber.referee1Email = referee1Email
-        suscriber.referee1Religion = referee1Religion
-        suscriber.referee1Phone = referee1Phone
-        suscriber.referee1Relationship = referee1Relationship
-        suscriber.referee2FullName = referee2FullName
-        suscriber.referee2HomeAddress = referee2HomeAddress
-        suscriber.referee2WorkAddress = referee2WorkAddress
-        suscriber.referee2Business = referee2Business
-        suscriber.referee2Email = referee2Email
-        suscriber.referee2Religion = referee2Religion
-        suscriber.referee2Phone = referee2Phone
-        suscriber.referee2Relationship = referee2Relationship;
 
-        if (_suscriber.customerImagePath !== "" || _suscriber.customerImagePath !== null) {
-            suscriber.customerImagePath = _suscriber.customerImagePath;
-        }
+        // suscriber.referee2ImagePath = _suscriber.referee2ImagePath
 
-        if (_suscriber.referee2ImagePath !== "" || _suscriber.referee2ImagePath !== null) {
-            suscriber.referee2ImagePath = _suscriber.referee2ImagePath
-        }
 
-        if (_suscriber.referee1ImagePath !== "" || _suscriber.referee1ImagePath !== null) {
-            suscriber.referee1ImagePath = _suscriber.referee1ImagePath
-        }
+        // suscriber.referee1ImagePath = _suscriber.referee1ImagePath
+
+
+
+
+
+        suscriber.referalCode = req.body.referalCode,
+            suscriber.branch = req.body.branch
+        suscriber.formNo = req.body.formNo
+        suscriber.fullName = req.body.fullName
+        suscriber.residentialAddress = req.body.residentialAddress
+        suscriber.email = req.body.email
+        suscriber.phone = req.body.phone
+        suscriber.occupation = req.body.occupation
+        suscriber.maritalStatus = req.body.maritalStatus
+        suscriber.religion = req.body.religion
+        suscriber.gender = req.body.gender
+        suscriber.birthday = req.body.birthday
+        suscriber.permanentHomeAddress = req.body.permanentHomeAddress
+        suscriber.stateOfOrigin = req.body.stateOfOrigin
+        suscriber.LGA = req.body.LGA
+        suscriber.homeTown = req.body.homeTown
+        suscriber.prefferDaysOfMeeting = req.body.prefferDaysOfMeeting
+        suscriber.contributionPlan = req.body.contributionPlan
+        suscriber.bankName = req.body.bankName
+        suscriber.accountNumber = req.body.accountNumber
+        suscriber.BVN = req.body.BVN
+        suscriber.meansOfIdentification = req.body.meansOfIdentification
+        suscriber.idCardNo = req.body.idCardNo
+        suscriber.kinFullname = req.body.kinFullname
+        suscriber.kinAddress = req.body.kinAddress
+        suscriber.kinEmail = req.body.kinEmail
+        suscriber.kinPhone = req.body.kinPhone
+        suscriber.kinOccupation = req.body.kinOccupation
+        suscriber.kinOfficeAddress = req.body.kinOfficeAddress
+        suscriber.kinRelationshipType = req.body.kinRelationshipType
+        suscriber.kinYearOfrelationship = req.body.kinYearOfrelationship
+        suscriber.referee1FullName = req.body.referee1FullName
+        suscriber.referee1HomeAddress = req.body.referee1HomeAddress
+        suscriber.referee1WorkAddress = req.body.referee1WorkAddress
+        suscriber.referee1Business = req.body.referee1Business
+        suscriber.referee1Email = req.body.referee1Email
+        suscriber.referee1Religion = req.body.referee1Religion
+        suscriber.referee1Phone = req.body.referee1Phone
+        suscriber.referee1Relationship = req.body.referee1Relationship
+        suscriber.referee2FullName = req.body.referee2FullName
+        suscriber.referee2HomeAddress = req.body.referee2HomeAddress
+        suscriber.referee2WorkAddress = req.body.referee2WorkAddress
+        suscriber.referee2Business = req.body.referee2Business
+        suscriber.referee2Email = req.body.referee2Email
+        suscriber.referee2Religion = req.body.referee2Religion
+        suscriber.referee2Phone = req.body.referee2Phone
+        suscriber.referee2Relationship = req.body.referee2Relationship;
 
 
         const editedSuscriber = await suscriber.save();
-        // console.log(editedSuscriber)
+
         return res.status(200).json({});
 
     }
@@ -142,68 +158,6 @@ const editMonthlySuscriber = async (req, res) => {
 
 
 
-const editCustomerImage = async (req, res) => {
-    try {
-        if(req.file !==null || req.file !==undefined){
-            let customerImagePath = req.file.path;
-            _suscriber.customerImagePath = customerImagePath;
-            return res.status(200).json();
-        }
-      
-    }
-    catch (err) {
-        res.status(500).json({
-            errorMessage: " error getting suscriber from database...."
-        })
-
-        console.log(err.message)
-    }
-
-}
-
-
-const editRef2Image = async (req, res) => {
-    try {
-
-        if(req.file !==null || req.file !==undefined){
-            let referee2ImagePath = req.file.path;
-            _suscriber.referee2ImagePath = referee2ImagePath;
-        
-            return res.status(200).json();
-        }
-
-        return null
-    }
-    catch (err) {
-        res.status(500).json({
-            errorMessage: " error getting suscriber from database...."
-        })
-
-        console.log(err.message)
-    }
-
-}
-
-
-const editRef1Image = async (req, res) => {
-    try {
-
-        if(req.file !==null || req.file !==undefined){
-            let referee1ImagePath = req.file.path;
-            _suscriber.referee1ImagePath = referee1ImagePath;
-            return res.status(200).json();
-        }
-        return null
-    }
-    catch (err) {
-        res.status(500).json({
-            errorMessage: " error getting suscriber from database...."
-        })
-
-        console.log(err.message)
-    }
-
-}
 
 
 

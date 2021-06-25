@@ -205,74 +205,60 @@ function EditMonthlySuscriber() {
         e.preventDefault();
 
         try {
-            const formData = new FormData();
-            formData.append("referalCode", referalCode);
-            formData.append("branch", branch);
-            formData.append("formNo", formNo);
-            formData.append("fullName", fullName);
-            formData.append("residentialAddress", residentialAddress);
-            formData.append("email", email);
-            formData.append("phone", phone);
-            formData.append("occupation", occupation);
-            formData.append("maritalStatus", maritalStatus);
-            formData.append("religion", religion);
-            formData.append("gender", gender);
-            formData.append("birthday", birthday);
-            formData.append("permanentHomeAddress", permanentHomeAddress);
-            formData.append("stateOfOrigin", stateOfOrigin);
-            formData.append("LGA", LGA);
-            formData.append("homeTown", homeTown);
 
 
-            // section b.....................
-            formData.append("prefferDaysOfMeeting", prefferDaysOfMeeting);
-            formData.append("contributionPlan", contributionPlan);
+            let body = {
+                referalCode,
+                branch,
+                formNo,
+                fullName,
+                residentialAddress,
+                email,
+                phone,
+                occupation,
+                maritalStatus,
+                religion,
+                gender,
+                birthday,
+                permanentHomeAddress,
+                stateOfOrigin,
+                LGA,
+                homeTown,
 
-            //section c..........................
-            formData.append("BVN", BVN);
-            formData.append("accountNumber", accountNumber);
-            formData.append("meansOfIdentification", meansOfIdentification);
-            formData.append("idCardNo", idCardNo);
-            formData.append("bankName", bankName);
-            // secrion d..............................
-            formData.append("kinFullname", kinFullname);
-            formData.append("kinEmail", kinEmail);
-            formData.append("kinAddress", kinAddress);
-            formData.append("kinOccupation", kinOccupation);
-            formData.append("kinOfficeAddress", kinOfficeAddress);
-            formData.append("kinRelationshipType", kinRelationshipType);
-            formData.append("kinYearOfrelationship", kinYearOfrelationship);
+                prefferDaysOfMeeting,
+                contributionPlan,
 
-
-
-
-
-            // REFREEE 2
-
-
-            formData.append("referee1FullName", referee1FullName);
-            formData.append("referee1HomeAddress", referee1HomeAddress);
-            formData.append("referee1WorkAddress", referee1WorkAddress);
-            formData.append("referee1Business", referee1Business);
-            formData.append("referee1Email", referee1Email);
-            formData.append("referee1Religion", referee1Religion);
-            formData.append("referee1Phone", referee1Phone);
-            formData.append("referee1Relationship", referee1Relationship);
+                BVN, bankName, accountNumber, 
+                meansOfIdentification, idCardNo,
 
 
+                kinFullname,kinPhone, kinAddress, kinEmail,
+                kinOccupation,
+                kinOfficeAddress, 
+                kinRelationshipType, kinYearOfrelationship,
 
 
-            formData.append("referee2FullName", referee2FullName);
-            formData.append("referee2HomeAddress", referee2HomeAddress);
-            formData.append("referee2WorkAddress", referee2WorkAddress);
-            formData.append("referee2Business", referee2Business);
-            formData.append("referee2Email", referee2Email);
-            formData.append("referee2Religion", referee2Religion);
-            formData.append("referee2Phone", referee2Phone);
-            formData.append("referee2Relationship", referee2Relationship);
+                referee1FullName,
+                referee1HomeAddress,
+                referee1WorkAddress,
+                referee1Business,
+                referee1Email,
+                referee1Religion,
+                referee1Phone,
+                referee1Relationship,
 
+                referee2FullName,
+                referee2HomeAddress,
+                referee2WorkAddress,
+                referee2Business,
+                referee2Email,
+                referee2Religion,
+                referee2Phone,
+                referee2Relationship
 
-            await editMonthlySuscriber(formData, id);
+            }
+
+            await editMonthlySuscriber(body, id);
 
 
             const editCustomerPhoto = new FormData();
@@ -416,7 +402,7 @@ function EditMonthlySuscriber() {
                         <div className="row" >
                             <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
                             <div className="col-sm-10">
-                                <input type="email" value={email} onChange={(e) => { SetEmail(e) }} className="form-control" />
+                                <input type="email" value={email} onChange={(e) => { SetEmail(e.target.value) }} className="form-control" />
 
                             </div>
                         </div>
@@ -428,7 +414,7 @@ function EditMonthlySuscriber() {
                         <div className="row" >
                             <label htmlFor="Phone" className="col-sm-2 col-form-label">Phone</label>
                             <div className="col-sm-10">
-                                <input type="text" value={phone} onChange={(e) => { setPhone(e) }} className="form-control" />
+                                <input type="text" value={phone} onChange={(e) => { setPhone(e.target.value) }} className="form-control" />
                             </div>
                         </div>
                     </div>
@@ -440,7 +426,7 @@ function EditMonthlySuscriber() {
                     <label htmlFor="occupation" className="col-sm-2 col-form-label">Occupation</label>
 
                     <div className="col-sm-10" >
-                        <input type="text" value={occupation} onChange={(e) => { setOccupation(e) }} className="form-control" />
+                        <input type="text" value={occupation} onChange={(e) => { setOccupation(e.target.value) }} className="form-control" />
                     </div>
                 </div>
 
@@ -528,7 +514,7 @@ function EditMonthlySuscriber() {
                         <h5>Date of Birth</h5>
                     </div>
                     <div className="col-8 ">
-                        <input value={birthday} type="date" onChange={(e) => { setBirthday(e) }} className="form-control" />
+                        <input value={birthday} type="date" onChange={(e) => { setBirthday(e.target.value) }} className="form-control" />
                     </div>
                 </div>
 
@@ -537,7 +523,7 @@ function EditMonthlySuscriber() {
                 {/* permanent home address */}
                 <div className="row mt-4 container" >
                     <label htmlFor="home" className="col-sm-2 col-form-label"> Permanent Home Address</label>
-                    <input type="text" value={permanentHomeAddress} onChange={(e) => { setPermanentHomeAddress(e) }} className="form-control" />
+                    <input type="text" value={permanentHomeAddress} onChange={(e) => { setPermanentHomeAddress(e.target.value) }} className="form-control" />
                 </div>
 
 
@@ -545,15 +531,15 @@ function EditMonthlySuscriber() {
                 <div className="row mt-4 container" >
 
                     <div className="col-4">
-                        <input value={stateOfOrigin} type="text" onChange={(e) => { setStateOfOrigin(e) }} placeholder="State of Origin " className="form-control" />
+                        <input value={stateOfOrigin} type="text" onChange={(e) => { setStateOfOrigin(e.target.value) }} placeholder="State of Origin " className="form-control" />
                     </div>
 
                     <div className="col-4">
-                        <input value={LGA} type="text" onChange={(e) => { setLGA(e) }} placeholder="LGA" className="form-control" />
+                        <input value={LGA} type="text" onChange={(e) => { setLGA(e.target.value) }} placeholder="LGA" className="form-control" />
                     </div>
 
                     <div className="col-4">
-                        <input value={homeTown} type="text" onChange={(e) => { setHomeTown(e) }} placeholder="Home Town" className="form-control" />
+                        <input value={homeTown} type="text" onChange={(e) => { setHomeTown(e.target.value) }} placeholder="Home Town" className="form-control" />
                     </div>
                 </div>
 

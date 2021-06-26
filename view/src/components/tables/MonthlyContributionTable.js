@@ -271,8 +271,9 @@ function MonthlyContributionTable() {
                     <input type="button" value="DELETE" className="btn btn-danger"
                         onClick={() => { deleteMethod(user._id) }} />
                     <span>
-                        <button className="btn btn-warning m-3"><Link to={`/edit/${user._id}`}>E D I T</Link> </button>
+                        <button className="btn btn-warning m-3"><Link to={`/editMonthly/edit/${user._id}`}>E D I T</Link> </button>
                     </span>
+
 
                     <br className="mt-4"></br>
 

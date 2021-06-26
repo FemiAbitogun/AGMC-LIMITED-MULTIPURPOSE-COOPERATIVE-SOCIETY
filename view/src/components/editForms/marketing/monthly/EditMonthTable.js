@@ -108,19 +108,17 @@ function EditMonthlySuscriber() {
     const [referee2, setRef2Photo] = useState("");
 
 
-    const [_data, setData] = useState({
-        data: ""
-    });
+    const [_data, setData] = useState("");
 
     async function getMonthlyAccountById() {
         var { data } = await axios.get("http://localhost:9000/api/monthlyContribution/" + id)
 
-        setData(data)
 
-        console.log(_data);
+
         try {
 
             if (data) {
+                setData(data)
 
                 setReferalCode(data.referalCode);
                 setCustomerImagePath(data.customerImagePath);
@@ -263,16 +261,12 @@ function EditMonthlySuscriber() {
 
             }
 
-            await editMonthlySuscriber(body, id);
+           await editMonthlySuscriber(body, id);
 
-
-
-            const editCustomerPhoto = new FormData();
-            const editREF1Photo = new FormData();
-            const editREF2Photo = new FormData();
 
 
             if (customerPhoto) {
+                const editCustomerPhoto = new FormData();
                 editCustomerPhoto.append("customerImage", customerPhoto)
                 editCustomerImage(editCustomerPhoto, id);
             }
@@ -280,6 +274,7 @@ function EditMonthlySuscriber() {
 
             //REF 1
             if (referee1) {
+                const editREF1Photo = new FormData();
                 editREF1Photo.append("referee1Image", referee1)
                 editRef1Image(editREF1Photo, id);
             }
@@ -287,10 +282,12 @@ function EditMonthlySuscriber() {
 
             //REF 2
             if (referee2) {
+                const editREF2Photo = new FormData();
                 editREF2Photo.append("referee2Image", referee2)
                 editRef2Image(editREF2Photo, id);
             }
 
+            
             return history.push('/monthlySuscriberTable')
 
         }

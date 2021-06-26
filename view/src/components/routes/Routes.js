@@ -12,12 +12,9 @@ import AuthenticatedUserTable from '../tables/AuthenticatedUserTable'
 import MonthlyContributionTable from '../tables/MonthlyContributionTable'
 
 import EditMonthlySuscriber from '../editForms/marketing/monthly/EditMonthTable'
-
+import EditAdmissionTable from '../editForms/marketing/admission/EditAdmissionTable'
 function Routes() {
-
     const { auth } = useContext(authorized);
-    const history = useHistory();
-
 
 
     return (
@@ -29,13 +26,13 @@ function Routes() {
 
 
                     <Route exact path="/" component={LoginForm} />
-                    <Route path="/Home" component={Home} />
+                    {/* <Route path="/Home" component={Home} /> */}
 
-                    <Route path="/createUser" component={CreateNewUserForm} />
+                    {/* <Route path="/createUser" component={CreateNewUserForm} /> */}
 
 
                     {
-                        auth != "" ?
+                        auth !=="" ?
                             <>
 
                                 <Route path="/daily" component={DailyContribution} />
@@ -45,8 +42,12 @@ function Routes() {
                                 <Route path="/userList" component={AuthenticatedUserTable} />
                                 <Route path="/monthlySuscriberTable" component={MonthlyContributionTable} />
 
-                                <Route path="/edit/:id">
+                                <Route path="/editMonthly/edit/:id">
                                     <EditMonthlySuscriber />
+                                </Route>
+
+                                <Route path="/editAdmission/edit/:id">
+                                    <EditAdmissionTable/>
                                 </Route>
 
                             </> : <LoginForm />

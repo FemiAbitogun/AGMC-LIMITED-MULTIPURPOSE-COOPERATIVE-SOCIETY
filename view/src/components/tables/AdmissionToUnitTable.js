@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 
 function AdmissionToUnitTable() {
@@ -41,6 +43,7 @@ function AdmissionToUnitTable() {
                                 <td>{user.registrationNumber}</td>
 
 
+
                                 <th scope="row">Refferal No</th>
                                 <td>{user.refferalFileNumber}</td>
 
@@ -65,15 +68,23 @@ function AdmissionToUnitTable() {
 
                                 <th scope="row">Loan Qualify</th>
                                 <td>{user.loanQualify}</td>
-                                <tr>
-                                    <input type="submit" value="delete" className="btn btn-success"
-                                        onClick={() => { deleteMethod(user._id) }}
-                                    />
-                                </tr>
+
                             </tr>
 
                         </tbody>
                     </table>
+
+
+                 
+
+                    <input type="submit" value="delete" className="btn btn-success"
+                        onClick={() => { deleteMethod(user._id) }}
+                    />
+                
+                    <span>
+                        <button className="btn btn-warning m-3"><Link to={`/editAdmission/edit/${user._id}`}>EDIT unit</Link> </button>
+                    </span>
+
                     <br className="mt-4"></br>
 
                 </div>)
@@ -82,7 +93,7 @@ function AdmissionToUnitTable() {
     }
 
 
- 
+
 
     return (
         <div>

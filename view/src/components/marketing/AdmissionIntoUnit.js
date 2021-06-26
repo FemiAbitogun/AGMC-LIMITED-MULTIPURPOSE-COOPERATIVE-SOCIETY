@@ -36,7 +36,7 @@ function AdmissionIntoUnit() {
 
             <div className="row container offset-8">
                 <div className="col-3">
-                    <input value="LOG OUT" onClick={() => logOut()} className="btn btn-danger " />
+                    <input value="LOG OUT"  onClick={() => logOut()} className="btn btn-danger " />
                 </div>
             </div>
 
@@ -45,6 +45,8 @@ function AdmissionIntoUnit() {
             <div className="row container mt-4">
                 <AdmissionIntoUnitForm />
             </div>
+
+
 
 
 

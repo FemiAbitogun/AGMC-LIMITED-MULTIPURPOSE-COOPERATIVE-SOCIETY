@@ -27,7 +27,7 @@ function AuthContext(props) {
     async function checkOut() {
         let _name = localStorage.getItem("name");
 
-        if (_name !=="") {
+        if (_name !== "") {
             const body = { name: _name }
             const { data } = await axios.post(url2, body);
             if (data) {
@@ -39,7 +39,7 @@ function AuthContext(props) {
 
 
     function logOut() {
-        localStorage.setItem("name","");
+        localStorage.setItem("name", "");
         setAuth("");
     }
 
@@ -53,7 +53,7 @@ function AuthContext(props) {
 
     return (
         <div>
-            <authorized.Provider value={{ sendLoginUser, auth, setAuth,logOut }}>
+            <authorized.Provider value={{ sendLoginUser, auth, setAuth, logOut }}>
                 {props.children}
             </authorized.Provider>
         </div>

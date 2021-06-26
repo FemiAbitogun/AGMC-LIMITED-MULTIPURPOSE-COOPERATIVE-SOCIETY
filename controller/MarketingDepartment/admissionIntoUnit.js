@@ -21,6 +21,25 @@ const getAllAdmissionIntoUnit = async (req, res) => {
 }
 
 
+const getAdmissionIntoUnitById = async (req, res) => {
+    try {
+        const admissionIntoUnit =await AdmissionIntoUnitModel.findById(req.params.id)
+        if (!admissionIntoUnit)
+            return res.status(500).json({
+                errorMessage: "can not find AdmissionIntoUnit"
+            })
+
+        return res.status(200).json(admissionIntoUnit);
+    }
+    catch (err) {
+        res.status(500).json({
+            errorMessage: err.message
+        })
+    }
+
+}
+
+
 
 
 
@@ -88,7 +107,7 @@ const deleteAdmissionIntoUnit = async (req, res) => {
 }
 
 
-module.exports = { getAllAdmissionIntoUnit, createAdmissionIntoUnit, deleteAdmissionIntoUnit };
+module.exports = { getAllAdmissionIntoUnit, createAdmissionIntoUnit, deleteAdmissionIntoUnit,getAdmissionIntoUnitById };
 
 
 

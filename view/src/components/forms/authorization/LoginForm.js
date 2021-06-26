@@ -7,7 +7,7 @@ import './Login.css'
 
 function LoginForm() {
 
-    const { auth, sendLoginUser } = useContext(authorized)
+    const {sendLoginUser } = useContext(authorized)
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const body = { name, password }

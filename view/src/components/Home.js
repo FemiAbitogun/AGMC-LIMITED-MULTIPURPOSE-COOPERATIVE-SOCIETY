@@ -9,12 +9,14 @@ function Home() {
     const history = useHistory();
 
     useEffect(() => {
-        auth == "" && history.push('/')
+        auth === "" && history.push('/')
     }, [])
 
 
     return (
         <div>
+
+
 
         </div>
     )

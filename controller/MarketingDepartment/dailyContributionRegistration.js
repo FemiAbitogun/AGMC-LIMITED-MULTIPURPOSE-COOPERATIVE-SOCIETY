@@ -23,6 +23,27 @@ const getAllDailyContributor = async (req, res) => {
 
 
 
+const dailyContributorById = async (req, res) => {
+    try {
+        const dailyContributor =await DailyContributionModel.findById(req.params.id);
+        if (!dailyContributor)
+            return res.status(400).json({
+                errorMessage: "can not find daily contributors"
+            })
+
+        return res.status(200).json(dailyContributor);
+    }
+    catch (err) {
+        res.status(500).json({
+            errorMessage: " error getting daily contributors from database..."
+        })
+    }
+
+}
+
+
+
+
 
 
 
@@ -96,7 +117,7 @@ const deleteDailyContributor = async (req, res) => {
 
 
 
-module.exports = { getAllDailyContributor, createDailyContributor, deleteDailyContributor };
+module.exports = {dailyContributorById, getAllDailyContributor, createDailyContributor, deleteDailyContributor };
 
 
 

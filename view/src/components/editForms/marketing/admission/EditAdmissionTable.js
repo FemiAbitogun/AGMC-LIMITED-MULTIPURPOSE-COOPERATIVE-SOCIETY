@@ -64,6 +64,7 @@ function EditAdmissionTable() {
 
     }
 
+    
     const submit = async (e) => {
         e.preventDefault()
         try {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from "axios"
 
 function AuthenticatedUserTable() {
@@ -7,7 +7,7 @@ function AuthenticatedUserTable() {
 
     useEffect(() => {
         getDailyContributor();
-    },[userData]);
+    }, [userData]);
 
     const getDailyContributor = async () => {
         var { data } = await axios.get("http://localhost:9000/api/authenticateUser")
@@ -41,14 +41,15 @@ function AuthenticatedUserTable() {
                             <td>{user.roleName}</td>
 
 
-                            <tr>
-                                <input type="submit" value="delete" className="btn btn-success"
-                                    onClick={() => { deleteMethod(user._id) }} />
-                            </tr>
+
                         </tr>
 
                     </tbody>
                 </table>
+
+                <input type="submit" value="delete" className="btn btn-success"
+                    onClick={() => { deleteMethod(user._id) }} />
+
                 <br className="mt-4"></br>
 
             </div>

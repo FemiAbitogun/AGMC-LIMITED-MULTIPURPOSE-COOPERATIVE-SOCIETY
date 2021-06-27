@@ -19,7 +19,7 @@ function DailyContribution() {
     async function checkOut() {
       let _name = localStorage.getItem("name");
 
-      if (_name != null) {
+      if (_name !== null) {
         const body = { name: _name }
         const { data } = await axios.post(url, body);
         if (data) {

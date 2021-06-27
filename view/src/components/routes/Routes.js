@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import Home from '../Home'
-import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom'
+import React, { useContext} from 'react'
+import { BrowserRouter, Switch, Route} from 'react-router-dom'
 import MonthlyForm from '../marketing/MonthlyForm'
 import DailyContribution from '../marketing/DailyContribution'
 import AdmissionIntoUnit from '../marketing/AdmissionIntoUnit'
@@ -13,6 +12,10 @@ import MonthlyContributionTable from '../tables/MonthlyContributionTable'
 
 import EditMonthlySuscriber from '../editForms/marketing/monthly/EditMonthTable'
 import EditAdmissionTable from '../editForms/marketing/admission/EditAdmissionTable'
+import EditDailyTable from '../editForms/marketing/daily/EditDailyTable'
+import Home from '../Home'
+
+
 function Routes() {
     const { auth } = useContext(authorized);
 
@@ -26,7 +29,7 @@ function Routes() {
 
 
                     <Route exact path="/" component={LoginForm} />
-                    {/* <Route path="/Home" component={Home} /> */}
+                    <Route path="/Home" component={Home} />
 
                     {/* <Route path="/createUser" component={CreateNewUserForm} /> */}
 
@@ -48,6 +51,10 @@ function Routes() {
 
                                 <Route path="/editAdmission/edit/:id">
                                     <EditAdmissionTable/>
+                                </Route>
+
+                                <Route path="/editDaily/edit/:id">
+                                    <EditDailyTable/>
                                 </Route>
 
                             </> : <LoginForm />

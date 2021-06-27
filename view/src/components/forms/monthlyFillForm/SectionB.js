@@ -11,10 +11,7 @@ function SectionB(props) {
     const [prefferDaysOfMeeting, setMeeting] = useState("");
     const [contributionPlan, setContributionPlan] = useState("");
 
-    //appending to formData object
-    // formData.append("prefferDaysOfMeeting", prefferDaysOfMeeting);
-    // formData.append("contributionPlan", contributionPlan);
-
+    
     /** functions............. */
     function _setMeeting(value) { setMeeting(value) }
     function _setContributionPlan(value) { setContributionPlan(value) }

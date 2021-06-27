@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
+
 import axios from 'axios';
 
 
@@ -57,14 +59,24 @@ function DailyContributionTable() {
 
                                 <th scope="row">Referral Code</th>
                                 <td>{user.referralCode}</td>
-                                <tr>
-                                    <input type="submit" value="delete" className="btn btn-success"
-                                        onClick={() => { deleteMethod(user._id) }} />
-                                </tr>
+                        
                             </tr>
 
                         </tbody>
                     </table>
+
+
+                    <input type="submit" value="delete" className="btn btn-success"
+                        onClick={() => { deleteMethod(user._id) }} />
+
+                    <span>
+                    <span>
+                        <button className="btn btn-warning m-3"><Link to={`/editDaily/edit/${user._id}`}>E D I T</Link> </button>
+                    </span>
+
+                    </span>
+
+
                     <br className="mt-4"></br>
 
                 </div>)

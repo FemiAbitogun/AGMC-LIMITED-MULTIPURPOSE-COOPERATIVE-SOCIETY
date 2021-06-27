@@ -1,8 +1,5 @@
-import React, { useState, createContext } from 'react'
+import React, { useState } from 'react'
 import {postDailyContribution} from '../../../api/marketing/postDailyContribution'
-
-
-
 
 
 
@@ -28,7 +25,7 @@ function DailyContributionForm() {
             referralCode,
 
         }
-        postDailyContribution(body)
+       await postDailyContribution(body)
 
     }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { authorized } from '../../context/AuthContext'
 import MonthlyBaseData from '../../context/MonthlyBaseData'
 import SectionA from '../forms/monthlyFillForm/SectionA'
@@ -24,7 +24,7 @@ function MonthlyForm() {
         async function checkOut() {
             let _name = localStorage.getItem("name");
 
-            if (_name != null) {
+            if (_name !== "") {
                 const body = { name: _name }
                 const { data } = await axios.post(url2, body);
                 if (data) {

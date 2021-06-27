@@ -54,7 +54,11 @@ function Navbar() {
 
 
 
+
+
+
                                 <div className="row container">
+
 
                                     <div className="col-6">
                                         <Link to="/createUser" className="nav-item nav-link"><h4>New Login User</h4></Link >
@@ -64,7 +68,20 @@ function Navbar() {
                                         <Link to="/userList" className="nav-item nav-link"><h4>List of Authenticated Users</h4></Link >
                                     </div>
 
+
+
+
+
+
                                 </div>
+
+
+
+
+
+
+
+
 
 
 

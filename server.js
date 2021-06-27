@@ -67,3 +67,6 @@ app.use('/api/monthlyContribution/edit/',require('./routes/Management_team/Patch
 app.use('/api/admission/edit', require('./routes/Management_team/Patch/admissionIntoUnit'));
 
 
+// const url = "http://localhost:9000/api/daily/edit/"
+app.use('/api/daily/edit', require('./routes/Management_team/Patch/dailyContribution'));
+

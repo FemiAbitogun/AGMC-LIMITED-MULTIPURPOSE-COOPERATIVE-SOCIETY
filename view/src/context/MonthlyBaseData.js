@@ -21,7 +21,6 @@ function MonthlyBaseData() {
     const [value, setValue] = useState();
 
     const refresh = () => {
-     
         setValue({});
         
     }
@@ -32,7 +31,6 @@ function MonthlyBaseData() {
 
     useEffect(() => {
         refresh();
-       // window.location.reload();
         auth === "" && history.push('/')
     }, [])
 

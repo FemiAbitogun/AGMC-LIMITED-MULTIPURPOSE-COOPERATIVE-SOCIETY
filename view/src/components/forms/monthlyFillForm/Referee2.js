@@ -5,7 +5,7 @@ export const formContextRef2 = createContext("");
 
 function Referee2(props) {
 
-    const [referee2Image, setReferee2Image] = useState([]);
+    const [referee2Image, setReferee2Image] = useState("");
     const [referee2FullName, setReferee2FullName] = useState([]);
     const [referee2HomeAddress, setReferee2HomeAddress] = useState([]);
     const [referee2WorkAddress, setReferee2WorkAddress] = useState([]);

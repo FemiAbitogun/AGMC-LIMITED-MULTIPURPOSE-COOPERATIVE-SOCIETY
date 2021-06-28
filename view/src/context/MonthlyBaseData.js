@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { formContext } from "../components/forms/monthlyFillForm/SectionA"
 import { formContextB } from "../components/forms/monthlyFillForm/SectionB"
 import { formContextC } from "../components/forms/monthlyFillForm/SectionC"
@@ -22,7 +22,7 @@ function MonthlyBaseData() {
 
     const refresh = () => {
         setValue({});
-        
+
     }
 
 
@@ -110,8 +110,7 @@ function MonthlyBaseData() {
     const sendToPostForm = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        const formDataRef1 = new FormData();
-        const formDataRef2 = new FormData();
+       
 
 
 
@@ -181,24 +180,57 @@ function MonthlyBaseData() {
 
 
 
+            /*
+            
+            
+             if (customerPhoto) {
+                            const editCustomerPhoto = new FormData();
+                            editCustomerPhoto.append("customerImage", customerPhoto)
+                            editCustomerImage(editCustomerPhoto, id);
+                        }
+            
+            
+                        //REF 1
+                        if (referee1) {
+                            const editREF1Photo = new FormData();
+                            editREF1Photo.append("referee1Image", referee1)
+                            editRef1Image(editREF1Photo, id);
+                        }
+            
+            
+                        //REF 2
+                        if (referee2) {
+                            const editREF2Photo = new FormData();
+                            editREF2Photo.append("referee2Image", referee2)
+                            editRef2Image(editREF2Photo, id);
+                        }
+
+            */
 
 
 
 
 
-            //append ref1 image
-            formDataRef1.append("referee1Image", referee1Image);
-
-            //append ref2 image
-            formDataRef2.append("referee2Image", referee2Image);
 
 
+            if (referee1Image) {
+                const formDataRef1 = new FormData();
+                formDataRef1.append("referee1Image", referee1Image);
+                postRef1Image(formDataRef1);
+            }
 
-            postRef1Image(formDataRef1);
-            postRef2Image(formDataRef2);
+
+            if (referee2Image) {
+                const formDataRef2 = new FormData();
+                formDataRef2.append("referee2Image", referee2Image);
+                postRef2Image(formDataRef2);
+            }
+
+
             postForm(formData);
 
             history.push('/monthlySuscriberTable')
+
 
         }
         catch (error) {

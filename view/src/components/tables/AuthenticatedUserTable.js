@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
+import Navbar from '../Navbar';
 
 function AuthenticatedUserTable() {
 
@@ -20,41 +21,69 @@ function AuthenticatedUserTable() {
     }
 
 
+    function display() {
 
-    return userData.map((user) => {
+        return userData.map(
+            (user) => {
 
-        return (
-            <div key={user._id} className="container table mt-4">
+                return (
+                    <div key={user._id} className="container table mt-4">
 
-                <table className="table container">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Name</th>
-                            <td>{user.name}</td>
-
-
-                            <th scope="row">Password</th>
-                            <td>{user.password}</td>
+                        <table className="table container">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Name</th>
+                                    <td>{user.name}</td>
 
 
-                            <th scope="row">Role Name</th>
-                            <td>{user.roleName}</td>
+                                    <th scope="row">Password</th>
+                                    <td>{user.password}</td>
+
+
+                                    <th scope="row">Role Name</th>
+                                    <td>{user.roleName}</td>
 
 
 
-                        </tr>
+                                </tr>
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
 
-                <input type="submit" value="delete" className="btn btn-success"
-                    onClick={() => { deleteMethod(user._id) }} />
+                        <input type="submit" value="delete" className="btn btn-success"
+                            onClick={() => { deleteMethod(user._id) }} />
 
-                <br className="mt-4"></br>
+                        <br className="mt-4"></br>
+
+                    </div>
+                )
+            }
+        )
+
+
+
+    }
+
+
+
+    return (
+        <div className="conatiner">
+            <div className="conatiner row">
+                <Navbar></Navbar>
+            </div>
+
+
+            <div className="conatainer row">
+                <div className="col-12">
+                    {display()}
+                </div>
 
             </div>
-        )
-    })
+
+
+        </div>
+
+    )
 
 }
 

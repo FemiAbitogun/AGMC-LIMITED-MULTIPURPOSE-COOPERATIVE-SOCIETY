@@ -3,6 +3,7 @@ import axios from "axios"
 import './Table.css';
 
 import { Link } from 'react-router-dom'
+import Navbar from '../Navbar';
 
 
 
@@ -58,7 +59,7 @@ function MonthlyContributionTable() {
                     </div>
 
 
-                    <img src={`http://localhost:9000/${user.customerImagePath}`} />
+                    <img src={`http://localhost:9000/${user.customerImagePath}`} alt="subject_photo" />
 
 
                     <table className="table container">
@@ -166,33 +167,33 @@ function MonthlyContributionTable() {
                     </div>
 
                     <table className="table container">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Address</th>
-                            <td>{user.kinAddress}</td>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Address</th>
+                                <td>{user.kinAddress}</td>
 
-                            <th scope="row">Email</th>
-                            <td>{user.kinEmail}</td>
+                                <th scope="row">Email</th>
+                                <td>{user.kinEmail}</td>
 
-                            <th scope="row">Occupation</th>
-                            <td>{user.kinOccupation}</td>
-
-
-                        </tr>
+                                <th scope="row">Occupation</th>
+                                <td>{user.kinOccupation}</td>
 
 
-                        <tr>
+                            </tr>
 
-                            <th scope="row">Office Address</th>
-                            <td>{user.kinOfficeAddress}</td>
 
-                            <th scope="row">Relationship Type</th>
-                            <td>{user.kinRelationshipType}</td>
+                            <tr>
 
-                            <th scope="row">Years Of Relationship</th>
-                            <td>{user.kinYearOfrelationship}</td>
+                                <th scope="row">Office Address</th>
+                                <td>{user.kinOfficeAddress}</td>
 
-                        </tr>
+                                <th scope="row">Relationship Type</th>
+                                <td>{user.kinRelationshipType}</td>
+
+                                <th scope="row">Years Of Relationship</th>
+                                <td>{user.kinYearOfrelationship}</td>
+
+                            </tr>
                         </tbody>
                     </table>
 
@@ -203,33 +204,33 @@ function MonthlyContributionTable() {
                     <div className="row">
                         <h3 className="text-danger">REFEREE 1 INFORMATION</h3>
                     </div>
-                    <img src={`http://localhost:9000/${user.referee1ImagePath}`} />
+                    <img src={`http://localhost:9000/${user.referee1ImagePath}`} alt="subject_photo" />
 
                     <table className="table container">
 
-                    <tbody>
-                        <tr>
-                            <th scope="row">FullName</th>
-                            <td>{user.referee1FullName}</td>
-                            <th scope="row">Home Address</th>
-                            <td>{user.referee1HomeAddress}</td>
-                            <th scope="row">WorkAddress</th>
-                            <td>{user.referee1WorkAddress}</td>
-                            <th scope="row">Business</th>
-                            <td>{user.referee1Business}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">FullName</th>
+                                <td>{user.referee1FullName}</td>
+                                <th scope="row">Home Address</th>
+                                <td>{user.referee1HomeAddress}</td>
+                                <th scope="row">WorkAddress</th>
+                                <td>{user.referee1WorkAddress}</td>
+                                <th scope="row">Business</th>
+                                <td>{user.referee1Business}</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row">Email</th>
-                            <td>{user.referee1Email}</td>
-                            <th scope="row">Religion</th>
-                            <td>{user.referee1Religion}</td>
-                            <th scope="row">Phone</th>
-                            <td>{user.referee1Phone}</td>
-                            <th scope="row">Relationship</th>
-                            <td>{user.referee1Relationship}</td>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{user.referee1Email}</td>
+                                <th scope="row">Religion</th>
+                                <td>{user.referee1Religion}</td>
+                                <th scope="row">Phone</th>
+                                <td>{user.referee1Phone}</td>
+                                <th scope="row">Relationship</th>
+                                <td>{user.referee1Relationship}</td>
 
-                        </tr>
+                            </tr>
 
                         </tbody>
                     </table>
@@ -239,32 +240,32 @@ function MonthlyContributionTable() {
                     <div className="row">
                         <h3 className="text-danger">REFEREE 2 INFORMATION</h3>
                     </div>
-                    <img src={`http://localhost:9000/${user.referee2ImagePath}`} />
+                    <img src={`http://localhost:9000/${user.referee2ImagePath}`} alt="subject_photo" />
 
                     <table className="table container">
-                    <tbody>
-                        <tr>
-                            <th scope="row">FullName</th>
-                            <td>{user.referee2FullName}</td>
-                            <th scope="row">Home Address</th>
-                            <td>{user.referee2HomeAddress}</td>
-                            <th scope="row">WorkAddress</th>
-                            <td>{user.referee2WorkAddress}</td>
-                            <th scope="row">Business</th>
-                            <td>{user.referee2Business}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <th scope="row">FullName</th>
+                                <td>{user.referee2FullName}</td>
+                                <th scope="row">Home Address</th>
+                                <td>{user.referee2HomeAddress}</td>
+                                <th scope="row">WorkAddress</th>
+                                <td>{user.referee2WorkAddress}</td>
+                                <th scope="row">Business</th>
+                                <td>{user.referee2Business}</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row">Email</th>
-                            <td>{user.referee2Email}</td>
-                            <th scope="row">Religion</th>
-                            <td>{user.referee2Religion}</td>
-                            <th scope="row">Phone</th>
-                            <td>{user.referee2Phone}</td>
-                            <th scope="row">Relationship</th>
-                            <td>{user.referee2Relationship}</td>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{user.referee2Email}</td>
+                                <th scope="row">Religion</th>
+                                <td>{user.referee2Religion}</td>
+                                <th scope="row">Phone</th>
+                                <td>{user.referee2Phone}</td>
+                                <th scope="row">Relationship</th>
+                                <td>{user.referee2Relationship}</td>
 
-                        </tr>
+                            </tr>
                         </tbody>
                     </table>
 
@@ -309,6 +310,7 @@ function MonthlyContributionTable() {
     return (
         <div className="container">
             <div className=" container row text-center text-success"><h4>MONTHLY SUSCRIBERS LIST</h4></div>
+            <Navbar></Navbar>
             <div className="container row">
                 {displayMonthlyAccount()}
             </div>

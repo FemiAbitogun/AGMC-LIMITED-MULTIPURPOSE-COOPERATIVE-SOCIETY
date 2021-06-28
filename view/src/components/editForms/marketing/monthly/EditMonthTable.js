@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { useParams, useHistory } from 'react-router-dom';
+import Marketing from '../../../pages/Marketing'
+import Navbar from '../../../Navbar';
 
 
 
@@ -261,7 +263,7 @@ function EditMonthlySuscriber() {
 
             }
 
-           await editMonthlySuscriber(body, id);
+            await editMonthlySuscriber(body, id);
 
 
 
@@ -287,7 +289,7 @@ function EditMonthlySuscriber() {
                 editRef2Image(editREF2Photo, id);
             }
 
-            
+
             return history.push('/monthlySuscriberTable')
 
         }
@@ -331,7 +333,7 @@ function EditMonthlySuscriber() {
             <div>
 
                 {/*  */}
-
+                <Navbar />
                 <div className="row container mt-3 mb-3">
                     <label htmlFor="ReferalCode" className="col-sm-2 col-form-label">Referal Code</label>
                     <div className="col-sm-3">

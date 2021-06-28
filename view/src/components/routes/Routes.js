@@ -1,11 +1,10 @@
-import React, { useContext} from 'react'
-import { BrowserRouter, Switch, Route} from 'react-router-dom'
+import React, { useContext } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import MonthlyForm from '../marketing/MonthlyForm'
 import DailyContribution from '../marketing/DailyContribution'
 import AdmissionIntoUnit from '../marketing/AdmissionIntoUnit'
 import LoginForm from '../forms/authorization/LoginForm'
 import { authorized } from '../../context/AuthContext'
-import Navbar from '../Navbar'
 import CreateNewUserForm from '../forms/authorization/CreateNewUserForm'
 import AuthenticatedUserTable from '../tables/AuthenticatedUserTable'
 import MonthlyContributionTable from '../tables/MonthlyContributionTable'
@@ -13,7 +12,12 @@ import MonthlyContributionTable from '../tables/MonthlyContributionTable'
 import EditMonthlySuscriber from '../editForms/marketing/monthly/EditMonthTable'
 import EditAdmissionTable from '../editForms/marketing/admission/EditAdmissionTable'
 import EditDailyTable from '../editForms/marketing/daily/EditDailyTable'
-import Home from '../Home'
+import Home from '../account/Home'
+
+//pages
+import Marketing from '../pages/Marketing'
+import Authorization from '../pages/Authorization'
+
 
 
 function Routes() {
@@ -23,7 +27,7 @@ function Routes() {
     return (
         <div>
             <BrowserRouter>
-                {auth && <Navbar />}
+                {/* {auth && <Navbar />} */}
 
                 <Switch>
 
@@ -35,7 +39,7 @@ function Routes() {
 
 
                     {
-                        auth !=="" ?
+                        auth !== "" ?
                             <>
 
                                 <Route path="/daily" component={DailyContribution} />
@@ -50,12 +54,23 @@ function Routes() {
                                 </Route>
 
                                 <Route path="/editAdmission/edit/:id">
-                                    <EditAdmissionTable/>
+                                    <EditAdmissionTable />
                                 </Route>
 
                                 <Route path="/editDaily/edit/:id">
-                                    <EditDailyTable/>
+                                    <EditDailyTable />
                                 </Route>
+
+                                {/* pages */}
+
+                                <Route path="/marketing">
+                                    <Marketing></Marketing>
+                                </Route>
+
+                                <Route path="/authorizationPage">
+                                   <Authorization></Authorization>
+                                </Route>
+
 
                             </> : <LoginForm />
                     }

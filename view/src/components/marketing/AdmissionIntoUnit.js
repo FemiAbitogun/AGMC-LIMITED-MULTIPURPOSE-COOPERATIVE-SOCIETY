@@ -6,12 +6,15 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import AdmissionToUnitTable from '../tables/AdmissionToUnitTable'
 
+import Marketing from '../pages/Marketing'
+
+
 
 function AdmissionIntoUnit() {
     const { auth, setAuth, logOut } = useContext(authorized);
     const history = useHistory();
     const url = "http://localhost:9000/api/authenticateUser/confirm";
-    
+
     async function checkOut() {
         let _name = localStorage.getItem("name");
         const body = { name: _name }
@@ -30,13 +33,14 @@ function AdmissionIntoUnit() {
     return (
         <div className="container">
 
+            <Marketing />
 
             <h2 className="text-center"> WELCOME TO ADDMISSION TO UNIT PAGE</h2>
 
 
             <div className="row container offset-8">
                 <div className="col-3">
-                    <input value="LOG OUT"  onClick={() => logOut()} className="btn btn-danger " />
+                    <input value="LOG OUT" onClick={() => logOut()} className="btn btn-danger " />
                 </div>
             </div>
 

@@ -9,6 +9,10 @@ import Referee1 from '../forms/monthlyFillForm/Referee1'
 import Referee2 from '../forms/monthlyFillForm/Referee2'
 
 
+import Marketing from '../pages/Marketing'
+
+
+
 import axios from 'axios'
 
 
@@ -41,7 +45,12 @@ function MonthlyForm() {
 
     return (
 
+
         <div className="container">
+
+            { auth.user.roleName === "user" ? null :   <Marketing /> }
+                  
+
             <h2 className="text-center">MONTHLY MEMBERSHIP APPLICATION FORM </h2>
 
             <div className="row container offset-8 mt-4">
@@ -70,6 +79,7 @@ function MonthlyForm() {
                     </SectionC>
                 </SectionB>
             </SectionA>
+
 
 
 

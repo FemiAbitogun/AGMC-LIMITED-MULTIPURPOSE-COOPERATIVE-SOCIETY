@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './Login.css'
 import { sendCreateUser } from '../../../api/authentication/createNewUser'
+import Authorization from '../../pages/Authorization'
 
 function CreateNewUserForm() {
+
 
 
     const [name, setName] = useState('');
@@ -18,7 +20,7 @@ function CreateNewUserForm() {
     const CreateUser = async (e) => {
         e.preventDefault();
 
-        if (body.name == "" || body.password == "" || body.roleName == "") {
+        if (body.name === "" || body.password === "" || body.roleName === "") {
             return
         }
 
@@ -42,7 +44,7 @@ function CreateNewUserForm() {
 
             <div className="mail_overlay" >
                 <div className="contact-form">
-                    <form>
+                    <form onSubmit={ (e)=>{CreateUser(e)}}>
                         <div className="form-input">
                             <input type="text" placeholder="Name" onChange={(e) => {
                                 setName(e.target.value);
@@ -54,7 +56,7 @@ function CreateNewUserForm() {
                                 setRoleName(e.target.value);
                             }} required="required" />
                             <span>
-                                <button type="submit" onClick={(e) => { CreateUser(e) }} className="button submit">CREATE</button>
+                                <button type="submit"  className="button submit">CREATE</button>
                             </span>
 
                             <span>

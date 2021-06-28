@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { authorized } from '../../context/AuthContext'
 import DailyContributionForm from '../forms/dailyContributionForm/DailyContribution'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import DailyContributionTable from '../tables/DailyContributionTable'
+import Marketing from '../pages/Marketing'
 
 
 
@@ -12,6 +13,8 @@ function DailyContribution() {
   const { auth, setAuth, logOut } = useContext(authorized);
   const history = useHistory();
   const url = "http://localhost:9000/api/authenticateUser/confirm";
+
+
 
 
   useEffect(() => {
@@ -31,12 +34,14 @@ function DailyContribution() {
 
     }
     checkOut();
-  },[])
+  }, [])
 
 
 
   return (
     <div>
+
+      <Marketing />
       <h2 className="text-center"> WELCOME TO DAILY CONTRIBUTION PAGE</h2>
 
       <div className="row container offset-9 mt-4">

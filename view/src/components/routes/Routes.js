@@ -21,6 +21,7 @@ import Marketing from '../pages/Marketing'
 import Authorization from '../pages/Authorization'
 import FinanceTable from '../tables/financeTable/FinanceTable'
 import EditFinanceTable from '../editForms/finance/EditFinanceTable'
+import LogOut from '../logOut/LogOut'
 
 
 
@@ -31,7 +32,7 @@ function Routes() {
     return (
         <div>
             <BrowserRouter>
-                {/* {auth && <Navbar />} */}
+                {auth && <LogOut />}
 
                 <Switch>
 

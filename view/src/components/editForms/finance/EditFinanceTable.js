@@ -129,7 +129,7 @@ function EditFinanceTable() {
             await editFinanceTable(body, id)
             return history.push('/finance')
         }
-        catch (err) {
+        catch (err) { 
 
             console.error(err.message);
         }

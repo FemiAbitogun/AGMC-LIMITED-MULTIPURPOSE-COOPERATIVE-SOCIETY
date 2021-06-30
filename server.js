@@ -64,8 +64,6 @@ app.use('/api/daily/edit', require('./routes/Management_team/Patch/dailyContribu
 
 
 /*FINANCE DEPARTMENT */
-//"http://localhost:9000/api/finance/create",
-
 app.use('/api/finance', require('./routes/Management_team/Finance/finance.js'));
-//app.use('/api/finance/edit', require('./routes/Management_team/Patch/dailyContribution'));
+app.use('/api/finance/edit', require('./routes/Management_team/Patch/FinancePatch/financePatch'));
 

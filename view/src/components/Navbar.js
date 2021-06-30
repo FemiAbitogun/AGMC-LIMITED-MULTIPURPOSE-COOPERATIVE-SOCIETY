@@ -10,7 +10,7 @@ function Navbar() {
         <div>
 
 
-            <h2 className="text-center mt-3 text-danger "> AGMCS LIMITED</h2>
+            {/* <h2 className="text-center mt-3 text-danger "> AGMCS LIMITED</h2> */}
 
             <nav className="navbar" >
                 <div className="container row">
@@ -25,7 +25,11 @@ function Navbar() {
 
                             <div className="container">
 
+
                                 <div className=" row container">
+                                    <Link to="/finance" className="link-light btn btn-success fw-bold">Finance</Link >
+                                </div>
+                                <div className=" row container mt-1">
                                     <Link to="/marketing" className="link-light btn btn-dark fw-bold">Marketing Department</Link >
                                 </div>
 

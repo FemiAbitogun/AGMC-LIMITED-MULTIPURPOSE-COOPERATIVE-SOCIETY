@@ -14,9 +14,12 @@ import EditAdmissionTable from '../editForms/marketing/admission/EditAdmissionTa
 import EditDailyTable from '../editForms/marketing/daily/EditDailyTable'
 import Home from '../account/Home'
 
+import Finance from '../../components/pages/Finance'
+
 //pages
 import Marketing from '../pages/Marketing'
 import Authorization from '../pages/Authorization'
+import FinanceTable from '../tables/financeTable/FinanceTable'
 
 
 
@@ -31,6 +34,7 @@ function Routes() {
 
                 <Switch>
 
+                    <Route exact path="/finance" component={Finance} />
 
                     <Route exact path="/" component={LoginForm} />
                     <Route path="/Home" component={Home} />
@@ -41,6 +45,7 @@ function Routes() {
                     {
                         auth !== "" ?
                             <>
+                                <Route exact path="/finance" component={Finance} />
 
                                 <Route path="/daily" component={DailyContribution} />
                                 <Route path="/admission" component={AdmissionIntoUnit} />
@@ -48,6 +53,8 @@ function Routes() {
                                 <Route path="/createUser" component={CreateNewUserForm} />
                                 <Route path="/userList" component={AuthenticatedUserTable} />
                                 <Route path="/monthlySuscriberTable" component={MonthlyContributionTable} />
+                                <Route path="/financeTable" component={FinanceTable} />
+
 
                                 <Route path="/editMonthly/edit/:id">
                                     <EditMonthlySuscriber />
@@ -68,7 +75,7 @@ function Routes() {
                                 </Route>
 
                                 <Route path="/authorizationPage">
-                                   <Authorization></Authorization>
+                                    <Authorization></Authorization>
                                 </Route>
 
 

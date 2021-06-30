@@ -37,10 +37,9 @@ function Home() {
 
     return (
         <div>
+            <h2 className="text-center mt-3 text-danger "> AGMCS HOMEPAGE</h2>
 
             {auth && <Navbar />}
-
-
         </div>
     )
 }

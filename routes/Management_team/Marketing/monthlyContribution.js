@@ -2,12 +2,12 @@
 
 
 const router = require('express').Router();
-const {upload} = require('../../fileHelper');
+const {upload} = require('../../../fileHelper');
 
 const {referee1ImageSuscriberAccount,referee2ImageSuscriberAccount,getAllSuscriberAccount, createSuscriberAccount, deleteSuscriberAccount ,
     getSuscriberAccountById
 
-} = require('../../controller/MarketingDepartment/MonthlyContribution');
+} = require('../../../controller/MarketingDepartment/monthlyContribution');
 
 router.get('/', getAllSuscriberAccount);
 router.get('/:id', getSuscriberAccountById);

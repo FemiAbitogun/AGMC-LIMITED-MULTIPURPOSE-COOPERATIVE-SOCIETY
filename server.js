@@ -2,20 +2,20 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const dotenv=require('dotenv').config();
-const PARSER= require('body-parser');
+const dotenv = require('dotenv').config();
+const PARSER = require('body-parser');
 
 
 const app = express();
 
 app.use(cors({
-    credentials:true
+    credentials: true
 }));
 app.use(express.json());
 
 
 
-const PORT=process.env.PORT||9000
+const PORT = process.env.PORT || 9000
 
 // creating server..........................
 app.listen(PORT, () => {
@@ -26,47 +26,46 @@ app.listen(PORT, () => {
 
 
 
-const {databaseConfig} = require('./databaseConnection/databaseConfig');
+const { databaseConfig } = require('./databaseConnection/databaseConfig');
 databaseConfig();
 
 
 
 
-app.use('/uploads',express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 
 
-app.get('/',async(req,res)=>{
-   res.sendFile('index.html')
+app.get('/', async (req, res) => {
+    res.sendFile('index.html')
 })
 
- 
- 
+
+
 //login and authentication routes............
-app.use('/api/authenticateUser',require('./routes/Account/AuthenticateUsers'));
+app.use('/api/authenticateUser', require('./routes/Account/AuthenticateUsers'));
 
 
 
+/**MARKETING DEPARTMENT */
 
 /*monthly contribution */
-app.use('/api/monthlyContribution',require('./routes/Management_team/monthlyContribution'));
+app.use('/api/monthlyContribution', require('./routes/Management_team/Marketing/monthlyContribution'));
+app.use('/api/monthlyContribution/edit/', require('./routes/Management_team/Patch/monthly'));
 
-
-
-/*daily contribution */
-app.use('/api/dailyContribution', require('./routes/Management_team/dailyContributionRegistration'));
 
 /*admissionIntoUnit */
-app.use('/api/admission', require('./routes/Management_team/admissionIntoUnit'));
-
-
-
-//edit
-/*monthly contribution */
-//const url = "http://localhost:9000/api/monthlyContribution/edit/monthly/"
-app.use('/api/monthlyContribution/edit/',require('./routes/Management_team/Patch/monthly'));
+app.use('/api/admission', require('./routes/Management_team/Marketing/admissionIntoUnit'));
 app.use('/api/admission/edit', require('./routes/Management_team/Patch/admissionIntoUnit'));
 
 
-// const url = "http://localhost:9000/api/daily/edit/"
+/*daily contribution */
+app.use('/api/dailyContribution', require('./routes/Management_team/Marketing/dailyContributionRegistration'));
 app.use('/api/daily/edit', require('./routes/Management_team/Patch/dailyContribution'));
+
+
+/*FINANCE DEPARTMENT */
+//"http://localhost:9000/api/finance/create",
+
+app.use('/api/finance', require('./routes/Management_team/Finance/finance.js'));
+//app.use('/api/finance/edit', require('./routes/Management_team/Patch/dailyContribution'));
 

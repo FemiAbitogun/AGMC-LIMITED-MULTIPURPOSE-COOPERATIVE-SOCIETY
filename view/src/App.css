@@ -17,3 +17,9 @@ code {
 }
 
 
+a{
+
+  text-decoration: none;
+  color: crimson;
+  font-weight:bolder;
+}

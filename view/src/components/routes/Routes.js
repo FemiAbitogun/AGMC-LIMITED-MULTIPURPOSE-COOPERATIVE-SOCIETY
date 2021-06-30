@@ -20,6 +20,7 @@ import Finance from '../../components/pages/Finance'
 import Marketing from '../pages/Marketing'
 import Authorization from '../pages/Authorization'
 import FinanceTable from '../tables/financeTable/FinanceTable'
+import EditFinanceTable from '../editForms/finance/EditFinanceTable'
 
 
 
@@ -67,6 +68,11 @@ function Routes() {
                                 <Route path="/editDaily/edit/:id">
                                     <EditDailyTable />
                                 </Route>
+                                <Route path="/editFinance/edit/:id">
+                                    <EditFinanceTable />
+                                </Route>
+
+
 
                                 {/* pages */}
 

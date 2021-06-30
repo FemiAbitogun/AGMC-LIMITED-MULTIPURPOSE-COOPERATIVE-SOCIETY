@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import Navbar from '../../../src/components/Navbar'
+import AuthenticatedUserTable from '../tables/AuthenticatedUserTable';
 
 
 
@@ -9,22 +10,19 @@ function Authorization() {
 
         <div className="container">
 
-            <div className="row">
-                <Navbar />
-            </div>
+            <AuthenticatedUserTable />
 
 
-            <div className="row container ">
-
-                
-
-                <span className="col-sm-6 container p-4">  <Link to="/createUser" className="link-light btn btn-dark  fw-bold " >Create User</Link ></span>
+            <div className="row container p-15">
 
 
-                <span className="col-sm-6 container p-4"> <Link to="/userList" className="link-light btn btn-dark  fw-bold"> User List</Link >
+                <span className="col-sm-6 container ">  <Link to="/createUser" className="link-light btn btn-dark  fw-bold " >Create User</Link ></span>
+                <span className="col-sm-6 container "> <Link to="/userList" className="link-light btn btn-dark  fw-bold"> User List</Link >
+
+
                 </span>
 
-              
+
             </div>
 
 

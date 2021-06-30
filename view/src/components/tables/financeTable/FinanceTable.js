@@ -4,8 +4,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../../Navbar'
 
-function FinanceTable() {
 
+function FinanceTable() {
 
     const [userData, setUserData] = useState([]);
 
@@ -143,7 +143,7 @@ function FinanceTable() {
                     </table>
 
 
-                    <div> REFFERAL</div>
+                    <div className="text-center  bg-danger"><b>REFFERAL</b> </div>
 
                     <table className="table conatainer">
                         <tbody>
@@ -180,7 +180,7 @@ function FinanceTable() {
                     />
 
                     <span>
-                        <button className="btn btn-warning m-3"><Link to={`/editAdmission/edit/${user._id}`}>EDIT unit</Link> </button>
+                        <button className="btn btn-warning m-3"><Link to={`/editFinance/edit/${user._id}`}>EDIT unit</Link> </button>
                     </span>
 
                     <br className="mt-4"></br>
@@ -201,6 +201,7 @@ function FinanceTable() {
 
             <div>
                 <Navbar />
+
                 {userData && renderUsers()}
             </div>
 

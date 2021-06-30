@@ -1,11 +1,25 @@
-import React, { useState } from 'react'
-import { postFinanceForm } from '../../api/finance/postFinanceForm'
-import { useHistory } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom'
+import { editFinanceTable } from '../../../api/finance/editApiFinance/editFinance'
+import axios from 'axios';
+import Navbar from '../../Navbar';
 
 
-function FinanceForm() {
 
+
+function EditFinanceTable() {
     const history = useHistory();
+    const { id } = useParams();
+
+    useEffect(() => {
+
+        async function _getFinanceDatatById() {
+            await getFinanceDatatById()
+        }
+        _getFinanceDatatById();
+
+    }, [])
+
 
     const [no, setNo] = useState('');
     const [referralCode, setReferralCode] = useState('');
@@ -24,10 +38,14 @@ function FinanceForm() {
     const [isReligionSupportForLoan, setIsReligionSupportForLoan] = useState('')
     const [isEligibilty, setIsEligibilty] = useState('')
     const [isCanMakeContributionWhileServicingLoan, setIsCanMakeContributionWhileServicingLoan] = useState('')
+
+
     const [servicingLoanAmount, setServicingLoanAmount] = useState('')
     const [pickAmountOfLoanAfterRepayment, setPickAmountOfLoanAfterRepayment] = useState('')
+
     const [referralFullName, setReferralFullName] = useState('')
     const [referralPhone, setReferralPhone] = useState('')
+
     const [referralDateOfRegistration, setReferralDateOfRegistration] = useState('')
     const [referralDateOfAdmin, setReferralDateOfAdmin] = useState('')
     const [referralUnitCode, setReferralUnitCode] = useState('')
@@ -35,9 +53,52 @@ function FinanceForm() {
 
 
 
+    const [_data, setData] = useState("");
+
+    async function getFinanceDatatById() {
+
+        //    /api/admission
+        var { data } = await axios.get("http://localhost:9000/api/finance/" + id)
+
+        try {
+            if (data) {
+                setData(data);
+                setNo(data.no);
+                setReferralCode(data.referralCode);
+                setRegistrationNumber(data.registrationNumber);
+                setBVN(data.BVN);
+                setFirstName(data.firstName);
+                setMiddleName(data.middleName);
+                setBankName(data.bankName);
+                setAccountNumber(data.accountNumber);
+                setPhone(data.phone);
+                setContributionCategoryBeforeLoan(data.contributionCategoryBeforeLoan);
+                setTotalAmountContributed(data.totalAmountContributed);
+                setAmountInWords(data.amountInWords);
+                setAmountOfLoanOrLoanRequestFigure(data.amountOfLoanOrLoanRequestFigure);
+                setAmountInWordsOfRequestLoan(data.amountInWordsOfRequestLoan);
+                setIsReligionSupportForLoan(data.isReligionSupportForLoan);
+                setIsEligibilty(data.isEligibilty);
+                setIsCanMakeContributionWhileServicingLoan(data.isCanMakeContributionWhileServicingLoan);
+                setServicingLoanAmount(data.servicingLoanAmount);
+                setPickAmountOfLoanAfterRepayment(data.pickAmountOfLoanAfterRepayment);
+                setReferralFullName(data.referralFullName);
+                setReferralPhone(data.referralPhone);
+                setReferralDateOfRegistration(data.referralDateOfRegistration);
+                setReferralDateOfAdmin(data.referralDateOfAdmin);
+                setReferralUnitCode(data.referralUnitCode);
+            }
+        }
+        catch (err) {
+            console.error(err.message)
+        }
+
+    }
+
+
 
     const submit = async (e) => {
-
+        e.preventDefault()
         try {
             const body = {
                 no,
@@ -65,18 +126,20 @@ function FinanceForm() {
                 referralDateOfAdmin,
                 referralUnitCode
             }
-            await postFinanceForm(body);
-            history.push('/financeTable')
-
+            await editFinanceTable(body, id)
+            return history.push('/finance')
         }
         catch (err) {
 
-            console.log(err.message)
+            console.error(err.message);
         }
-
-
-
     }
+
+const cancel= (e)=>{
+
+    history.push("/finance")
+}
+
 
 
     function display() {
@@ -360,7 +423,7 @@ function FinanceForm() {
 
 
                     <div className="col-sm-3">
-                        <input type="date" value={referralDateOfRegistration} name="referralDateOfRegistration" onChange={function (e) {
+                        <input type="text" value={referralDateOfRegistration} name="referralDateOfRegistration" onChange={function (e) {
                             setReferralDateOfRegistration(e.target.value);
                         }} placeholder="Referral Date Of Registration" className="form-control" />
                     </div>
@@ -371,7 +434,7 @@ function FinanceForm() {
                 <div className="container row mt-4">
 
                     <div className="col-sm-3">
-                        <input type="text" value={referralDateOfAdmin} name="total" onChange={function (e) {
+                        <input type="date" value={referralDateOfAdmin} name="total" onChange={function (e) {
                             setReferralDateOfAdmin(e.target.value);
                         }} placeholder="Total" className="form-control" />
                     </div>
@@ -388,12 +451,20 @@ function FinanceForm() {
 
 
                 <div className="row container mt-4">
-                    <div className="col-12 offset-4">
+                    <div className="col-6 ">
                         <button type="button" className="btn btn-danger"
                             onClick={(e) => {
                                 e.preventDefault();
                                 submit(e);
-                            }}>CREATE</button>
+                            }}>EDIT</button>
+                    </div>
+
+                    <div className="col-6 ">
+                        <button type="button" className="btn btn-warning"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                cancel(e);
+                            }}>CANCEL</button>
                     </div>
                 </div>
 
@@ -406,12 +477,20 @@ function FinanceForm() {
 
 
 
+
+
+
     return (
-        <div>
-            
-            {display()}
+
+        <div className="container">
+            <Navbar></Navbar>
+            <div className="text-center mt-4 mb-4">
+                <b>EDIT PAGE.....</b>
+            </div>
+
+            {_data ? display() : <div>Loading ......</div>}
         </div>
     )
 }
 
-export default FinanceForm
+export default EditFinanceTable

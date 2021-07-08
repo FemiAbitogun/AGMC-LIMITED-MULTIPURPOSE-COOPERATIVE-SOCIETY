@@ -5,6 +5,7 @@ import Navbar from '../Navbar'
 import axios from 'axios';
 import { authorized } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
+
 const url = "http://localhost:9000/api/authenticateUser/confirm";
 
 
@@ -15,8 +16,6 @@ function Finance() {
 
 
     async function checkOut() {
-
-
         let _name = localStorage.getItem("name");
         const body = { name: _name }
         const { data } = await axios.post(url, body);
@@ -25,12 +24,9 @@ function Finance() {
         }
     }
 
-
-
     useEffect(() => {
         checkOut();
     }, [])
-
 
 
     return (
@@ -39,22 +35,14 @@ function Finance() {
             </b></div>
             {auth && (
                 <div>
-
                     <Navbar/>
                     <div className="container mt-4">
-                        {/*    <span className="col-sm-6 container "> <Link to="/userList" className="link-light btn btn-dark  fw-bold"> User List</Link >
 
- */}
                         <Link to="/financeTable" className="container row  mt-4 mb-4 link-dark btn btn-warning  fw-bold">VIEW REGISTERED DATAS</Link>
-                        <FinanceForm></FinanceForm>
+                        <FinanceForm/>
                     </div>
                 </div>
-
             )}
-
-
-
-
         </div>
     )
 }

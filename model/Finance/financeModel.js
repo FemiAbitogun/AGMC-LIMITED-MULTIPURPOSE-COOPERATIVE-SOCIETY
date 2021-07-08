@@ -30,6 +30,14 @@ const financeSchema = new mongoose.Schema({
         required: true
     },
 
+    lastName: {
+        type: String,
+        required: true
+    },
+
+
+
+
     bankName: {
         type: String,
         required: true
@@ -46,7 +54,7 @@ const financeSchema = new mongoose.Schema({
         required: true
     },
 
-  
+
 
     contributionCategoryBeforeLoan: {
         type: String,
@@ -94,7 +102,7 @@ const financeSchema = new mongoose.Schema({
 
 
 
-    
+
     //if yes......
     servicingLoanAmount: {
         type: String,
@@ -113,7 +121,7 @@ const financeSchema = new mongoose.Schema({
     ,
 
 
-    
+
 
     //if yes......
     referralPhone: {
@@ -131,6 +139,87 @@ const financeSchema = new mongoose.Schema({
     referralUnitCode: {
         type: String,
     },
+
+    //bodn
+
+
+
+    // surerity
+
+    memberName: {
+        type: String,
+    },
+    memberRegistrationNumber: {
+        type: String,
+    },
+    date: {
+        type: String,
+    },
+    surety1MemberName: {
+        type: String,
+    },
+    surety1MemberRegistrationNumber: {
+        type: String,
+    },
+    surety1DateOfRegistration: {
+        type: String,
+    },
+    surety1NameOfRefferal: {
+        type: String,
+    },
+
+
+
+
+
+
+    surety1TotalContribution: {
+        type: String,
+    },
+
+    surety2BVN: {
+        type: String,
+    },
+
+    surety2FirstName: {
+        type: String,
+    },
+
+    surety2MiddleName: {
+        type: String,
+    },
+
+    surety2LastName: {
+        type: String,
+    },
+
+    surety2AccountNumber: {
+        type: String,
+    },
+    surety2Occupation: {
+        type: String,
+    },
+    surety2PlaceOfWorkAddress: {
+        type: String,
+    },
+    surety2Position: {
+        type: String,
+    },
+    surety2Level: {
+        type: String,
+    },
+
+    surety2RelationShipWithBorrower: {
+        type: String,
+    },
+
+    surety2YearsWithBorrower: {
+        type: String,
+    },
+
+
+
+
 
 
 })

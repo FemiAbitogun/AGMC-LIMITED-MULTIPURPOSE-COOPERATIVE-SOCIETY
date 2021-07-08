@@ -51,7 +51,6 @@ const getSuscriberAccountById = async (req, res) => {
 
 
 
-
 let newUserSuscriber = new Suscriber();
 
 

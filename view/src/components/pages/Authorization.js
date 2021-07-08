@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Navbar from '../../../src/components/Navbar'
 import AuthenticatedUserTable from '../tables/AuthenticatedUserTable';
 
 

@@ -19,7 +19,6 @@ const getAllFinanceDatas = async (req, res) => {
 }
 
 
-
 const getFinanceDatasById = async (req, res) => {
     try {
         const result = await FinanceModel.findById(req.params.id);
@@ -41,9 +40,6 @@ const getFinanceDatasById = async (req, res) => {
 
 
 
-
-
-
 // CREATE USER
 const createFinance = async (req, res) => {
     try {
@@ -56,6 +52,7 @@ const createFinance = async (req, res) => {
             BVN,
             firstName,
             middleName,
+            lastName,
             bankName,
             accountNumber,
             phone,
@@ -68,13 +65,38 @@ const createFinance = async (req, res) => {
             isReligionSupportForLoan,
             isEligibilty,
             isCanMakeContributionWhileServicingLoan,
-            
+
             servicingLoanAmount,
             pickAmountOfLoanAfterRepayment,
             referralFullName,
             referralPhone,
             referralDateOfRegistration,
-            referralDateOfAdmin, referralUnitCode
+            referralDateOfAdmin,
+            referralUnitCode,
+
+            //bond...............
+
+            memberName,
+            memberRegistrationNumber,
+            date,
+
+            surety1MemberName,
+            surety1MemberRegistrationNumber,
+            surety1DateOfRegistration,
+            surety1NameOfRefferal,
+            surety1TotalContribution,
+
+            surety2BVN,
+            surety2FirstName,
+            surety2MiddleName,
+            surety2LastName,
+            surety2AccountNumber,
+            surety2Occupation,
+            surety2PlaceOfWorkAddress,
+            surety2Position,
+            surety2Level,
+            surety2RelationShipWithBorrower,
+            surety2YearsWithBorrower
         } = req.body;
 
 
@@ -86,6 +108,7 @@ const createFinance = async (req, res) => {
             BVN,
             firstName,
             middleName,
+            lastName,
             bankName,
             accountNumber,
             phone,
@@ -95,9 +118,6 @@ const createFinance = async (req, res) => {
             amountOfLoanOrLoanRequestFigure,
             amountInWordsOfRequestLoan,
 
-
-          
-
             isReligionSupportForLoan,
             isEligibilty,
             isCanMakeContributionWhileServicingLoan,
@@ -106,10 +126,41 @@ const createFinance = async (req, res) => {
             referralFullName,
             referralPhone,
             referralDateOfRegistration,
-            referralDateOfAdmin, referralUnitCode
+            referralDateOfAdmin,
+            referralUnitCode,
+
+
+
+            //bond.............
+            memberName,
+            memberRegistrationNumber,
+            date,
+
+            surety1MemberName,
+            surety1MemberRegistrationNumber,
+            surety1DateOfRegistration,
+            surety1NameOfRefferal,
+            surety1TotalContribution,
+
+            surety2BVN,
+            surety2FirstName,
+            surety2MiddleName,
+            surety2LastName,
+            surety2AccountNumber,
+            surety2Occupation,
+            surety2PlaceOfWorkAddress,
+            surety2Position,
+            surety2Level,
+            surety2RelationShipWithBorrower,
+            surety2YearsWithBorrower
+
+
+
+
+
         })
         const savednewUser = await newUser.save();
- 
+
         res.status(201).json("saved successfully");
 
 
@@ -122,12 +173,6 @@ const createFinance = async (req, res) => {
     }
 
 }
-
-
-
-
-
-
 
 
 

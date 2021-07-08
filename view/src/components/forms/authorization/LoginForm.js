@@ -35,7 +35,7 @@ function LoginForm() {
                             <input type="text" placeholder="Name" onChange={(e) => {
                                 setName(e.target.value);
                             }} required />
-                            <input type="text" placeholder="Password" onChange={(e) => {
+                            <input type="password" placeholder="Password" onChange={(e) => {
                                 setPassword(e.target.value);
                             }} required />
 

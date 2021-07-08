@@ -25,6 +25,8 @@ import LogOut from '../logOut/LogOut'
 
 
 
+
+
 function Routes() {
     const { auth } = useContext(authorized);
 
@@ -33,21 +35,16 @@ function Routes() {
         <div>
             <BrowserRouter>
                 {auth && <LogOut />}
+                <Route exact path="/home" component={Home} />
 
                 <Switch>
 
-                    <Route exact path="/finance" component={Finance} />
-
-                    <Route exact path="/" component={LoginForm} />
-                    <Route path="/Home" component={Home} />
-
-                    {/* <Route path="/createUser" component={CreateNewUserForm} /> */}
-
+                  
 
                     {
                         auth !== "" ?
                             <>
-                                <Route exact path="/finance" component={Finance} />
+                                <Route  path="/finance" component={Finance} />
 
                                 <Route path="/daily" component={DailyContribution} />
                                 <Route path="/admission" component={AdmissionIntoUnit} />
@@ -56,6 +53,7 @@ function Routes() {
                                 <Route path="/userList" component={AuthenticatedUserTable} />
                                 <Route path="/monthlySuscriberTable" component={MonthlyContributionTable} />
                                 <Route path="/financeTable" component={FinanceTable} />
+
 
 
                                 <Route path="/editMonthly/edit/:id">

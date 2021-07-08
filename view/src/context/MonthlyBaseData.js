@@ -100,21 +100,9 @@ function MonthlyBaseData() {
     } = useContext(formContextRef2)
 
 
-
-
-
-
-
-
-
     const sendToPostForm = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-       
-
-
-
-
 
         try {
 
@@ -177,41 +165,6 @@ function MonthlyBaseData() {
             formData.append("referee2Religion", referee2Religion);
             formData.append("referee2Phone", referee2Phone);
             formData.append("referee2Relationship", referee2Relationship);
-
-
-
-            /*
-            
-            
-             if (customerPhoto) {
-                            const editCustomerPhoto = new FormData();
-                            editCustomerPhoto.append("customerImage", customerPhoto)
-                            editCustomerImage(editCustomerPhoto, id);
-                        }
-            
-            
-                        //REF 1
-                        if (referee1) {
-                            const editREF1Photo = new FormData();
-                            editREF1Photo.append("referee1Image", referee1)
-                            editRef1Image(editREF1Photo, id);
-                        }
-            
-            
-                        //REF 2
-                        if (referee2) {
-                            const editREF2Photo = new FormData();
-                            editREF2Photo.append("referee2Image", referee2)
-                            editRef2Image(editREF2Photo, id);
-                        }
-
-            */
-
-
-
-
-
-
 
             if (referee1Image) {
                 const formDataRef1 = new FormData();

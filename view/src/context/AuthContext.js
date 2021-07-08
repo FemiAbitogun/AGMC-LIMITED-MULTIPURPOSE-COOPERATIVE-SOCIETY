@@ -8,6 +8,9 @@ const url = "http://localhost:9000/api/authenticateUser/login";
 
 function AuthContext(props) {
 
+
+
+    
     const [auth, setAuth] = useState("");
     const sendLoginUser = async (body) => {
         const { data } = await axios.post(url, body);
@@ -21,7 +24,6 @@ function AuthContext(props) {
         }
 
     }
-
 
     const url2 = "http://localhost:9000/api/authenticateUser/confirm";
     async function checkOut() {
@@ -38,14 +40,6 @@ function AuthContext(props) {
     }
 
 
-    function logOut() {
-        localStorage.setItem("name", "");
-        setAuth("");
-    }
-
-
-
-
     useEffect(() => {
         checkOut();
     }, [])
@@ -53,11 +47,14 @@ function AuthContext(props) {
 
     return (
         <div>
-            <authorized.Provider value={{ sendLoginUser, auth, setAuth, logOut }}>
+            <authorized.Provider value={{ sendLoginUser, auth, setAuth }}>
                 {props.children}
             </authorized.Provider>
         </div>
     )
+
+
+
 }
 
 export default AuthContext

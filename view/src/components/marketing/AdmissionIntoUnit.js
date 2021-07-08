@@ -11,7 +11,7 @@ import Marketing from '../pages/Marketing'
 
 
 function AdmissionIntoUnit() {
-    const { auth, setAuth, logOut } = useContext(authorized);
+    const { auth, setAuth} = useContext(authorized);
     const history = useHistory();
     const url = "http://localhost:9000/api/authenticateUser/confirm";
 
@@ -36,15 +36,6 @@ function AdmissionIntoUnit() {
             <Marketing />
 
             <h2 className="text-center"> WELCOME TO ADDMISSION TO UNIT PAGE</h2>
-
-
-            <div className="row container offset-8">
-                <div className="col-3">
-                    <input value="LOG OUT" onClick={() => logOut()} className="btn btn-danger " />
-                </div>
-            </div>
-
-
 
             <div className="row container mt-4">
                 <AdmissionIntoUnitForm />

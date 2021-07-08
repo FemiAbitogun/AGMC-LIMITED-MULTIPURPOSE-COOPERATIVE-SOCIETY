@@ -18,7 +18,7 @@ import axios from 'axios'
 
 
 function MonthlyForm() {
-    const { auth, setAuth, logOut } = useContext(authorized);
+    const { auth, setAuth} = useContext(authorized);
 
 
 
@@ -53,11 +53,7 @@ function MonthlyForm() {
 
             <h2 className="text-center">MONTHLY MEMBERSHIP APPLICATION FORM </h2>
 
-            <div className="row container offset-8 mt-4">
-                <div className="col-3">
-                    <input value="LOG OUT" onClick={() => logOut()} className="btn btn-danger " />
-                </div>
-            </div>
+           
             <h2 className="text-center mt-4 text-danger">SECTION A </h2>
 
             <SectionA>

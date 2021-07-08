@@ -8,7 +8,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(14, 13, 13, 0.726);
+    background-color: rgba(8, 8, 8, 0.835);
     opacity: .9;
     z-index: 2;
     overflow: hidden;
@@ -41,20 +41,10 @@ form .form-input {
 
 
 
-form textarea {
-    outline: none;
-    max-height: 100px;
-    width: 20em;
-    text-align: center;
-    border: 1px solid rgb(253, 130, 85);
-    border-radius: 16px;
-    background-color: rgb(7, 7, 7);
-    color: white;
-    font-weight: bold;
-    font-size: 1em;
-}
 
-.form-input input[type="text"], .form-input input[type="email"]{
+.form-input input[type="text"], input[type="password"], .form-input input[type="email"]{
+    /* .form-input input[type="text"],.form-input input[type="password"], .form-input input[type="email"]{ */
+
 
     margin: 10px;
     outline: none;

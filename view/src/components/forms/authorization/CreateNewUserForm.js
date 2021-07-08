@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './Login.css'
 import { sendCreateUser } from '../../../api/authentication/createNewUser'
-import Authorization from '../../pages/Authorization'
 
 function CreateNewUserForm() {
 

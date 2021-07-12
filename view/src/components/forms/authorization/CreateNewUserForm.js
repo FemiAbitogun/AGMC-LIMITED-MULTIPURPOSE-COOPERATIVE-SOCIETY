@@ -16,6 +16,9 @@ function CreateNewUserForm() {
     }
 
     const history = useHistory();
+
+
+
     const CreateUser = async (e) => {
         e.preventDefault();
 
@@ -38,12 +41,12 @@ function CreateNewUserForm() {
 
 
     return (
-        <div>
+        <form className="">
 
 
             <div className="mail_overlay" >
                 <div className="contact-form">
-                    <form onSubmit={ (e)=>{CreateUser(e)}}>
+                    <div onSubmit={(e) => { CreateUser(e) }}>
                         <div className="form-input">
                             <input type="text" placeholder="Name" onChange={(e) => {
                                 setName(e.target.value);
@@ -55,7 +58,7 @@ function CreateNewUserForm() {
                                 setRoleName(e.target.value);
                             }} required="required" />
                             <span>
-                                <button type="submit"  className="button submit">CREATE</button>
+                                <button type="submit" onClick={(e) => { CreateUser(e) }} className="button submit">CREATE</button>
                             </span>
 
                             <span>
@@ -64,12 +67,12 @@ function CreateNewUserForm() {
 
                         </div>
 
-                    </form>
+                    </div>
                 </div>
             </div>
 
 
-        </div>
+        </form>
     )
 }
 

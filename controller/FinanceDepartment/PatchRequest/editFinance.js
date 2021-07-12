@@ -65,15 +65,6 @@ const editFinance = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
         var Savedresult = await result.save();
 
         res.status(201).json(" successfully edited finance table");

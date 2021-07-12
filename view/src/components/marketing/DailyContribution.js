@@ -5,12 +5,13 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import DailyContributionTable from '../tables/DailyContributionTable'
 import Marketing from '../pages/Marketing'
+import DailyContributionProvider from '../../context/marketing/DailyContribution'
 
 
 
 function DailyContribution() {
 
-  const { auth, setAuth} = useContext(authorized);
+  const { auth, setAuth } = useContext(authorized);
   const history = useHistory();
   const url = "http://localhost:9000/api/authenticateUser/confirm";
 
@@ -42,19 +43,29 @@ function DailyContribution() {
     <div>
 
       <Marketing />
-      <h2 className="text-center"> WELCOME TO DAILY CONTRIBUTION PAGE</h2>
 
-     
 
-      <div className="row mt-4">
-        <DailyContributionForm />
+
+
+      <div className="container">
+        <h2 className="text-center"> WELCOME TO DAILY CONTRIBUTION PAGE</h2>
+
+
+        <div className="col-10">
+          <DailyContributionProvider>
+            <DailyContributionForm />
+          </DailyContributionProvider>
+        </div>
+
+        <DailyContributionProvider>
+          <DailyContributionTable />
+        </DailyContributionProvider>
+
       </div>
 
 
 
-      <div className="row mt-4">
-        <DailyContributionTable />
-      </div>
+
 
 
 

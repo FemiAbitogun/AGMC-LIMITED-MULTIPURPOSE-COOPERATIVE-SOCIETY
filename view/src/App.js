@@ -8,7 +8,7 @@ import AuthContext, { authorized } from './context/AuthContext';
 function App() {
 
   return (
-    <div className="container">
+    <div>
       <AuthContext>
         <Routes/>
       </AuthContext>

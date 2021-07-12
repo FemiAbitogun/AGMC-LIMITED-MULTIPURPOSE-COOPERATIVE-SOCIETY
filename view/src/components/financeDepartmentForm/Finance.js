@@ -133,8 +133,8 @@ function FinanceForm() {
                 surety2RelationShipWithBorrower,
                 surety2YearsWithBorrower
             }
-           await postFinanceForm(body);
-           history.push('/financeTable')
+            await postFinanceForm(body);
+            history.push('/financeTable')
 
         }
         catch (err) {
@@ -461,11 +461,6 @@ function FinanceForm() {
         )
     }
 
-
-
-
-
-
     function formFieldA() {
 
         return (
@@ -673,24 +668,27 @@ function FinanceForm() {
     }
 
     return (
-        <div>
+        <div className="container">
 
-            {display()}
-            <div className="text-center mt-2"> <b><h3>Loan Bond....</h3> </b></div>
-            {formFieldA()}
-            <hr></hr>
-            {formFieldB()}
-            <hr></hr>
-            {formFieldC()}
-            <div className="row container mt-4">
-                <div className="col-12 offset-4">
-                    <button type="button" className="btn btn-danger"
+            <div className="container">
+                {display()}
+                <div className="text-center mt-2"> <b><h3>Loan Bond....</h3> </b></div>
+                {formFieldA()}
+                <hr></hr>
+                {formFieldB()}
+                <hr></hr>
+                {formFieldC()}
+            </div>
+
+           
+                <div className="container">
+                    <button type="button" className="btn btn-danger col-2"
                         onClick={(e) => {
                             e.preventDefault();
                             submit(e);
                         }}>CREATE</button>
                 </div>
-            </div>
+          
 
         </div>
     )

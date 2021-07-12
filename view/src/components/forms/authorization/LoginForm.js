@@ -7,7 +7,7 @@ import './Login.css'
 
 function LoginForm() {
 
-    const {sendLoginUser } = useContext(authorized)
+    const { sendLoginUser } = useContext(authorized)
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const body = { name, password }
@@ -25,16 +25,18 @@ function LoginForm() {
 
 
 
-
     return (
-        <div>
+        <form className="form-input ">
             <div className="mail_overlay" >
                 <div className="contact-form">
-                    <form>
+                    <div>
                         <div className="form-input">
                             <input type="text" placeholder="Name" onChange={(e) => {
                                 setName(e.target.value);
                             }} required />
+
+                            
+
                             <input type="password" placeholder="Password" onChange={(e) => {
                                 setPassword(e.target.value);
                             }} required />
@@ -45,13 +47,13 @@ function LoginForm() {
 
                         </div>
 
-                    </form>
+                    </div>
                 </div>
             </div>
 
 
 
-        </div>
+        </form>
     )
 }
 

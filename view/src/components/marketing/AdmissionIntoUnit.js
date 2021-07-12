@@ -1,18 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { authorized } from '../../context/AuthContext'
 import AdmissionIntoUnitForm from '../forms/admissionToUnit/AdmissionIntoUnitForm'
-
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
 import AdmissionToUnitTable from '../tables/AdmissionToUnitTable'
-
 import Marketing from '../pages/Marketing'
 
-
+import AdmissionToUnitContext from '../../context/marketing/AdmissionToUnitContext'
+import Navbar from '../Navbar'
 
 function AdmissionIntoUnit() {
-    const { auth, setAuth} = useContext(authorized);
-    const history = useHistory();
+    const { auth, setAuth } = useContext(authorized);
+
     const url = "http://localhost:9000/api/authenticateUser/confirm";
 
     async function checkOut() {
@@ -31,26 +29,20 @@ function AdmissionIntoUnit() {
 
 
     return (
-        <div className="container">
 
-            <Marketing />
+        <div >
+            
+            <Navbar   style={{width:"100%"}} />
+            <div className="container">
+                <h2 className="text-center mt-4 mb-4"> WELCOME TO ADDMISSION TO UNIT PAGE</h2>
 
-            <h2 className="text-center"> WELCOME TO ADDMISSION TO UNIT PAGE</h2>
-
-            <div className="row container mt-4">
-                <AdmissionIntoUnitForm />
+                <AdmissionToUnitContext>
+                    <AdmissionIntoUnitForm />
+                    <AdmissionToUnitTable />
+                </AdmissionToUnitContext>
             </div>
-
-
-
-
-
-            <div className="row mt-4">
-                <AdmissionToUnitTable />
-            </div>
-
-
         </div>
+
     )
 }
 

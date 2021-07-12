@@ -1,13 +1,12 @@
-import React, { useState} from 'react'
-import { postAdmissionToUnitForm } from '../../../api/marketing/postAdmissionToUnitForm'
-
-
-
+import React, { useState, useContext } from 'react'
+import { postAdmissionToUnitForm } from '../../../api/marketing/postAdmissionToUnitForm';
+import { AdmissionContext } from '../../../context/marketing/AdmissionToUnitContext';
 
 
 
 function AdmissionIntoUnitForm() {
 
+    const {  getAdmissionToUnit } = useContext(AdmissionContext)
 
 
     const [registrationNumber, setRegistrationNumber] = useState('');
@@ -33,25 +32,24 @@ function AdmissionIntoUnitForm() {
             total,
             loanQualify,
         }
-      await  postAdmissionToUnitForm(body)
-
+        await postAdmissionToUnitForm(body);
+         getAdmissionToUnit();
     }
 
 
-    
     return (
         <div>
-            <div className="row container ">
+            <div className="row container mt-4">
 
                 <div className="col-sm-3">
-                    <input type="text" value={registrationNumber}  onChange={function (e) {
+                    <input type="text" value={registrationNumber} onChange={function (e) {
                         setRegistrationNumber(e.target.value);
                     }} placeholder="Registration Number" className="form-control" />
                 </div>
 
 
                 <div className="col-sm-3">
-                    <input type="date" value={dateOfAdmission}  onChange={function (e) {
+                    <input type="date" value={dateOfAdmission} onChange={function (e) {
                         setDateOfAdmission(e.target.value);
                     }} placeholder="Date Of Admission" className="form-control" />
                 </div>
@@ -69,21 +67,20 @@ function AdmissionIntoUnitForm() {
                     }} placeholder="FullName" className="form-control" />
                 </div>
 
-
             </div>
 
 
             <div className="container row mt-4">
 
                 <div className="col-sm-3">
-                    <input type="text" value={phoneNumber}name="phoneNumber" onChange={function (e) {
+                    <input type="text" value={phoneNumber} name="phoneNumber" onChange={function (e) {
                         setPhoneNumber(e.target.value);
                     }} placeholder="Phone Number" className="form-control" />
                 </div>
 
 
                 <div className="col-sm-3">
-                    <input type="text" value={amount}name="amount" onChange={function (e) {
+                    <input type="text" value={amount} name="amount" onChange={function (e) {
                         setAmount(e.target.value);
                     }} placeholder="Amount" className="form-control" />
                 </div>
@@ -117,7 +114,7 @@ function AdmissionIntoUnitForm() {
 
 
 
-          
+
         </div>
     )
 }

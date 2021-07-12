@@ -21,10 +21,7 @@ import Marketing from '../pages/Marketing'
 import Authorization from '../pages/Authorization'
 import FinanceTable from '../tables/financeTable/FinanceTable'
 import EditFinanceTable from '../editForms/finance/EditFinanceTable'
-import LogOut from '../logOut/LogOut'
-
-
-
+import MonthlyContributionComponent from '../forms/monthlyFillForm/MonthlyContributionComponent'
 
 
 function Routes() {
@@ -34,8 +31,10 @@ function Routes() {
     return (
         <div>
             <BrowserRouter>
-                {auth && <LogOut />}
-                <Route exact path="/home" component={Home} />
+                {/* {auth && <LogOut />} */}
+                {/* <Route exact path="/home" component={Home} /> */}
+                <Route exact path="/" component={LoginForm} />
+
 
                 <Switch>
 
@@ -44,6 +43,7 @@ function Routes() {
                     {
                         auth !== "" ?
                             <>
+                                <Route exact path="/home" component={Home} />
                                 <Route  path="/finance" component={Finance} />
 
                                 <Route path="/daily" component={DailyContribution} />

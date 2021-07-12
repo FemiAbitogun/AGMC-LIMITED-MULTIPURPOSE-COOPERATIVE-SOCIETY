@@ -1,25 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import axios from "axios"
+import React, { useEffect,useContext } from 'react'
 import Navbar from '../Navbar';
-
+import { authorized } from '../../context/AuthContext';
 function AuthenticatedUserTable() {
 
-    const [userData, setUserData] = useState([]);
+    const {getAuthenticatedUsers,deleteMethod,userData} =useContext(authorized)
 
     useEffect(() => {
-        getDailyContributor();
-    }, [userData]);
-
-    const getDailyContributor = async () => {
-        var { data } = await axios.get("http://localhost:9000/api/authenticateUser")
-        setUserData(data)
-    }
-
-    function deleteMethod(id) {
-        axios.delete(`http://localhost:9000/api/authenticateUser/delete/${id}`)
-        getDailyContributor();
-    }
-
+        getAuthenticatedUsers();
+    }, []);
 
     function display() {
 
@@ -69,13 +57,13 @@ function AuthenticatedUserTable() {
     return (
         <div className="conatiner">
             <div className="conatiner row">
-                <Navbar></Navbar>
+                <Navbar/>
             </div>
 
 
             <div className="conatainer row">
                 <div className="col-12">
-                    {display()}
+                    { userData && display()}
                 </div>
 
             </div>

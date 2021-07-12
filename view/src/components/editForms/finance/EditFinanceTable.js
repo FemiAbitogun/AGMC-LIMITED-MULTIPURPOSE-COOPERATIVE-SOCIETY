@@ -4,9 +4,6 @@ import { editFinanceTable } from '../../../api/finance/editApiFinance/editFinanc
 import axios from 'axios';
 import Navbar from '../../Navbar';
 
-
-
-
 function EditFinanceTable() {
     const history = useHistory();
     const { id } = useParams();
@@ -126,6 +123,38 @@ function EditFinanceTable() {
                 setReferralDateOfRegistration(data.referralDateOfRegistration);
                 setReferralDateOfAdmin(data.referralDateOfAdmin);
                 setReferralUnitCode(data.referralUnitCode);
+
+
+
+                //bond............................
+                setMemberName(data.memberName)
+                setMemberRegistrationNumber(data.memberRegistrationNumber)
+                setDate(data.date)
+
+                //surety1
+
+                setSurety1MemberName(data.surety1MemberName)
+                setSurety1MemberRegistrationNumber(data.surety1MemberRegistrationNumber)
+                setSurety1DateOfRegistration(data.surety1DateOfRegistration)
+                setSurety1NameOfRefferal(data.surety1NameOfRefferal)
+                setSurety1TotalContribution(data.surety1TotalContribution)
+
+
+                //surety2
+                setSurety2BVN(data.surety2BVN)
+                setSurety2FirstName(data.surety2FirstName)
+                setSurety2MiddleName(data.surety2MiddleName)
+                setSurety2LastName(data.surety2LastName)
+                setSurety2AccountNumber(data.surety2AccountNumber)
+                setSurety2Occupation(data.surety2Occupation)
+                setSurety2PlaceOfWorkAddress(data.surety2PlaceOfWorkAddress)
+                setSurety2Position(data.surety2Position)
+                setSurety2Level(data.surety2Level)
+                setSurety2RelationShipWithBorrower(data.surety2RelationShipWithBorrower)
+                setSurety2YearsWithBorrower(data.surety2YearsWithBorrower)
+
+
+
             }
         }
         catch (err) {
@@ -280,12 +309,6 @@ function EditFinanceTable() {
                             setPhone(e.target.value);
                         }} placeholder="Phone Number" className="form-control" />
                     </div>
-
-
-
-
-
-
 
 
                 </div>

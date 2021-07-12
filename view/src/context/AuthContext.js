@@ -1,17 +1,17 @@
 import React, { useState, createContext, useEffect } from 'react'
+import { useHistory } from 'react-router';
 import axios from 'axios';
-
 
 export const authorized = createContext("");
 const url = "http://localhost:9000/api/authenticateUser/login";
 
 
 function AuthContext(props) {
-
-
-
     
+    const [userData, setUserData] = useState([]);
     const [auth, setAuth] = useState("");
+
+
     const sendLoginUser = async (body) => {
         const { data } = await axios.post(url, body);
         if (data) {
@@ -23,6 +23,15 @@ function AuthContext(props) {
             setAuth("");
         }
 
+    }
+    const getAuthenticatedUsers = async () => {
+        var {data } = await axios.get("http://localhost:9000/api/authenticateUser")
+        setUserData(data)
+    }
+
+    function deleteMethod(id) {
+        axios.delete(`http://localhost:9000/api/authenticateUser/delete/${id}`)
+        getAuthenticatedUsers();
     }
 
     const url2 = "http://localhost:9000/api/authenticateUser/confirm";
@@ -39,6 +48,12 @@ function AuthContext(props) {
 
     }
 
+const history =useHistory();
+    function logOut() {
+        localStorage.setItem("name", "");
+        setAuth("");
+     return;
+    }
 
     useEffect(() => {
         checkOut();
@@ -47,7 +62,7 @@ function AuthContext(props) {
 
     return (
         <div>
-            <authorized.Provider value={{ sendLoginUser, auth, setAuth }}>
+            <authorized.Provider value={{ sendLoginUser,userData, auth,logOut, setAuth,getAuthenticatedUsers,deleteMethod }}>
                 {props.children}
             </authorized.Provider>
         </div>

@@ -8,7 +8,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(8, 8, 8, 0.835);
+    background-color: rgba(8, 8, 8, 0.931);
     opacity: .9;
     z-index: 2;
     overflow: hidden;
@@ -42,8 +42,7 @@ form .form-input {
 
 
 
-.form-input input[type="text"], input[type="password"], .form-input input[type="email"]{
-    /* .form-input input[type="text"],.form-input input[type="password"], .form-input input[type="email"]{ */
+.form-input input[type="text"], .form-input input[type="password"], .form-input input[type="email"]{
 
 
     margin: 10px;
@@ -60,8 +59,8 @@ form .form-input {
     transition: .25s;
 }
 
-.form-input input[type="text"]:focus, .form-input input[type="email"]:focus{
-  transform: scale(1.25);
+.form-input input[type="text"]:focus, .form-input input[type="password"]:focus, .form-input input[type="email"]:focus{
+  transform: scale(1.2);
 }
 .button {
     height: 4em;

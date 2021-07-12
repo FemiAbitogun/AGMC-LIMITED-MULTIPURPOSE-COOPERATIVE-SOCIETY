@@ -1,12 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { authorized } from '../../context/AuthContext'
-import MonthlyBaseData from '../../context/MonthlyBaseData'
-import SectionA from '../forms/monthlyFillForm/SectionA'
-import SectionB from '../forms/monthlyFillForm/SectionB'
-import SectionC from '../forms/monthlyFillForm/SectionC'
-import SectionD from '../forms/monthlyFillForm/SectionD'
-import Referee1 from '../forms/monthlyFillForm/Referee1'
-import Referee2 from '../forms/monthlyFillForm/Referee2'
+
+import MonthlyContributionComponent from '../forms/monthlyFillForm/MonthlyContributionComponent'
 
 
 import Marketing from '../pages/Marketing'
@@ -18,7 +13,7 @@ import axios from 'axios'
 
 
 function MonthlyForm() {
-    const { auth, setAuth} = useContext(authorized);
+    const { auth, setAuth } = useContext(authorized);
 
 
 
@@ -39,52 +34,32 @@ function MonthlyForm() {
         checkOut();
     }, [])
 
-    
+
 
 
 
     return (
 
 
-        <div className="container">
+        <div>
 
-            { auth.user.roleName === "user" ? null :   <Marketing /> }
-                  
-
-            <h2 className="text-center">MONTHLY MEMBERSHIP APPLICATION FORM </h2>
-
-           
-            <h2 className="text-center mt-4 text-danger">SECTION A </h2>
-
-            <SectionA>
-                <h2 className="text-center mt-4 text-danger">SECTION B </h2>
-                <SectionB>
-                    <h2 className="text-center mt-4 text-danger">SECTION C </h2>
-                    <SectionC>
-                        <h2 className="text-center mt-4 text-danger">SECTION D </h2>
-                        <h2 className="text-center mt-4 text-danger">Spouse / Next of Kin</h2>
-                        <SectionD>
-
-                            <Referee1>
-                                <Referee2>
-                                    <MonthlyBaseData />
-                                </Referee2>
-                            </Referee1>
-
-                        </SectionD>
-                    </SectionC>
-                </SectionB>
-            </SectionA>
+            {auth.user.roleName === "user" ? null : <Marketing />}
 
 
 
+            <div className="container">
+                <h2 className="text-center">MONTHLY MEMBERSHIP APPLICATION FORM </h2>
+                {/* <h2 className="text-center mt-4 text-danger">SECTION A </h2> */}
+                <MonthlyContributionComponent />
 
-
-
+            </div>
 
 
 
         </div>
+
+
+
 
 
 

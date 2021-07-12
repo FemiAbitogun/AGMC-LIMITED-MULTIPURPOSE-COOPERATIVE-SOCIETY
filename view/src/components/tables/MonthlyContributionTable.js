@@ -5,12 +5,6 @@ import './Table.css';
 import { Link } from 'react-router-dom'
 import Navbar from '../Navbar';
 
-
-
-
-
-
-
 function MonthlyContributionTable() {
 
 
@@ -287,20 +281,6 @@ function MonthlyContributionTable() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     function deleteMethod(id) {
         axios.delete(`${url}/delete/${id}`)
         getMonthlyAccount();
@@ -308,13 +288,20 @@ function MonthlyContributionTable() {
 
 
     return (
-        <div className="container">
-            <div className=" container row text-center text-success"><h4>MONTHLY SUSCRIBERS LIST</h4></div>
+
+        <div>
+
             <Navbar></Navbar>
-            <div className="container row">
-                {displayMonthlyAccount()}
+
+            <div className="container mt-4">
+                <div className="  row text-center text-success"><h4>MONTHLY SUSCRIBERS LIST</h4></div>
+                <div className=" row">
+                    {displayMonthlyAccount()}
+                </div>
             </div>
+
         </div>
+
     )
 }
 

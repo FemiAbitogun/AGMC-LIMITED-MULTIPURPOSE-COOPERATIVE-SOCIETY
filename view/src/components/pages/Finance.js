@@ -24,6 +24,7 @@ function Finance() {
         }
     }
 
+
     useEffect(() => {
         checkOut();
     }, [])
@@ -31,15 +32,15 @@ function Finance() {
 
     return (
         <div>
-            <div className="conatainer text-center mb-4 mt-4"><b><h3>Welcome to the Finance department</h3>
-            </b></div>
-            {auth && (
-                <div>
-                    <Navbar/>
-                    <div className="container mt-4">
+            <Navbar />
 
-                        <Link to="/financeTable" className="container row  mt-4 mb-4 link-dark btn btn-warning  fw-bold">VIEW REGISTERED DATAS</Link>
-                        <FinanceForm/>
+            {auth && (
+                <div className="container">
+                    <div className="conatainer text-center mb-4 mt-4"><b><h3>Welcome to the Finance department</h3>
+                    </b></div>
+                    <div className="container mt-4">
+                        <Link to="/financeTable" className="row  mt-4 mb-4 link-dark btn btn-warning  fw-bold">VIEW REGISTERED DATAS</Link>
+                        <FinanceForm />
                     </div>
                 </div>
             )}

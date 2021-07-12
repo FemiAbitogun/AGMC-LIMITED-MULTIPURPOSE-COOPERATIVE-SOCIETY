@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import {postDailyContribution} from '../../../api/marketing/postDailyContribution'
+import React, { useState, useContext } from 'react'
+import { dailyContext } from '../../../context/marketing/DailyContribution';
 
 
 
 
 function DailyContributionForm() {
+
+
+
 
     const [cardNo, setCardNo] = useState('');
     const [fullName, setFullName] = useState('');
@@ -13,6 +16,8 @@ function DailyContributionForm() {
     const [zone, setZone] = useState('');
     const [referralCode, setReferralCode] = useState('');
 
+
+    const { getDailyContributor, _submit } = useContext(dailyContext);
 
     const submit = async (e) => {
 
@@ -25,15 +30,16 @@ function DailyContributionForm() {
             referralCode,
 
         }
-       await postDailyContribution(body)
+        _submit(body)
+        getDailyContributor();
 
     }
 
 
     return (
-        <div>
+        <div className="container">
 
-            <div className="row container">
+            <div className="row ">
 
                 <div className="col-sm-3">
                     <input type="text" name="registrationNumber" onChange={function (e) {
@@ -64,7 +70,7 @@ function DailyContributionForm() {
             </div>
 
 
-            <div className="row container mt-4">
+            <div className="row  mt-4">
 
                 <div className="col-sm-6">
                     <input type="text" name="zone" onChange={function (e) {
@@ -86,7 +92,7 @@ function DailyContributionForm() {
 
 
 
-            <div className="row container mt-4">
+            <div className="row  mt-4">
                 <div className="col-12 offset-4">
                     <input type="button" value="SUBMIT" className="btn btn-danger"
                         onClick={(e) => {

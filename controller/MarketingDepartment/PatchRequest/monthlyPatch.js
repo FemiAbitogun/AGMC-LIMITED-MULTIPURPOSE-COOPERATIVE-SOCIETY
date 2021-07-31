@@ -79,8 +79,18 @@ const editMonthlySuscriber = async (req, res) => {
         let suscriber = await Suscriber.findById(req.params.id);
 
         suscriber.referalCode = req.body.referalCode,
-            suscriber.branch = req.body.branch
+
+
+
+
+        suscriber.state = req.body.state
+        suscriber.branch = req.body.branch
+        suscriber.unitCode = req.body.unitCode
         suscriber.formNo = req.body.formNo
+
+
+
+
         suscriber.fullName = req.body.fullName
         suscriber.residentialAddress = req.body.residentialAddress
         suscriber.email = req.body.email

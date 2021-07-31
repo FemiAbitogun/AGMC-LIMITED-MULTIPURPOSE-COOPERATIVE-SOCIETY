@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AdmissionContext } from '../../context/marketing/AdmissionToUnitContext';
+import Navbar from '../Navbar';
 
 function AdmissionToUnitTable() {
 
@@ -8,7 +9,7 @@ function AdmissionToUnitTable() {
 
     useEffect(() => {
         getAdmissionToUnit();
-    }, [])
+    }, [deleteMethod])
 
 
     function renderUsers() {
@@ -75,6 +76,7 @@ function AdmissionToUnitTable() {
 
     return (
         <div>
+            <Navbar></Navbar>
             {renderUsers()}
         </div>
     )

@@ -1,35 +1,47 @@
-import React from 'react'
+import React ,{useContext}from 'react'
 import { Link } from 'react-router-dom';
+import { authorized } from '../../context/AuthContext';
 import Navbar from '../Navbar';
 
 function Marketing() {
+
+
+    const { auth, logOut } = useContext(authorized);
+
+
     return (
         <div>
             <Navbar />
 
             <div className="container mt-4">
-                <h2 className="text-center mt-3 text-danger "> MARKETING DEPARTMENT</h2>
+                <h2 className="text-center mt-4 mb-4 text-danger "> MARKETING DEPARTMENT</h2>
 
-                <div className="row">
+                <div className="d-flex flex-wrap justify-content-around ">
 
-                    <div className="col-3">
-                        <Link to="/admission" className="link-light btn btn-dark fw-bold">Unit Admission</Link >
-                    </div>
+                    {
+                        auth.user.roleName === "admin" && (
+                            <>
+                                <Link to="/admission" className="link-light btn btn-danger fw-bold p-3">Unit Admission</Link >
+                           
+                            </>
 
-                    <div className="col-3">
-                        <Link to="/daily" className="link-light btn btn-dark fw-bold">Daily Form</Link >
-                    </div>
+                        )
+                    }
 
-                    <div className="col-3">
-                        <Link to="/Monthly" className="link-light btn btn-dark fw-bold">Monthly Form</Link >
-                    </div>
+                    <Link to="/daily" className="link-light btn btn-dark fw-bold p-3">Daily Form</Link >
+                    <Link to="/Monthly" className="link-dark btn btn-light fw-bold p-3">Monthly Form</Link >
 
 
-                    <div className="col-3">
-                        <Link to="/monthlySuscriberTable" className="link-light btn btn-dark fw-bold"> Monthly Suscriber List </Link >
-                    </div>
+
+
+
 
                 </div>
+
+
+
+
+
 
 
 

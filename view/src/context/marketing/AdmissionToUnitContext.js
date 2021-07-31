@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import axios from 'axios';
 export const AdmissionContext = createContext();
 
@@ -6,15 +6,47 @@ export const AdmissionContext = createContext();
 function AdmissionToUnitContext(props) {
 
     const [userData, setUserData] = useState([]);
+    const [isMounted, setisMounted] = useState(true)
+
+    const source = axios.CancelToken.source();
+
     const getAdmissionToUnit = async () => {
-        var { data } = await axios.get("http://localhost:9000/api/admission")
-        setUserData(data)
+
+        setisMounted(true);
+
+        try {
+            if (isMounted) {
+                var { data } = await axios.get("http://localhost:9000/api/admission", { cancelToken: source.token })
+                setUserData(data)
+            }
+            if (!isMounted) return;
+        } catch (error) {
+            console.log(error.message)
+        }
+
+
     }
+
+
+    useEffect(() => {
+
+        getAdmissionToUnit();
+
+        return () => {
+            setisMounted(false);
+            // source.cancel();
+
+        }
+    }, [])
+
+
+
 
 
     function deleteMethod(id) {
         axios.delete(`http://localhost:9000/api/admission/delete/${id}`)
-         getAdmissionToUnit();
+        setisMounted(true)
+        getAdmissionToUnit();
     }
 
 

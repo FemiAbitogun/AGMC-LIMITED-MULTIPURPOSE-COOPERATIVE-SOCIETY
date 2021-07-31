@@ -8,6 +8,7 @@ import { authorized } from '../../context/AuthContext'
 import CreateNewUserForm from '../forms/authorization/CreateNewUserForm'
 import AuthenticatedUserTable from '../tables/AuthenticatedUserTable'
 import MonthlyContributionTable from '../tables/MonthlyContributionTable'
+import AdmissionToUnitTable from '../tables/AdmissionToUnitTable'
 
 import EditMonthlySuscriber from '../editForms/marketing/monthly/EditMonthTable'
 import EditAdmissionTable from '../editForms/marketing/admission/EditAdmissionTable'
@@ -21,7 +22,12 @@ import Marketing from '../pages/Marketing'
 import Authorization from '../pages/Authorization'
 import FinanceTable from '../tables/financeTable/FinanceTable'
 import EditFinanceTable from '../editForms/finance/EditFinanceTable'
-import MonthlyContributionComponent from '../forms/monthlyFillForm/MonthlyContributionComponent'
+
+
+import ListDataTable from '../List/ListDataTable'
+import AdmissionToUnitContext from '../../context/marketing/AdmissionToUnitContext'
+import DailyContributionProvider from '../../context/marketing/DailyContribution'
+import DailyContributionTable from '../tables/DailyContributionTable'
 
 
 function Routes() {
@@ -38,13 +44,13 @@ function Routes() {
 
                 <Switch>
 
-                  
+
 
                     {
                         auth !== "" ?
                             <>
                                 <Route exact path="/home" component={Home} />
-                                <Route  path="/finance" component={Finance} />
+                                <Route path="/finance" component={Finance} />
 
                                 <Route path="/daily" component={DailyContribution} />
                                 <Route path="/admission" component={AdmissionIntoUnit} />
@@ -53,6 +59,28 @@ function Routes() {
                                 <Route path="/userList" component={AuthenticatedUserTable} />
                                 <Route path="/monthlySuscriberTable" component={MonthlyContributionTable} />
                                 <Route path="/financeTable" component={FinanceTable} />
+
+
+                                <Route path="/dailyContributionTable">
+                                    <DailyContributionProvider>
+                                        <DailyContributionTable />
+                                    </DailyContributionProvider>
+                                </Route>
+
+
+
+
+                                <Route path="/admissionToUnitTable">
+                                    <AdmissionToUnitContext>
+                                        <AdmissionToUnitTable />
+                                    </AdmissionToUnitContext>
+                                </Route>
+
+
+
+                                <Route path="/lists" component={ListDataTable} />
+
+
 
 
 

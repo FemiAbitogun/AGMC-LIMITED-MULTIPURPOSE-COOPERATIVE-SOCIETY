@@ -9,8 +9,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(255, 255, 255, 0.671);
-
+  background-color: rgba(14, 13, 13, 0.212);
+  /* background-image: url('../src/uploads/IMG-20210530-WA0004.jpg' );
+  background-repeat: no-repeat;
+  background-size:auto; */
 }
 
 code {

@@ -26,8 +26,17 @@ function MonthlyContributionComponent() {
 
     const [referalCode, setReferalCode] = useState("");
     const [customerImage, setCustomerImage] = useState("");
+
+
+    const [state, setState] = useState("");
     const [branch, setBranch] = useState("");
     const [formNo, setFormNo] = useState("");
+
+
+    const [unitCode, setUnitCode] = useState("");
+
+
+
     const [fullName, setFullName] = useState("");
     const [residentialAddress, setResidentialAddress] = useState("");
     const [email, SetEmail] = useState("");
@@ -43,11 +52,10 @@ function MonthlyContributionComponent() {
     const [homeTown, setHomeTown] = useState("");
 
     // usestate
-    const [prefferDaysOfMeeting, setMeeting] = useState("");
+    // const [prefferDaysOfMeeting, setMeeting] = useState("");
     const [contributionPlan, setContributionPlan] = useState("");
 
 
-    // usestate
     const [BVN, setBVN] = useState("");
     const [bankName, setBankName] = useState("");
     const [accountNumber, setAccountNumber] = useState("");
@@ -94,9 +102,7 @@ function MonthlyContributionComponent() {
 
 
     function SectionA() {
-
         /** functions............. */
-
         return (
             <div>
                 <div>
@@ -120,23 +126,47 @@ function MonthlyContributionComponent() {
 
                     <div className="row mt-4 container"  >
 
-                        {/* state branch */}
-                        <div className="col-6 container">
-                            <label htmlFor="branch" className="col-sm-4 col-form-label">State/Branch</label>
-                            <div className="col-sm-8" >
-                                <input type="text" onChange={(e) => { _setBranch(e) }} className="form-control " />
-                            </div>
+
+
+                        {/* state  */}
+                        <div className="col-sm-3 ">
+                            <label htmlFor="state" >State</label>
+                            <input type="text" onChange={(e) => { setState(e) }} className="form-control " />
                         </div>
+
+
+                        {/*  branch */}
+                        <div className="col-sm-3 ">
+                            <label htmlFor="branch" >Branch Code</label>
+                            <input type="text" onChange={(e) => { _setBranch(e) }} className="form-control " />
+                        </div>
+
+
+
 
                         {/* form number */}
-                        <div className="col-6 container">
-                            <label htmlFor="formNo" className="col-sm-4 col-form-label">Form No</label>
-                            <div className="col-sm-8">
-                                <input type="text" onChange={(e) => { _setFormNo(e) }} className="form-control " />
-                            </div>
+                        <div className="col-sm-3 ">
+                            <label htmlFor="formNo" >File No</label>
+
+                            <input type="text" onChange={(e) => { _setFormNo(e) }} className="form-control " />
+
                         </div>
 
+
+
+                        {/*  Unit Code */}
+                        <div className="col-sm-3 ">
+                            <label htmlFor="branch"> Unit Code </label>
+                            <input type="text" readOnly value={unitCode} className="form-control " />
+                        </div>
+
+
+
                     </div>
+
+
+
+
 
 
                     {/* fullname */}
@@ -290,8 +320,6 @@ function MonthlyContributionComponent() {
                 </div>
             </div>
         )
-
-
     }
 
     function _setCustomerImage(value) { setCustomerImage(value) }
@@ -331,23 +359,24 @@ function MonthlyContributionComponent() {
                         <h5>Preffer Days of meeting </h5>
                     </div>
 
+
                     <div className="col-xs-2">
-                        <input type="radio" name="meeting" onClick={(e) => { _setMeeting("Monday") }} /> <span> Monday</span>
+                        <input type="radio" name="meeting" onClick={(e) => { setUnitCode("U01") }} /> <span> Monday</span>
                     </div>
 
                     <div className="col-xs-2">
-                        <input type="radio" name="meeting" onClick={(e) => { _setMeeting("Tuesday") }} /> <span> Tuesday</span>
+                        <input type="radio" name="meeting" onClick={(e) => { setUnitCode("U02") }} /> <span> Tuesday</span>
                     </div>
 
                     <div className="col-xs-2">
-                        <input type="radio" name="meeting" onClick={(e) => { _setMeeting("Wednesday") }} /><span>  Wednesday</span>
+                        <input type="radio" name="meeting" onClick={(e) => { setUnitCode("U03") }} /><span>  Wednesday</span>
                     </div>
                     <div className="col-xs-2">
-                        <input type="radio" name="meeting" onClick={(e) => { _setMeeting("Friday") }} /><span>  Friday</span>
+                        <input type="radio" name="meeting" onClick={(e) => { setUnitCode("U04") }} /><span>  Friday</span>
                     </div>
 
                     <div className="col-xs-2">
-                        <input type="radio" name="meeting" onClick={(e) => { _setMeeting("Saturday") }} /><span>  Saturday</span>
+                        <input type="radio" name="meeting" onClick={(e) => { setUnitCode("U05") }} /><span>  Saturday</span>
 
                     </div>
 
@@ -381,14 +410,24 @@ function MonthlyContributionComponent() {
                 </div>
 
 
+
+
+
+
+
             </div>
         )
     }
 
 
     /** functions............. */
-    function _setMeeting(value) { setMeeting(value) }
+
     function _setContributionPlan(value) { setContributionPlan(value) }
+
+
+
+
+
 
 
     function SectionC() {
@@ -743,8 +782,20 @@ function MonthlyContributionComponent() {
 
             formData.append("referalCode", referalCode);
             formData.append("customerImage", customerImage);
+
+
+
+
+            formData.append("state", state);
             formData.append("branch", branch);
+            // section b.....................
+            formData.append("unitCode", unitCode);
             formData.append("formNo", formNo);
+
+
+
+
+
             formData.append("fullName", fullName);
             formData.append("residentialAddress", residentialAddress);
             formData.append("email", email);
@@ -761,7 +812,6 @@ function MonthlyContributionComponent() {
 
 
             // section b.....................
-            formData.append("prefferDaysOfMeeting", prefferDaysOfMeeting);
             formData.append("contributionPlan", contributionPlan);
 
             //section c..........................
@@ -829,6 +879,10 @@ function MonthlyContributionComponent() {
         }
 
     }
+
+
+
+
 
 
     function cancel() {

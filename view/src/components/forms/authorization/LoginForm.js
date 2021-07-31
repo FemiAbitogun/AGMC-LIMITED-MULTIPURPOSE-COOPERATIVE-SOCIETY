@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { authorized } from '../../../context/AuthContext';
 import { useHistory } from 'react-router-dom'
 import './Login.css'
+import image from "./img/img.jpg"
 
 
 
@@ -19,41 +20,54 @@ function LoginForm() {
         e.preventDefault();
         await sendLoginUser(body);
         history.push('/Home')
-
     }
 
-
-
-
     return (
-        <form className="form-input ">
-            <div className="mail_overlay" >
-                <div className="contact-form">
-                    <div>
-                        <div className="form-input">
-                            <input type="text" placeholder="Name" onChange={(e) => {
-                                setName(e.target.value);
-                            }} required />
 
-                            
+        <div>
 
-                            <input type="password" placeholder="Password" onChange={(e) => {
-                                setPassword(e.target.value);
-                            }} required />
+            <form>
 
-                            <span>
-                                <button type="button" onClick={(e) => { LoginUser(e) }} className="button submit">LOGIN</button>
-                            </span>
+
+                <div className="mail_overlay"
+                >
+                    <div className="contact-form" style={{ backgroundImage: `url(${image})`, backgroundRepeat: "no-repeat", backgroundSize: "contain" }}
+                    >
+
+
+                        <div>
+                            <div className="form-input">
+                                <input type="text" placeholder="Name" onChange={(e) => {
+                                    setName(e.target.value);
+                                }} required />
+
+
+
+                                <input type="password" placeholder="Password" onChange={(e) => {
+                                    setPassword(e.target.value);
+                                }} required />
+
+                                <span>
+                                    <button type="button" onClick={(e) => { LoginUser(e) }} className="button submit">LOGIN</button>
+                                </span>
+
+                            </div>
 
                         </div>
-
                     </div>
                 </div>
-            </div>
 
 
 
-        </form>
+            </form>
+
+
+        </div>
+
+
+
+
+
     )
 }
 

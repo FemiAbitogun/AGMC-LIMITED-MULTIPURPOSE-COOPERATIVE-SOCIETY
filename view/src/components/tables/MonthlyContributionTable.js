@@ -1,30 +1,58 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from "axios"
 import './Table.css';
 
 import { Link } from 'react-router-dom'
 import Navbar from '../Navbar';
+import { authorized } from '../../context/AuthContext';
 
 function MonthlyContributionTable() {
 
+    const source = axios.CancelToken.source();
+
+
+    const { auth } = useContext(authorized);
 
 
     const url = "http://localhost:9000/api/monthlyContribution"
 
     const [userData, setUserData] = useState([]);
+    const [isMounted, setisMounted] = useState(true);
 
-    useEffect(() => {
+
+
+
+    function deleteMethod(id) {
+        axios.delete(`${url}/delete/${id}`)
+        setisMounted(true);
         getMonthlyAccount();
-    }, [userData])
+    }
 
 
     async function getMonthlyAccount() {
-        var { data } = await axios.get(url)
 
-        data && setUserData(data)
+        try {
+            if (isMounted) {
+                //var { data } = await axios.get(url, { cancelToken: source.token })
+                var { data } = await axios.get(url)
+                data && setUserData(data)
+            }
+            if (!isMounted) {
+                return
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
 
     }
 
+    useEffect(() => {
+        getMonthlyAccount();
+        return () => {
+            setisMounted(false);
+             //source.cancel();
+        }
+    })
 
 
 
@@ -62,21 +90,29 @@ function MonthlyContributionTable() {
 
 
 
-
-
-
-
-
-
-
                             <tr>
+                                {/* this */}
+                                <th scope="row">State</th>
+                                <td>{user.state}</td>
+
+
+
+
                                 <th scope="row">Branch</th>
                                 <td>{user.branch}</td>
 
-                                <th scope="row">Form No</th>
+
+
+
+                                {/* this */}
+                                <th scope="row">Unit Code</th>
+                                <td>{user.unitCode}</td>
+
+
+
+
+                                <th scope="row">File No</th>
                                 <td>{user.formNo}</td>
-
-
 
                             </tr>
 
@@ -130,13 +166,15 @@ function MonthlyContributionTable() {
                                 <th scope="row">Permanent Home Address</th>
                                 <td>{user.permanentHomeAddress}</td>
 
-                                <th scope="row">Preffer Days Of Meeting</th>
-                                <td>{user.prefferDaysOfMeeting}</td>
+                                {/* <th scope="row">Preffer Days Of Meeting</th>
+                                <td>{user.prefferDaysOfMeeting}</td> */}
+
+                                <th scope="row">Contribution Plan</th>
+                                <td>{user.contributionPlan}</td>
                             </tr>
 
                             <tr>
-                                <th scope="row">Contribution Plan</th>
-                                <td>{user.contributionPlan}</td>
+
 
                                 <th scope="row">Account Number</th>
                                 <td>{user.accountNumber}</td>
@@ -258,16 +296,31 @@ function MonthlyContributionTable() {
                                 <td>{user.referee2Phone}</td>
                                 <th scope="row">Relationship</th>
                                 <td>{user.referee2Relationship}</td>
-
                             </tr>
                         </tbody>
                     </table>
 
-                    <input type="button" value="DELETE" className="btn btn-danger"
-                        onClick={() => { deleteMethod(user._id) }} />
-                    <span>
-                        <button className="btn btn-warning m-3"><Link to={`/editMonthly/edit/${user._id}`}>E D I T</Link> </button>
-                    </span>
+
+
+                    {
+                        auth.user.roleName === "admin" && (
+                            <>
+                                <input type="button" value="DELETE" className="btn btn-danger"
+                                    onClick={() => { deleteMethod(user._id) }} />
+                                <span>
+                                    <button className="btn btn-warning m-3"><Link to={`/editMonthly/edit/${user._id}`}>E D I T</Link> </button>
+                                </span>
+                            </>
+
+                        )
+                    }
+
+
+
+
+
+
+
 
 
                     <br className="mt-4"></br>
@@ -281,10 +334,6 @@ function MonthlyContributionTable() {
 
 
 
-    function deleteMethod(id) {
-        axios.delete(`${url}/delete/${id}`)
-        getMonthlyAccount();
-    }
 
 
     return (
@@ -293,12 +342,16 @@ function MonthlyContributionTable() {
 
             <Navbar></Navbar>
 
-            <div className="container mt-4">
+            {!userData && <div>Loading ......</div>}
+
+            {userData && <div className="container mt-4">
                 <div className="  row text-center text-success"><h4>MONTHLY SUSCRIBERS LIST</h4></div>
                 <div className=" row">
                     {displayMonthlyAccount()}
                 </div>
-            </div>
+            </div>}
+
+
 
         </div>
 

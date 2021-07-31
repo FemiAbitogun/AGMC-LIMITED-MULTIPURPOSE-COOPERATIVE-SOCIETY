@@ -4,7 +4,7 @@ const DailyContributionModel = require('../../model/Management_team/Marketing_de
 
 const getAllDailyContributor = async (req, res) => {
     try {
-        const AllDailyContribution =await DailyContributionModel.find();
+        const AllDailyContribution = await DailyContributionModel.find();
         if (!AllDailyContribution)
             return res.status(400).json({
                 errorMessage: "can not find daily contributors"
@@ -25,7 +25,7 @@ const getAllDailyContributor = async (req, res) => {
 
 const dailyContributorById = async (req, res) => {
     try {
-        const dailyContributor =await DailyContributionModel.findById(req.params.id);
+        const dailyContributor = await DailyContributionModel.findById(req.params.id);
         if (!dailyContributor)
             return res.status(400).json({
                 errorMessage: "can not find daily contributors"
@@ -59,6 +59,10 @@ const createDailyContributor = async (req, res) => {
             amount,
             zone,
             referralCode,
+            
+            contribution,
+            dateOfRegistration,
+            dateOfFirstContribution
         } = req.body;
 
 
@@ -70,6 +74,9 @@ const createDailyContributor = async (req, res) => {
             amount,
             zone,
             referralCode,
+            contribution,
+            dateOfRegistration,
+            dateOfFirstContribution
         })
         const savednewUser = await newUser.save();
 
@@ -117,7 +124,7 @@ const deleteDailyContributor = async (req, res) => {
 
 
 
-module.exports = {dailyContributorById, getAllDailyContributor, createDailyContributor, deleteDailyContributor };
+module.exports = { dailyContributorById, getAllDailyContributor, createDailyContributor, deleteDailyContributor };
 
 
 

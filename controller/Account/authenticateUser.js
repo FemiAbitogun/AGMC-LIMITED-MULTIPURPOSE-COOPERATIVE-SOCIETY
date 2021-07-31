@@ -7,7 +7,7 @@ const confirm = async (req, res) => {
     try {
         const { name } = req.body;
         const user = await AuthorizedUsers.findOne({ name })
-
+        
         if (!user)
             return res.status(400).json({
                 errorMessage: "invalid credentials......"

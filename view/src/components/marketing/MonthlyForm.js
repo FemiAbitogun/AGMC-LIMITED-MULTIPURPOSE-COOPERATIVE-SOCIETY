@@ -42,14 +42,10 @@ function MonthlyForm() {
 
 
         <div>
-
-            {auth.user.roleName === "user" ? null : <Marketing />}
-
-
+            <Marketing />
 
             <div className="container">
                 <h2 className="text-center">MONTHLY MEMBERSHIP APPLICATION FORM </h2>
-                {/* <h2 className="text-center mt-4 text-danger">SECTION A </h2> */}
                 <MonthlyContributionComponent />
 
             </div>

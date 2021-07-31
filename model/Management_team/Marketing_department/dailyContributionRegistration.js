@@ -32,7 +32,28 @@ const dailyContributionSchema = new mongoose.Schema({
         required: true
     },
 
-   
+
+    contribution: {
+        type: String,
+        required: true
+    },
+    dateOfRegistration: {
+        type: String,
+        required: true
+    },
+    dateOfFirstContribution: {
+        type: String,
+        required: true
+    },
+
+
+
+
+
+
+
+
+
 
 })
 

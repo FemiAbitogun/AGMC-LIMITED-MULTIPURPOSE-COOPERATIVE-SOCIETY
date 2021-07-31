@@ -8,20 +8,32 @@ import Navbar from '../../Navbar'
 function FinanceTable() {
 
     const [userData, setUserData] = useState([]);
+    const [isMounted, setisMounted] = useState(true);
+
 
     useEffect(() => {
         getFinanceData();
+
+        return () => {
+            setisMounted(false);
+        }
     }, [userData]);
 
 
     const getFinanceData = async () => {
-        var { data } = await axios.get("http://localhost:9000/api/finance")
-        setUserData(data)
+        if (isMounted) {
+            var { data } = await axios.get("http://localhost:9000/api/finance")
+            setUserData(data)
+        }
+        if (!isMounted) {
+            return
+        }
     }
 
 
     function deleteMethod(id) {
-        axios.delete(`http://localhost:9000/api/finance/delete/${id}`)
+        axios.delete(`http://localhost:9000/api/finance/delete/${id}`);
+        setisMounted(true);
         getFinanceData();
 
     }

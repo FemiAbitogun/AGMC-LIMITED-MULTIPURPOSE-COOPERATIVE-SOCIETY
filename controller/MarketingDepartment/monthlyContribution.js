@@ -94,8 +94,21 @@ const createSuscriberAccount = async (req, res) => {
         const {
 
             referalCode,
+
+
             branch,
             formNo,
+            state,
+            unitCode,
+
+
+
+
+
+
+
+
+
             fullName,
             residentialAddress,
             email,
@@ -158,8 +171,13 @@ const createSuscriberAccount = async (req, res) => {
 
             referalCode,
             customerImagePath: customerImagePath,
+
+            state,
             branch,
             formNo,
+            unitCode,
+
+
             fullName,
             residentialAddress,
             email,
@@ -216,7 +234,9 @@ const createSuscriberAccount = async (req, res) => {
         })
         const savedSuscriber = await newUserSuscriber.save();
         return res.status(201).json("saved successfully");
-      
+
+        
+
 
     } //const createSuscriberAccount();
 
@@ -224,6 +244,8 @@ const createSuscriberAccount = async (req, res) => {
         res.status(500).json({
             errorMessage: err.message
         })
+
+        console.log(err.message)
     }
 
 }

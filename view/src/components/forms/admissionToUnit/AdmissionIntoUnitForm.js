@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react'
 import { postAdmissionToUnitForm } from '../../../api/marketing/postAdmissionToUnitForm';
 import { AdmissionContext } from '../../../context/marketing/AdmissionToUnitContext';
+import { useHistory } from 'react-router-dom'
 
 
 
 function AdmissionIntoUnitForm() {
 
-    const {  getAdmissionToUnit } = useContext(AdmissionContext)
+    const history = useHistory();
+    const { getAdmissionToUnit } = useContext(AdmissionContext)
 
 
     const [registrationNumber, setRegistrationNumber] = useState('');
@@ -33,13 +35,14 @@ function AdmissionIntoUnitForm() {
             loanQualify,
         }
         await postAdmissionToUnitForm(body);
-         getAdmissionToUnit();
+        getAdmissionToUnit();
+        history.push("/admissionToUnitTable")
     }
 
 
     return (
-        <div>
-            <div className="row container mt-4">
+        <div className="container">
+            <div className="row">
 
                 <div className="col-sm-3">
                     <input type="text" value={registrationNumber} onChange={function (e) {
@@ -70,7 +73,7 @@ function AdmissionIntoUnitForm() {
             </div>
 
 
-            <div className="container row mt-4">
+            <div className="row mt-4">
 
                 <div className="col-sm-3">
                     <input type="text" value={phoneNumber} name="phoneNumber" onChange={function (e) {
@@ -101,13 +104,13 @@ function AdmissionIntoUnitForm() {
 
             </div>
 
-            <div className="row container mt-4">
-                <div className="col-12 offset-4">
+            <div className="row  mt-4">
+                <div className="col-12 offset-1">
                     <button type="button" className="btn btn-danger"
                         onClick={(e) => {
                             e.preventDefault();
                             submit(e);
-                        }}>SUBMIT</button>
+                        }}> SUBMIT </button>
                 </div>
             </div>
 

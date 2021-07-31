@@ -682,7 +682,7 @@ function FinanceForm() {
 
            
                 <div className="container">
-                    <button type="button" className="btn btn-danger col-2"
+                    <button type="button" className="btn btn-danger col-sm-2"
                         onClick={(e) => {
                             e.preventDefault();
                             submit(e);

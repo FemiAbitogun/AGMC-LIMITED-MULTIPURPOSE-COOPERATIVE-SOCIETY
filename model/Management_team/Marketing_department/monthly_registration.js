@@ -14,13 +14,29 @@ const monthlyRegistrationSchema = new Mongoose.Schema({
         type: String,
     },
 
+
+
+
+
+
+
+    state: {
+        type: String,
+    },
     branch: {
+        type: String,
+    },
+    unitCode: {
         type: String,
     },
 
     formNo: {
         type: String,
     },
+
+
+    
+
     /*personal information */
     fullName: {
         type: String,

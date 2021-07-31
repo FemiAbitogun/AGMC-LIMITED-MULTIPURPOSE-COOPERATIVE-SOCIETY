@@ -23,11 +23,6 @@ function AuthenticatedUserTable() {
                                     <th scope="row">Name</th>
                                     <td>{user.name}</td>
 
-
-                                    <th scope="row">Password</th>
-                                    <td>{user.password}</td>
-
-
                                     <th scope="row">Role Name</th>
                                     <td>{user.roleName}</td>
 

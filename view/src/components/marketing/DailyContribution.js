@@ -57,9 +57,7 @@ function DailyContribution() {
           </DailyContributionProvider>
         </div>
 
-        <DailyContributionProvider>
-          <DailyContributionTable />
-        </DailyContributionProvider>
+        
 
       </div>
 

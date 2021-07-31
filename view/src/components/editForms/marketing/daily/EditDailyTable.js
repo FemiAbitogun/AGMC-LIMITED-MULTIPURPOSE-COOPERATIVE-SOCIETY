@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { useParams, useHistory } from 'react-router-dom';
-
-
 import { dailyEdit } from '../../../../api/marketing/editAPIs/dailyEdit'
+import Navbar from '../../../Navbar'
 
 
 
@@ -35,6 +34,11 @@ function EditDailyTable() {
     const [zone, setZone] = useState('');
     const [referralCode, setReferralCode] = useState('');
 
+    const [contribution, setContribution] = useState('');
+    const [dateOfRegistration, setDateOfRegistration] = useState('');
+    const [dateOfFirstContribution, setDateOfFirstContribution] = useState('');
+
+
 
     const [_data, setData] = useState("");
 
@@ -54,6 +58,10 @@ function EditDailyTable() {
                 setAmount(data.amount);
                 setReferralCode(data.referralCode);
                 setZone(data.zone);
+
+                setContribution(data.contribution);
+                setDateOfFirstContribution(data.dateOfFirstContribution);
+                setDateOfRegistration(data.dateOfRegistration);
             }
         }
         catch (err) {
@@ -74,9 +82,12 @@ function EditDailyTable() {
                 amount,
                 zone,
                 referralCode,
+                contribution,
+                dateOfRegistration,
+                dateOfFirstContribution
 
             }
-             dailyEdit(body, id)
+            dailyEdit(body, id)
             return history.push('/daily')
 
         } catch (err) {
@@ -96,13 +107,12 @@ function EditDailyTable() {
     function display() {
 
         return (
-            <div>
+            <div className="container mt-4">
+                <div className="row ">
 
-                <div className="row container">
-                    
                     <div className="col-sm-3">
                         <input type="text" value={cardNo} onChange={function (e) {
-                            setCardNo(e.target.value) 
+                            setCardNo(e.target.value)
                         }} placeholder="cardNo" className="form-control" />
                     </div>
 
@@ -129,20 +139,50 @@ function EditDailyTable() {
                 </div>
 
 
-                <div className="row container mt-4">
+                <div className="row  mt-4">
 
-                    <div className="col-sm-6">
+                    <div className="col-sm-3">
                         <input type="text" value={zone} onChange={function (e) {
                             setZone(e.target.value);
                         }} placeholder="Zone" className="form-control" />
                     </div>
 
-                    <div className="col-sm-6">
+                    <div className="col-sm-3">
                         <input type="text" value={referralCode} onChange={function (e) {
                             setReferralCode(e.target.value);
                         }} placeholder="Referral Code" className="form-control" />
                     </div>
 
+
+                    <div className="col-sm-6">
+                        <input type="text" value={contribution} onChange={function (e) {
+                            setContribution(e.target.value);
+                        }} placeholder="Contribution Plan" className="form-control" />
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div className="row  mt-4">
+
+
+
+                    <div className="col-sm-4">
+                        <b> Date Of Registration</b>
+                        <input type="date" value={dateOfRegistration} onChange={function (e) {
+                            setDateOfRegistration(e.target.value);
+                        }} className="form-control" />
+                    </div>
+
+                    <div className="col-sm-4">
+                        <b> Date Of First Contribution</b>
+                        <input type="date" value={dateOfFirstContribution} onChange={function (e) {
+                            setDateOfFirstContribution(e.target.value);
+                        }} className="form-control" />
+                    </div>
 
 
                 </div>
@@ -151,10 +191,14 @@ function EditDailyTable() {
 
 
 
-                <div className="row container mt-2">
-                <div className="col-sm-4">
-                            <input type="button" className="btn btn-danger" value=" Edit " onClick={(e) => { submit(e) }} />
-                        </div>
+
+
+
+
+                <div className="row  mt-2">
+                    <div className="col-sm-4">
+                        <input type="button" className="btn btn-danger" value=" Edit " onClick={(e) => { submit(e) }} />
+                    </div>
                     <div className="col-sm-4">
                         <input type="button" className="btn btn-warning" value="Cancel Edit" onClick={(e) => { cancel() }} />
                     </div>
@@ -174,6 +218,7 @@ function EditDailyTable() {
 
     return (
         <div>
+            <Navbar></Navbar>
             {_data ? display() : <div>Loading................</div>}
         </div>
     )

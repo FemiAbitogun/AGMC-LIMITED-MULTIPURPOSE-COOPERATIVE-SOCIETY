@@ -3,7 +3,6 @@ import { authorized } from '../../context/AuthContext'
 import AdmissionIntoUnitForm from '../forms/admissionToUnit/AdmissionIntoUnitForm'
 import axios from 'axios'
 import AdmissionToUnitTable from '../tables/AdmissionToUnitTable'
-import Marketing from '../pages/Marketing'
 
 import AdmissionToUnitContext from '../../context/marketing/AdmissionToUnitContext'
 import Navbar from '../Navbar'
@@ -38,7 +37,7 @@ function AdmissionIntoUnit() {
 
                 <AdmissionToUnitContext>
                     <AdmissionIntoUnitForm />
-                    <AdmissionToUnitTable />
+                    {/* <AdmissionToUnitTable /> */}
                 </AdmissionToUnitContext>
             </div>
         </div>

@@ -1,5 +1,4 @@
 import React, { useState, createContext, useEffect } from 'react'
-import { useHistory } from 'react-router';
 import axios from 'axios';
 
 export const authorized = createContext("");
@@ -7,10 +6,9 @@ const url = "http://localhost:9000/api/authenticateUser/login";
 
 
 function AuthContext(props) {
-    
+
     const [userData, setUserData] = useState([]);
     const [auth, setAuth] = useState("");
-
 
     const sendLoginUser = async (body) => {
         const { data } = await axios.post(url, body);
@@ -25,7 +23,7 @@ function AuthContext(props) {
 
     }
     const getAuthenticatedUsers = async () => {
-        var {data } = await axios.get("http://localhost:9000/api/authenticateUser")
+        var { data } = await axios.get("http://localhost:9000/api/authenticateUser")
         setUserData(data)
     }
 
@@ -48,21 +46,14 @@ function AuthContext(props) {
 
     }
 
-const history =useHistory();
-    function logOut() {
-        localStorage.setItem("name", "");
-        setAuth("");
-     return;
-    }
-
     useEffect(() => {
         checkOut();
-    }, [])
+    },[])
 
 
     return (
         <div>
-            <authorized.Provider value={{ sendLoginUser,userData, auth,logOut, setAuth,getAuthenticatedUsers,deleteMethod }}>
+            <authorized.Provider value={{ sendLoginUser, userData, auth, setAuth, getAuthenticatedUsers, deleteMethod }}>
                 {props.children}
             </authorized.Provider>
         </div>

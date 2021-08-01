@@ -1,4 +1,4 @@
-import React, { useEffect, useContext,useState } from 'react';
+import React, {useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { authorized } from '../../context/AuthContext';
 import { dailyContext } from '../../context/marketing/DailyContribution';
@@ -12,7 +12,7 @@ function DailyContributionTable() {
     const { auth } = useContext(authorized);
 
 
-    const { getDailyContributor, deleteMethod, userData } = useContext(dailyContext);
+    const {deleteMethod, userData } = useContext(dailyContext);
 
 
     function renderUsers() {
@@ -116,7 +116,7 @@ function DailyContributionTable() {
         <div>
             <Navbar></Navbar>
             <div className="container">
-                {userData && renderUsers()}
+                {auth&&userData && renderUsers()}
             </div>
         </div>
 

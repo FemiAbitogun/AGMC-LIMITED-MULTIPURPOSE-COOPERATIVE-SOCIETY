@@ -6,24 +6,13 @@ import { authorized } from '../../../context/AuthContext'
 
 
 function MonthlyContributionComponent() {
-
+    const history = useHistory();
 
 
     const { auth } = useContext(authorized);
-    const [value, setValue] = useState();
+   
 
-    const refresh = () => { setValue({}); }
-
-    useEffect(() => {
-        refresh();
-        auth === "" && history.push('/')
-    }, [])
-
-
-
-
-    const history = useHistory();
-
+    
     const [referalCode, setReferalCode] = useState("");
     const [customerImage, setCustomerImage] = useState("");
 

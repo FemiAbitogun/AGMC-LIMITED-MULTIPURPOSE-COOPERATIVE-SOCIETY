@@ -1,4 +1,4 @@
-import React ,{useContext}from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { authorized } from '../../context/AuthContext';
 import Navbar from '../Navbar';
@@ -6,8 +6,9 @@ import Navbar from '../Navbar';
 function Marketing() {
 
 
-    const { auth, logOut } = useContext(authorized);
+    const { auth } = useContext(authorized);
 
+function display(){
 
     return (
         <div>
@@ -16,21 +17,30 @@ function Marketing() {
             <div className="container mt-4">
                 <h2 className="text-center mt-4 mb-4 text-danger "> MARKETING DEPARTMENT</h2>
 
-                <div className="d-flex flex-wrap justify-content-around ">
 
-                    {
-                        auth.user.roleName === "admin" && (
+
+                <div className="d-flex flex-wrap ">
+
+                    <div className="dropdown">
+                        <button className="button  bg-dark btn-default fw-bold dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Forms
+                        </button>
+                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            {
+
+                            auth.user.roleName ==="admin" && (
                             <>
-                                <Link to="/admission" className="link-light btn btn-danger fw-bold p-3">Unit Admission</Link >
-                           
+                                <Link to="/admission" className="link-warning btn btn-light fw-bold p-3">Unit Admission</Link >
                             </>
 
-                        )
-                    }
+                            )
+                            }
+                            <Link to="/daily" className="link-dark btn btn-light fw-bold p-3">Daily Form</Link >
+                            <Link to="/Monthly" className="link-success btn btn-light fw-bold p-3">Monthly Form</Link >
 
-                    <Link to="/daily" className="link-light btn btn-dark fw-bold p-3">Daily Form</Link >
-                    <Link to="/Monthly" className="link-dark btn btn-light fw-bold p-3">Monthly Form</Link >
 
+                        </ul>
+                    </div>
 
 
 
@@ -49,6 +59,25 @@ function Marketing() {
 
         </div>
     )
+
+
+
+
+}
+
+
+
+return(
+    <div>
+        {auth && display()}
+      
+    </div>
+)
+
+
+
+
+    
 }
 
 export default Marketing

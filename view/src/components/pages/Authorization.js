@@ -1,10 +1,19 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { Link } from 'react-router-dom';
+import { authorized } from '../../context/AuthContext';
 import AuthenticatedUserTable from '../tables/AuthenticatedUserTable';
 
 
 
 function Authorization() {
+
+
+const {auth}= useContext(authorized)
+
+
+
+function display(){
+
     return (
 
         <div className="container">
@@ -29,6 +38,20 @@ function Authorization() {
 
 
     )
+
+
+
+}
+
+
+
+return (
+    <div>
+        {auth && display()}
+    </div>
+)
+
+   
 }
 
 export default Authorization

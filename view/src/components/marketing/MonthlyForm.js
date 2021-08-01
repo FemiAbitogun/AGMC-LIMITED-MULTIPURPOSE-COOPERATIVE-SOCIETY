@@ -17,7 +17,7 @@ function MonthlyForm() {
 
 
 
-    const url2 = "http://localhost:9000/api/authenticateUser/confirm";
+    const url = "http://localhost:9000/api/authenticateUser/confirm";
 
     useEffect(() => {
         async function checkOut() {
@@ -25,7 +25,7 @@ function MonthlyForm() {
 
             if (_name !== "") {
                 const body = { name: _name }
-                const { data } = await axios.post(url2, body);
+                const { data } = await axios.post(url, body);
                 if (data) {
                     setAuth(data);
                 }
@@ -46,7 +46,7 @@ function MonthlyForm() {
 
             <div className="container">
                 <h2 className="text-center">MONTHLY MEMBERSHIP APPLICATION FORM </h2>
-                <MonthlyContributionComponent />
+               {auth && <MonthlyContributionComponent />} 
 
             </div>
 

@@ -42,12 +42,6 @@ function FinanceTable() {
 
 
 
-
-
-
-
-
-
     function renderUsers() {
 
         return userData.map((user) => {

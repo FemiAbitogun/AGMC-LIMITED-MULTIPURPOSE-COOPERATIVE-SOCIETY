@@ -8,7 +8,7 @@ import { authorized } from '../../context/AuthContext';
 
 function MonthlyContributionTable() {
 
-    const source = axios.CancelToken.source();
+    
 
 
     const { auth } = useContext(authorized);

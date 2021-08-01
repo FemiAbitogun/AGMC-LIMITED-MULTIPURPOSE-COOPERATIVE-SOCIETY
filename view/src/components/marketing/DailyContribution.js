@@ -2,8 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import { authorized } from '../../context/AuthContext'
 import DailyContributionForm from '../forms/dailyContributionForm/DailyContribution'
 import axios from 'axios'
-import { useHistory } from 'react-router-dom'
-import DailyContributionTable from '../tables/DailyContributionTable'
 import Marketing from '../pages/Marketing'
 import DailyContributionProvider from '../../context/marketing/DailyContribution'
 
@@ -11,8 +9,7 @@ import DailyContributionProvider from '../../context/marketing/DailyContribution
 
 function DailyContribution() {
 
-  const { auth, setAuth } = useContext(authorized);
-  const history = useHistory();
+  const {  setAuth } = useContext(authorized);
   const url = "http://localhost:9000/api/authenticateUser/confirm";
 
 

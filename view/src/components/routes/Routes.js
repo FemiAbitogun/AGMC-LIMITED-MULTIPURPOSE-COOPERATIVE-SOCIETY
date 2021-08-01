@@ -24,7 +24,6 @@ import FinanceTable from '../tables/financeTable/FinanceTable'
 import EditFinanceTable from '../editForms/finance/EditFinanceTable'
 
 
-import ListDataTable from '../List/ListDataTable'
 import AdmissionToUnitContext from '../../context/marketing/AdmissionToUnitContext'
 import DailyContributionProvider from '../../context/marketing/DailyContribution'
 import DailyContributionTable from '../tables/DailyContributionTable'
@@ -37,17 +36,15 @@ function Routes() {
     return (
         <div>
             <BrowserRouter>
-                {/* {auth && <LogOut />} */}
-                {/* <Route exact path="/home" component={Home} /> */}
+            
                 <Route exact path="/" component={LoginForm} />
 
 
                 <Switch>
 
 
-
                     {
-                        auth !== "" ?
+                        auth !== undefined ?
                             <>
                                 <Route exact path="/home" component={Home} />
                                 <Route path="/finance" component={Finance} />
@@ -75,10 +72,6 @@ function Routes() {
                                         <AdmissionToUnitTable />
                                     </AdmissionToUnitContext>
                                 </Route>
-
-
-
-                                <Route path="/lists" component={ListDataTable} />
 
 
 

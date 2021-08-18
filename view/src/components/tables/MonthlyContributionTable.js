@@ -8,7 +8,7 @@ import { authorized } from '../../context/AuthContext';
 
 function MonthlyContributionTable() {
 
-    
+
 
 
     const { auth } = useContext(authorized);
@@ -22,20 +22,32 @@ function MonthlyContributionTable() {
 
 
 
-    function deleteMethod(id) {
-        axios.delete(`${url}/delete/${id}`)
+   async function deleteMethod(id) {
+       await axios.delete(`${url}/delete/${id}`)
         setisMounted(true);
         getMonthlyAccount();
+        displayMonthlyAccount();
     }
+
+
+    useEffect(() => {
+        getMonthlyAccount();
+        return () => {
+            userData!=="" &&  setisMounted(false);       
+        }
+    })
+
 
 
     async function getMonthlyAccount() {
 
         try {
             if (isMounted) {
-                //var { data } = await axios.get(url, { cancelToken: source.token })
+           
                 var { data } = await axios.get(url)
-                data && setUserData(data)
+                data && (setUserData(data));
+                displayMonthlyAccount()
+               
             }
             if (!isMounted) {
                 return
@@ -46,13 +58,7 @@ function MonthlyContributionTable() {
 
     }
 
-    useEffect(() => {
-        getMonthlyAccount();
-        return () => {
-            setisMounted(false);
-             //source.cancel();
-        }
-    })
+   
 
 
 
@@ -302,17 +308,16 @@ function MonthlyContributionTable() {
 
 
 
-                    {
-                        auth.user.roleName === "admin" && (
-                            <>
-                                <input type="button" value="DELETE" className="btn btn-danger"
-                                    onClick={() => { deleteMethod(user._id) }} />
-                                <span>
-                                    <button className="btn btn-warning m-3"><Link to={`/editMonthly/edit/${user._id}`}>E D I T</Link> </button>
-                                </span>
-                            </>
+                    {(auth.user.roleName === "admin" || auth.user.roleName === "hdm") && (
+                        <>
+                            <input type="button" value="DELETE" className="btn btn-danger"
+                                onClick={() => { deleteMethod(user._id) }} />
+                            <span>
+                                <button className="btn btn-warning m-3"><Link to={`/editMonthly/edit/${user._id}`}>E D I T</Link> </button>
+                            </span>
+                        </>
 
-                        )
+                    )
                     }
 
 

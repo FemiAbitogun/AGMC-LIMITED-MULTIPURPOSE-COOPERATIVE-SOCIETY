@@ -36,7 +36,7 @@ function Routes() {
     return (
         <div>
             <BrowserRouter>
-            
+
                 <Route exact path="/" component={LoginForm} />
 
 
@@ -44,68 +44,89 @@ function Routes() {
 
 
                     {
-                        auth !== undefined ?
-                            <>
-                                <Route exact path="/home" component={Home} />
-                                <Route path="/finance" component={Finance} />
+                        auth && (
 
-                                <Route path="/daily" component={DailyContribution} />
-                                <Route path="/admission" component={AdmissionIntoUnit} />
-                                <Route path="/monthly" component={MonthlyForm} />
-                                <Route path="/createUser" component={CreateNewUserForm} />
-                                <Route path="/userList" component={AuthenticatedUserTable} />
-                                <Route path="/monthlySuscriberTable" component={MonthlyContributionTable} />
-                                <Route path="/financeTable" component={FinanceTable} />
-
-
-                                <Route path="/dailyContributionTable">
-                                    <DailyContributionProvider>
-                                        <DailyContributionTable />
-                                    </DailyContributionProvider>
-                                </Route>
+                            (auth.user.roleName === "admin" || auth.user.roleName === "hdf" || auth.user.roleName === "hdm" || auth.user.roleName === "user") ?
+                                <>
+                                    <Route exact path="/home" component={Home} />
+                                    <Route path="/monthly" component={MonthlyForm} />
+                                    <Route path="/dailyContributionTable">
+                                        <DailyContributionProvider>
+                                            <DailyContributionTable />
+                                        </DailyContributionProvider>
+                                    </Route>
+                                    <Route path="/daily" component={DailyContribution} />
+                                    <Route path="/monthlySuscriberTable" component={MonthlyContributionTable} />
 
 
+                                    <Route path="/marketing">
+                                        <Marketing></Marketing>
+                                    </Route>
 
 
-                                <Route path="/admissionToUnitTable">
-                                    <AdmissionToUnitContext>
-                                        <AdmissionToUnitTable />
-                                    </AdmissionToUnitContext>
-                                </Route>
+                                    {
 
-
-
-
-
-                                <Route path="/editMonthly/edit/:id">
-                                    <EditMonthlySuscriber />
-                                </Route>
-
-                                <Route path="/editAdmission/edit/:id">
-                                    <EditAdmissionTable />
-                                </Route>
-
-                                <Route path="/editDaily/edit/:id">
-                                    <EditDailyTable />
-                                </Route>
-                                <Route path="/editFinance/edit/:id">
-                                    <EditFinanceTable />
-                                </Route>
+                                        (auth.user.roleName === "admin" || auth.user.roleName === "hdf" || auth.user.roleName === "hdm") && (
+                                            <>
+                                                <Route path="/finance" component={Finance} />
+                                                <Route path="/admission" component={AdmissionIntoUnit} />
+                                                <Route path="/financeTable" component={FinanceTable} />
+                                                <Route path="/createUser" component={CreateNewUserForm} />
+                                                <Route path="/userList" component={AuthenticatedUserTable} />
 
 
 
-                                {/* pages */}
-
-                                <Route path="/marketing">
-                                    <Marketing></Marketing>
-                                </Route>
-
-                                <Route path="/authorizationPage">
-                                    <Authorization></Authorization>
-                                </Route>
+                                                <Route path="/admissionToUnitTable">
+                                                    <AdmissionToUnitContext>
+                                                        <AdmissionToUnitTable />
+                                                    </AdmissionToUnitContext>
+                                                </Route>
 
 
-                            </> : <LoginForm />
+
+                                                <Route path="/editMonthly/edit/:id">
+                                                    <EditMonthlySuscriber />
+                                                </Route>
+
+                                                <Route path="/editAdmission/edit/:id">
+                                                    <EditAdmissionTable />
+                                                </Route>
+
+                                                <Route path="/editDaily/edit/:id">
+                                                    <EditDailyTable />
+                                                </Route>
+                                                <Route path="/editFinance/edit/:id">
+                                                    <EditFinanceTable />
+                                                </Route>
+
+                                                {auth.user.roleName === "admin" && (<Route path="/authorizationPage">
+                                                    <Authorization></Authorization>
+                                                </Route>)}
+
+                                            </>
+                                        )
+
+                                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                </> : <LoginForm />
+
+                        )
+
                     }
 
 

@@ -48,15 +48,45 @@ function CreateNewUserForm() {
                 <div className="contact-form">
                     <div onSubmit={(e) => { CreateUser(e) }}>
                         <div className="form-input">
-                            <input type="text" placeholder="Name" onChange={(e) => {
+                            <input type="text" placeholder="Name | Email" onChange={(e) => {
                                 setName(e.target.value);
                             }} required="required" />
                             <input type="text" placeholder="Password" onChange={(e) => {
                                 setPassword(e.target.value);
                             }} required="required" />
-                            <input type="text" placeholder="Role Name" onChange={(e) => {
-                                setRoleName(e.target.value);
-                            }} required="required" />
+                            <div className="dropdown m-4">
+                                <button className="button btn btn-dark fw-bold dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Role
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li className="dropdown-item" onClick={(e) => {
+                                        setRoleName("admin");
+                                    }}>Admin</li>
+
+                                    <li className="dropdown-item" onClick={(e) => {
+                                        setRoleName("user");
+                                    }}>User</li>
+                                    <li className="dropdown-item" onClick={(e) => {
+                                        setRoleName("hdf");
+                                    }}>Head Finance</li>
+
+                                    <li className="dropdown-item" onClick={(e) => {
+                                        setRoleName("hdm");
+                                    }}>Head Marketing</li>
+                                </ul>
+                            </div>
+                            <input type="text" placeholder="Role Name" value={roleName}
+                                readOnly />
+
+
+
+
+
+
+
+
+
+
                             <span>
                                 <button type="submit" onClick={(e) => { CreateUser(e) }} className="button submit">CREATE</button>
                             </span>
@@ -72,7 +102,7 @@ function CreateNewUserForm() {
             </div>
 
 
-        </form>
+        </form >
     )
 }
 

@@ -1,14 +1,17 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../../Navbar'
+import { authorized } from '../../../context/AuthContext';
 
 
 function FinanceTable() {
 
     const [userData, setUserData] = useState([]);
     const [isMounted, setisMounted] = useState(true);
+    const { auth } = useContext(authorized);
+
 
 
     useEffect(() => {
@@ -101,7 +104,6 @@ function FinanceTable() {
                                 <td>{user.phone}</td>
 
                             </tr>
-
 
 
                             {/*  */}
@@ -310,13 +312,17 @@ function FinanceTable() {
                         </tbody>
                     </table>
 
-                    <input type="submit" value="delete" className="btn btn-success"
-                        onClick={() => { deleteMethod(user._id) }}
-                    />
 
-                    <span>
-                        <button className="btn btn-warning m-3"><Link to={`/editFinance/edit/${user._id}`}>EDIT unit</Link> </button>
-                    </span>
+                    {
+                        (auth.user.roleName === "admin" || auth.user.roleName === "hdf") && (<span>
+                            <input type="submit" value="delete" className="btn btn-success"
+                                onClick={() => { deleteMethod(user._id) }}
+                            />
+                            <button className="btn btn-warning m-3"><Link to={`/editFinance/edit/${user._id}`}>EDIT unit</Link> </button>
+                        </span>)
+
+                    }
+
 
                     <br className="mt-4"></br>
 
@@ -324,7 +330,6 @@ function FinanceTable() {
         })
 
     }
-
 
 
 

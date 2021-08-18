@@ -8,7 +8,7 @@ import image from "../components/forms/authorization/img/img.jpg"
 function Navbar() {
 
 
-    const { auth,setAuth } = useContext(authorized);
+    const { auth, setAuth } = useContext(authorized);
     const history = useHistory();
 
     function logOut() {
@@ -21,14 +21,17 @@ function Navbar() {
 
 
         return (
-            <div className="bg-dark" style={{ width: "100%" }}>
 
-                <nav className="navbar bg-dark " >
-                    <div className="container row">
+
+            <div className="container ">
+
+
+                <div className="row">
+                    <div className="col-12">
                         {
 
                             auth.user.roleName === "user" ? (
-                                <div className="d-flex flex-wrap justify-content-between p-2  ">
+                                <div className="d-flex  justify-content-between  ">
 
                                     <Link to="/marketing" className="button btn btn-dark fw-bold">Marketing Department</Link >
                                     <div className="dropdown">
@@ -48,13 +51,10 @@ function Navbar() {
                             ) : (
 
                                 // style={{ backgroundImage: `url(${image})`,backgroundRepeat:"no-repeat",backgroundSize:"contain" }}
-
-                                <div>
-                                    <div className="d-flex flex-wrap justify-content-between p-2  ">
+                                (auth.user.roleName === "admin" || auth.user.roleName === "hdm" || auth.user.roleName === "hdf") && (<div >
+                                    <div className="d-flex flex-wrap justify-content-between  ">
 
                                         <div style={{ backgroundColor: "white", height: "5em", width: "5em", backgroundImage: `url(${image})`, backgroundSize: "contain" }} className="m-2" />
-
-
 
 
                                         <div className="dropdown">
@@ -62,9 +62,16 @@ function Navbar() {
                                                 Departments
                                             </button>
                                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <Link to="/finance" className="link-success btn btn-light fw-bold p-3">Finance Department</Link >
-                                                <Link to="/marketing" className="link-dark btn btn-light fw-bold p-3">Marketing Department</Link >
-                                                <Link to="/authorizationPage" className="link-danger btn btn-light fw-bold p-3">Authorization Page</Link >
+                                                <Link to="/finance" className="dropdown-item link-success btn btn-light fw-bold p-3">Finance Department</Link >
+                                                <Link to="/marketing" className="dropdown-item  link-dark btn btn-light fw-bold p-3">Marketing Department</Link >
+
+
+                                                {auth.user.roleName === "admin" && (
+
+                                                    <Link to="/authorizationPage" className="dropdown-item  link-danger btn btn-light fw-bold p-3">Authorization Page</Link >
+
+                                                )}
+
 
                                             </ul>
                                         </div>
@@ -83,15 +90,8 @@ function Navbar() {
                                             </ul>
                                         </div>
 
-                                        {/*  <label for="cars">Choose a car:</label>
 
-                    <select id="cars">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-         */}
+
                                         <button className="button btn btn-danger fw-bold" onClick={() => { logOut() }}> LogOut</button >
 
 
@@ -99,18 +99,24 @@ function Navbar() {
                                     </div>
 
                                 </div>
+                                )
+
 
                             )
                         }
-
                     </div>
 
-                </nav>
-
-
+                </div>
 
 
             </div>
+
+
+
+
+
+
+
         )
 
 
@@ -123,9 +129,9 @@ function Navbar() {
 
 
     return (
-        <div>
+        <nav className="bg-dark">
             {auth && display()}
-        </div>
+        </nav>
     )
 
 }

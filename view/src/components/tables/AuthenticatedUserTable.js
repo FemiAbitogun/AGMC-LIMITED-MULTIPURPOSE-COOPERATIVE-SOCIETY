@@ -1,9 +1,9 @@
-import React, { useEffect,useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Navbar from '../Navbar';
 import { authorized } from '../../context/AuthContext';
 function AuthenticatedUserTable() {
 
-    const {getAuthenticatedUsers,deleteMethod,userData} =useContext(authorized)
+    const { auth, getAuthenticatedUsers, deleteMethod, userData } = useContext(authorized)
 
     useEffect(() => {
         getAuthenticatedUsers();
@@ -33,8 +33,11 @@ function AuthenticatedUserTable() {
                             </tbody>
                         </table>
 
-                        <input type="submit" value="delete" className="btn btn-success"
-                            onClick={() => { deleteMethod(user._id) }} />
+                        {auth.user.roleName === "admin" && (
+                            <input type="submit" value="delete" className="btn btn-success"
+                                onClick={() => { deleteMethod(user._id) }} />
+                        )}
+
 
                         <br className="mt-4"></br>
 
@@ -52,13 +55,13 @@ function AuthenticatedUserTable() {
     return (
         <div className="conatiner">
             <div className="conatiner row">
-                <Navbar/>
+                <Navbar />
             </div>
 
 
             <div className="conatainer row">
                 <div className="col-12">
-                    { userData && display()}
+                    {userData && display()}
                 </div>
 
             </div>

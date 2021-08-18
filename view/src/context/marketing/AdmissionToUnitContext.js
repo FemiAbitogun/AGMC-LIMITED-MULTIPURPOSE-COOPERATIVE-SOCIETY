@@ -8,7 +8,6 @@ function AdmissionToUnitContext(props) {
     const [userData, setUserData] = useState([]);
     const [isMounted, setisMounted] = useState(true)
 
-    const source = axios.CancelToken.source();
 
     const getAdmissionToUnit = async () => {
 
@@ -16,7 +15,7 @@ function AdmissionToUnitContext(props) {
 
         try {
             if (isMounted) {
-                var { data } = await axios.get("http://localhost:9000/api/admission", { cancelToken: source.token })
+                var { data } = await axios.get("http://localhost:9000/api/admission")
                 setUserData(data)
             }
             if (!isMounted) return;
@@ -34,8 +33,7 @@ function AdmissionToUnitContext(props) {
 
         return () => {
             setisMounted(false);
-            // source.cancel();
-
+    
         }
     }, [])
 
@@ -52,7 +50,7 @@ function AdmissionToUnitContext(props) {
 
     return (
         <div >
-            <AdmissionContext.Provider value={{ getAdmissionToUnit, deleteMethod, userData }}>
+            <AdmissionContext.Provider value={{isMounted,setisMounted, getAdmissionToUnit, deleteMethod, userData }}>
                 {props.children}
             </AdmissionContext.Provider>
         </div>

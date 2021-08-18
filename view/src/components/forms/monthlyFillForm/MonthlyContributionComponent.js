@@ -10,9 +10,9 @@ function MonthlyContributionComponent() {
 
 
     const { auth } = useContext(authorized);
-   
 
-    
+
+
     const [referalCode, setReferalCode] = useState("");
     const [customerImage, setCustomerImage] = useState("");
 
@@ -120,7 +120,7 @@ function MonthlyContributionComponent() {
                         {/* state  */}
                         <div className="col-sm-3 ">
                             <label htmlFor="state" >State</label>
-                            <input type="text" onChange={(e) => { setState(e) }} className="form-control " />
+                            <input type="text" onChange={(e) => { setState(e.target.value) }} className="form-control " />
                         </div>
 
 
@@ -130,7 +130,11 @@ function MonthlyContributionComponent() {
                             <input type="text" onChange={(e) => { _setBranch(e) }} className="form-control " />
                         </div>
 
-
+                        {/*  Unit Code */}
+                        <div className="col-sm-3 ">
+                            <label htmlFor="branch"> Unit Code </label>
+                            <input type="text" readOnly value={unitCode} className="form-control " />
+                        </div>
 
 
                         {/* form number */}
@@ -143,11 +147,7 @@ function MonthlyContributionComponent() {
 
 
 
-                        {/*  Unit Code */}
-                        <div className="col-sm-3 ">
-                            <label htmlFor="branch"> Unit Code </label>
-                            <input type="text" readOnly value={unitCode} className="form-control " />
-                        </div>
+
 
 
 

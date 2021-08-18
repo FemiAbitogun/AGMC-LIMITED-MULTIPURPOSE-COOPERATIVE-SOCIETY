@@ -71,16 +71,9 @@ function DailyContributionTable() {
                         </table>
                     </div>
 
-
-
-
-
-
-
-
-
+                  
                     {
-                        auth.user.roleName === "admin" && (
+                         (auth.user.roleName === "admin" || auth.user.roleName === "hdm") && (
                             <>
                                 <input type="submit" value="delete" className="btn btn-success"
                                     onClick={() => { deleteMethod(user._id) }} />

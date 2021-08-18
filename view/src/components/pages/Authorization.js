@@ -22,8 +22,6 @@ function display(){
 
 
             <div className="row container p-15">
-
-
                 <span className="col-sm-6 container ">  <Link to="/createUser" className="link-light btn btn-dark  fw-bold " >Create User</Link ></span>
                 <span className="col-sm-6 container "> <Link to="/userList" className="link-light btn btn-dark  fw-bold"> User List</Link >
 

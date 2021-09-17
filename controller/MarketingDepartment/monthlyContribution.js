@@ -1,4 +1,3 @@
-const { upload } = require('../../fileHelper')
 
 const Suscriber = require('../../model/Management_team/Marketing_department/monthly_registration');
 
@@ -7,9 +6,7 @@ const getAllSuscriberAccount = async (req, res) => {
     try {
         const allSuscribers = await Suscriber.find();
         if (!allSuscribers)
-            return res.status(500).json({
-                errorMessage: "can not find users"
-            })
+            return res.status(200).json();
 
         return res.status(200).json(allSuscribers);
     }
@@ -52,23 +49,38 @@ const getSuscriberAccountById = async (req, res) => {
 
 
 let newUserSuscriber = new Suscriber();
+let passedImage1 = false;
+let passedImage2 = false;
 
 
 async function referee1ImageSuscriberAccount(req, res) {
-
+    passedImage1 = false;
     newUserSuscriber.referee1ImagePath = req.file.path;
+    passedImage1 = true;
     return res.status(200).send();
-
 }
+
 
 async function referee2ImageSuscriberAccount(req, res) {
-
-    newUserSuscriber.referee2ImagePath = req.file.path;
+    passedImage2 = false;
+    newUserSuscriber.referee2ImagePath =req.file.path;
+    passedImage2 = true;  
     return res.status(200).send();
-
 }
 
 
+
+async function refImageIMiddleware(req, res, next) {
+  if(passedImage1){
+      next();
+  }
+}
+
+async function refImageIIMiddleware(req, res, next) {
+    if(passedImage2){
+        next();
+    }
+}
 
 
 // CREATE USER
@@ -94,18 +106,10 @@ const createSuscriberAccount = async (req, res) => {
         const {
 
             referalCode,
-
-
             branch,
             formNo,
             state,
             unitCode,
-
-
-
-
-
-
 
 
 
@@ -235,7 +239,7 @@ const createSuscriberAccount = async (req, res) => {
         const savedSuscriber = await newUserSuscriber.save();
         return res.status(201).json("saved successfully");
 
-        
+
 
 
     } //const createSuscriberAccount();
@@ -285,10 +289,11 @@ module.exports = {
     getAllSuscriberAccount,
     createSuscriberAccount,
     deleteSuscriberAccount,
+    getSuscriberAccountById,
+
+    refImageIMiddleware,refImageIIMiddleware
 
 
-
-    getSuscriberAccountById
 };
 
 

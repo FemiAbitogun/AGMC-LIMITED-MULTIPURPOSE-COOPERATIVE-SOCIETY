@@ -153,12 +153,6 @@ const editMonthlySuscriber = async (req, res) => {
 
 
 
-
-
-
-
-
-
 module.exports = {
     editRef1Image,
     editRef2Image,

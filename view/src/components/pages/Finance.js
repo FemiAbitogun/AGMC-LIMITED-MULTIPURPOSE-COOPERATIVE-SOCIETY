@@ -2,32 +2,15 @@
 import React, { useContext, useEffect } from 'react'
 import FinanceForm from '../financeDepartmentForm/Finance'
 import Navbar from '../Navbar'
-import axios from 'axios';
 import { authorized } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 
-const url = "http://localhost:9000/api/authenticateUser/confirm";
 
 
 
 function Finance() {
 
-    const { auth, setAuth, logOut } = useContext(authorized);
-
-
-    async function checkOut() {
-        let _name = localStorage.getItem("name");
-        const body = { name: _name }
-        const { data } = await axios.post(url, body);
-        if (data) {
-            setAuth(data);
-        }
-    }
-
-
-    useEffect(() => {
-        checkOut();
-    }, [])
+    const { auth } = useContext(authorized);
 
 
     return (

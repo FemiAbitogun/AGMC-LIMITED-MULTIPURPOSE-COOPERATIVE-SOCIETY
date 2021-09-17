@@ -2,30 +2,29 @@ import React, { useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { authorized } from '../context/AuthContext';
 import image from "../components/forms/authorization/img/img.jpg"
-
+import axios from 'axios'
 
 
 function Navbar() {
 
 
-    const { auth, setAuth } = useContext(authorized);
+    const { auth, checkOutSignedIn, setAuth } = useContext(authorized);
     const history = useHistory();
 
-    function logOut() {
-        localStorage.setItem("name", "");
-        setAuth("");
+    async function logOutAsync() {
+        await axios.post("http://localhost:9000/api/authenticateUser/logOut", null, { withCredentials: true })
         history.push("/")
+        await checkOutSignedIn();
+      
     }
 
+
+
+
+
     function display() {
-
-
         return (
-
-
             <div className="container ">
-
-
                 <div className="row">
                     <div className="col-12">
                         {
@@ -44,7 +43,7 @@ function Navbar() {
 
                                         </ul>
                                     </div>
-                                    <button className="button btn btn-danger fw-bold" onClick={() => { logOut() }}> LogOut</button >
+                                    <button className="button btn btn-danger fw-bold" onClick={() => { logOutAsync() }}> LogOut</button >
 
                                 </div>
 
@@ -92,7 +91,7 @@ function Navbar() {
 
 
 
-                                        <button className="button btn btn-danger fw-bold" onClick={() => { logOut() }}> LogOut</button >
+                                        <button className="button btn btn-danger fw-bold" onClick={() => { logOutAsync() }}> LogOut</button >
 
 
 

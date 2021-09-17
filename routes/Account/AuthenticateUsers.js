@@ -1,18 +1,19 @@
 
-const router= require('express').Router();
+const router = require('express').Router();
+const { auth } = require('../../middleWare/authMiddleWare');
 
-const {confirm,getAllUserAccount,createUserAccount,deleteUserAccount,loginUserAccount } = require('../../controller/Account/authenticateUser');
+const { logOut,confirm, getAllUserAccount, createUserAccount, deleteUserAccount, loginUserAccount } = require('../../controller/Account/authenticateUser');
 
-router.get('/', getAllUserAccount);
-router.post('/confirm',confirm);
+router.get('/',auth, getAllUserAccount);
+router.post('/confirm', auth, confirm);
+router.post('/logOut', auth, logOut);
 
-router.post('/create',createUserAccount);
-router.post('/login',loginUserAccount);
+router.post('/create',auth, createUserAccount);
+router.post('/login', loginUserAccount);
 
-router.delete('/delete/:id',deleteUserAccount);
+router.delete('/delete/:id',auth,deleteUserAccount);
 
-
-module.exports= router;
+module.exports = router;
 
 
 

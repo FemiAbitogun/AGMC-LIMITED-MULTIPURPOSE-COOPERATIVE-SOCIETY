@@ -1,20 +1,17 @@
 const AuthorizedUsers = require('../../model/Account/authenticateUsers');
 const bcrypt = require('bcryptjs');
-
-
+const jwt = require('jsonwebtoken');
 
 const confirm = async (req, res) => {
     try {
-        const { name } = req.body;
-        const user = await AuthorizedUsers.findOne({ name })
-        
+
+        console.log(req.authenticatedUserID);
+        const user = await AuthorizedUsers.findById(req.authenticatedUserID);
         if (!user)
             return res.status(400).json({
                 errorMessage: "invalid credentials......"
             })
-
         return res.status(200).json({
-
             user,
             authorization: user.rollName
 
@@ -34,7 +31,7 @@ const confirm = async (req, res) => {
 
 const getAllUserAccount = async (req, res) => {
     try {
-        const allUsers =await AuthorizedUsers.find();
+        const allUsers = await AuthorizedUsers.find();
         if (!allUsers)
             return res.status(500).json({
                 errorMessage: "can not find users"
@@ -104,17 +101,13 @@ const loginUserAccount = async (req, res) => {
         if (!_password)
             return res.status(400).json({
                 errorMessage: "invalid credentials......"
-            })
+            });
 
-
-        return res.status(200).json({
-
-            user,
-            authorization: user.rollName
-
-
-        })
-
+        const token = jwt.sign({ user: user._id }, process.env.JWT_SECRET);
+        res.cookie("ticket", token, {
+            httpOnly: true
+            // ,secure:true,sameSite:none
+        }).send();
 
     }
     catch (err) {
@@ -126,21 +119,21 @@ const loginUserAccount = async (req, res) => {
 }
 
 
+const logOut = async (req, res) => {
+
+    try {
+        res.cookie("ticket", "", {
+            httpOnly: true,
+            // ,secure:true,sameSite:none
+            expires: new Date(0)
+        }).send();
+    }
+    catch (err) {
+        console.log(err.message);
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 // DELETE USERS
@@ -167,7 +160,7 @@ const deleteUserAccount = async (req, res) => {
 
 
 
-module.exports = { confirm, getAllUserAccount, createUserAccount, deleteUserAccount, loginUserAccount };
+module.exports = { logOut, confirm, getAllUserAccount, createUserAccount, deleteUserAccount, loginUserAccount };
 
 
 

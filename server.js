@@ -3,13 +3,15 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
-const PARSER = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 
 const app = express();
+app.use(cookieParser());
 
 app.use(cors({
-    credentials: true
+    credentials: true,
+    origin:["http://localhost:3000"]
 }));
 app.use(express.json());
 
@@ -36,7 +38,8 @@ app.use('/uploads', express.static('uploads'));
 
 
 app.get('/', async (req, res) => {
-    res.sendFile('index.html')
+    return res.sendFile('index.html')
+ 
 })
 
 

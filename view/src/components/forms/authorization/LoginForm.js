@@ -8,7 +8,7 @@ import image from "./img/img.jpg"
 
 function LoginForm() {
 
-    const { sendLoginUser } = useContext(authorized)
+    const { ServerLogin } = useContext(authorized)
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const body = { name, password }
@@ -18,7 +18,7 @@ function LoginForm() {
     const LoginUser = async (e) => {
 
         e.preventDefault();
-        await sendLoginUser(body);
+        await ServerLogin(body) ;
         history.push('/Home')
     }
 

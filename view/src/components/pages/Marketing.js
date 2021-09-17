@@ -1,37 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext} from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { authorized } from '../../context/AuthContext';
 import Navbar from '../Navbar';
-import LoginForm from '../../components/forms/authorization/LoginForm'
-import axios from 'axios';
 
 function Marketing() {
 
     const { auth, setAuth } = useContext(authorized);
-    const history = useHistory();
-
-    const url2 = "http://localhost:9000/api/authenticateUser/confirm";
-
-    useEffect(() => {
-        async function checkOut() {
-            let _name = localStorage.getItem("name");
-
-            if (_name !== "") {
-                const body = { name: _name }
-                const { data } = await axios.post(url2, body);
-                if (data) {
-                    setAuth(data);
-                }
-            }
-
-            else if (_name === "") {
-                auth === "" && history.push('/')
-            }
-        }
-        checkOut();
-    }, [])
-
-
+   
     function display() {
         return (
             <div>

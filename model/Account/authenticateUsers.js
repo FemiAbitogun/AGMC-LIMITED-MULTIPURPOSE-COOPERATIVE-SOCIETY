@@ -18,4 +18,5 @@ const userSchema =new Mongoose.Schema({
     }
 })
 
+
 module.exports=Mongoose.model("authorizedUser",userSchema);

@@ -22,18 +22,25 @@ function MonthlyContributionTable() {
 
 
 
-   async function deleteMethod(id) {
-       await axios.delete(`${url}/delete/${id}`)
+    async function deleteMethod(id) {
+        await axios.delete(`${url}/delete/${id}`)
         setisMounted(true);
         getMonthlyAccount();
         displayMonthlyAccount();
     }
 
+    async function refresh() {
+        setisMounted(true);
+        getMonthlyAccount();
+        displayMonthlyAccount();
+        setisMounted(false);
+    }
 
     useEffect(() => {
         getMonthlyAccount();
+   
         return () => {
-            userData!=="" &&  setisMounted(false);       
+            setisMounted(false);
         }
     })
 
@@ -43,11 +50,11 @@ function MonthlyContributionTable() {
 
         try {
             if (isMounted) {
-           
                 var { data } = await axios.get(url)
-                data && (setUserData(data));
-                displayMonthlyAccount()
-               
+
+                data && (setUserData(data)) && displayMonthlyAccount(); 
+      
+                return         
             }
             if (!isMounted) {
                 return
@@ -58,7 +65,7 @@ function MonthlyContributionTable() {
 
     }
 
-   
+
 
 
 
@@ -68,6 +75,7 @@ function MonthlyContributionTable() {
 
 
     function displayMonthlyAccount() {
+
 
         return userData.map((user) => {
 
@@ -346,13 +354,14 @@ function MonthlyContributionTable() {
         <div>
 
             <Navbar></Navbar>
-
-            {!userData && <div>Loading ......</div>}
-
+            <div className="  row text-center text-success"><h4>MONTHLY SUSCRIBERS LIST</h4></div>
+            {userData.length===0 && <div>No user in the database....</div>}
+         
             {userData && <div className="container mt-4">
-                <div className="  row text-center text-success"><h4>MONTHLY SUSCRIBERS LIST</h4></div>
                 <div className=" row">
-                    {displayMonthlyAccount()}
+                    {   
+                   displayMonthlyAccount()
+                    }
                 </div>
             </div>}
 

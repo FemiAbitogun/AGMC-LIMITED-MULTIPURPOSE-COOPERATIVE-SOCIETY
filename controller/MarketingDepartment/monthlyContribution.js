@@ -39,54 +39,9 @@ const getSuscriberAccountById = async (req, res) => {
 
 }
 
-
-
-
-
-
-
-
-
-
-let newUserSuscriber = new Suscriber();
-let passedImage1 = false;
-let passedImage2 = false;
-
-
-async function referee1ImageSuscriberAccount(req, res) {
-    passedImage1 = false;
-    newUserSuscriber.referee1ImagePath = req.file.path;
-    passedImage1 = true;
-    return res.status(200).send();
-}
-
-
-async function referee2ImageSuscriberAccount(req, res) {
-    passedImage2 = false;
-    newUserSuscriber.referee2ImagePath =req.file.path;
-    passedImage2 = true;  
-    return res.status(200).send();
-}
-
-
-
-async function refImageIMiddleware(req, res, next) {
-  if(passedImage1){
-      next();
-  }
-}
-
-async function refImageIIMiddleware(req, res, next) {
-    if(passedImage2){
-        next();
-    }
-}
-
-
 // CREATE USER
 const createSuscriberAccount = async (req, res) => {
     try {
-
         /*
         var customerImage = fs.readFileSync(req.file.path);
         var customerImage = fs.readFile(req.file.path, 'utf8', async (err, data) => {
@@ -94,24 +49,24 @@ const createSuscriberAccount = async (req, res) => {
                 console.error(err);
                 return;
             }
-
             const encoded = data.toString('base64');
             const result = {
                 img: new Buffer.from(encoded, 'base64')        
         */
-
-
-        const customerImagePath = req.file.path;
+        customerImagePath = req.files.customerImage[0].path;
+        if (req.files.referee1Image) {
+            referee1ImagePath = req.files.referee1Image[0].path;
+        }
+        if (req.files.referee2Image) {
+            referee2ImagePath = req.files.referee2Image[0].path;
+        }
 
         const {
-
             referalCode,
             branch,
             formNo,
             state,
             unitCode,
-
-
 
             fullName,
             residentialAddress,
@@ -151,8 +106,6 @@ const createSuscriberAccount = async (req, res) => {
             referee1Religion,
             referee1Phone,
             referee1Relationship,
-
-
 
             referee2FullName,
             referee2HomeAddress,
@@ -168,14 +121,12 @@ const createSuscriberAccount = async (req, res) => {
 
 
         newUserSuscriber = new Suscriber({
-            customerImagePath: customerImagePath,
-            referee1ImagePath: newUserSuscriber.referee1ImagePath,
-            referee2ImagePath: newUserSuscriber.referee2ImagePath,
 
+            customerImagePath,
+            referee1ImagePath,
+            referee2ImagePath,
 
             referalCode,
-            customerImagePath: customerImagePath,
-
             state,
             branch,
             formNo,
@@ -196,7 +147,6 @@ const createSuscriberAccount = async (req, res) => {
             LGA,
             homeTown,
 
-
             prefferDaysOfMeeting,
             contributionPlan,
             bankName,
@@ -213,7 +163,6 @@ const createSuscriberAccount = async (req, res) => {
             kinRelationshipType,
             kinYearOfrelationship,
 
-
             referee1FullName,
             referee1HomeAddress,
             referee1WorkAddress,
@@ -222,9 +171,6 @@ const createSuscriberAccount = async (req, res) => {
             referee1Religion,
             referee1Phone,
             referee1Relationship,
-
-
-
 
             referee2FullName,
             referee2HomeAddress,
@@ -238,10 +184,6 @@ const createSuscriberAccount = async (req, res) => {
         })
         const savedSuscriber = await newUserSuscriber.save();
         return res.status(201).json("saved successfully");
-
-
-
-
     } //const createSuscriberAccount();
 
     catch (err) {
@@ -262,12 +204,9 @@ const createSuscriberAccount = async (req, res) => {
 
 // DELETE USERS
 const deleteSuscriberAccount = async (req, res) => {
-
     try {
-
         const id = req.params.id;
         const user = await Suscriber.findByIdAndDelete(id)
-
         res.status(200).json(user)
     }
     catch (err) {
@@ -278,21 +217,12 @@ const deleteSuscriberAccount = async (req, res) => {
 
 }
 
-
-
-
-
-
 module.exports = {
-    referee1ImageSuscriberAccount,
-    referee2ImageSuscriberAccount,
+
     getAllSuscriberAccount,
     createSuscriberAccount,
     deleteSuscriberAccount,
     getSuscriberAccountById,
-
-    refImageIMiddleware,refImageIIMiddleware
-
 
 };
 

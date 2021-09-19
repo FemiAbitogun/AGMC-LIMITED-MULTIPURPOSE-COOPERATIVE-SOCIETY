@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const confirm = async (req, res) => {
     try {
 
-        console.log(req.authenticatedUserID);
+        //console.log(req.authenticatedUserID);
         const user = await AuthorizedUsers.findById(req.authenticatedUserID);
         if (!user)
             return res.status(400).json({
@@ -16,14 +16,10 @@ const confirm = async (req, res) => {
             authorization: user.rollName
 
         })
-
-
         // res.send("ok")
     }
     catch (err) {
-        res.status(500).json({
-            errorMessage: err.message
-        })
+        res.status(400).send();
     }
 
 }
@@ -46,11 +42,6 @@ const getAllUserAccount = async (req, res) => {
     }
 
 }
-
-
-
-
-
 
 
 // CREATE USER

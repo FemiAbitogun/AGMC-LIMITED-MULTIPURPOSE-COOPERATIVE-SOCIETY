@@ -1,17 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { postForm, postRef1Image, postRef2Image } from '../../../api/marketing/postMonthlyForm'
+import React, { useState } from 'react'
+import { postForm } from '../../../api/marketing/postMonthlyForm'
 import { useHistory } from 'react-router-dom'
-import { authorized } from '../../../context/AuthContext'
-
 
 
 function MonthlyContributionComponent() {
     const history = useHistory();
-
-
-    const { auth } = useContext(authorized);
-
-
 
     const [referalCode, setReferalCode] = useState("");
     const [customerImage, setCustomerImage] = useState("");
@@ -40,8 +33,7 @@ function MonthlyContributionComponent() {
     const [LGA, setLGA] = useState("");
     const [homeTown, setHomeTown] = useState("");
 
-    // usestate
-    // const [prefferDaysOfMeeting, setMeeting] = useState("");
+
     const [contributionPlan, setContributionPlan] = useState("");
 
 
@@ -769,21 +761,20 @@ function MonthlyContributionComponent() {
 
         try {
 
-            formData.append("referalCode", referalCode);
+
             formData.append("customerImage", customerImage);
+            formData.append("referee1Image", referee1Image);
+            formData.append("referee2Image", referee2Image);
 
-
-
-
+            formData.append("referalCode", referalCode);
             formData.append("state", state);
             formData.append("branch", branch);
+
+
+
             // section b.....................
             formData.append("unitCode", unitCode);
             formData.append("formNo", formNo);
-
-
-
-
 
             formData.append("fullName", fullName);
             formData.append("residentialAddress", residentialAddress);
@@ -842,19 +833,6 @@ function MonthlyContributionComponent() {
             formData.append("referee2Religion", referee2Religion);
             formData.append("referee2Phone", referee2Phone);
             formData.append("referee2Relationship", referee2Relationship);
-
-            if (referee1Image) {
-                const formDataRef1 = new FormData();
-                formDataRef1.append("referee1Image", referee1Image);
-                postRef1Image(formDataRef1);
-            }
-
-
-            if (referee2Image) {
-                const formDataRef2 = new FormData();
-                formDataRef2.append("referee2Image", referee2Image);
-                postRef2Image(formDataRef2);
-            }
 
 
             postForm(formData);

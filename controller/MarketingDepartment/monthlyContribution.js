@@ -1,4 +1,4 @@
-
+const fs = require('fs');
 const Suscriber = require('../../model/Management_team/Marketing_department/monthly_registration');
 
 
@@ -25,7 +25,7 @@ const getSuscriberAccountById = async (req, res) => {
     try {
         const suscriber = await Suscriber.findById(req.params.id);
         if (!suscriber)
-            return res.status(500).json({
+            return res.status(404).json({
                 errorMessage: "can not find users"
             })
 
@@ -42,24 +42,24 @@ const getSuscriberAccountById = async (req, res) => {
 // CREATE USER
 const createSuscriberAccount = async (req, res) => {
     try {
-        /*
-        var customerImage = fs.readFileSync(req.file.path);
-        var customerImage = fs.readFile(req.file.path, 'utf8', async (err, data) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            const encoded = data.toString('base64');
-            const result = {
-                img: new Buffer.from(encoded, 'base64')        
-        */
-        customerImagePath = req.files.customerImage[0].path;
+     
+
+        let referee1ImagePath = null;
+        let referee2ImagePath = null;
+        let customerImagePath = null;
+
+        if (req.files.customerImage) {
+            customerImagePath = req.files.customerImage[0].path;
+        }
+
         if (req.files.referee1Image) {
             referee1ImagePath = req.files.referee1Image[0].path;
         }
+
         if (req.files.referee2Image) {
             referee2ImagePath = req.files.referee2Image[0].path;
         }
+
 
         const {
             referalCode,
@@ -182,13 +182,13 @@ const createSuscriberAccount = async (req, res) => {
             referee2Relationship
 
         })
-        const savedSuscriber = await newUserSuscriber.save();
+        await newUserSuscriber.save();
         return res.status(201).json("saved successfully");
     } //const createSuscriberAccount();
 
     catch (err) {
         res.status(500).json({
-            errorMessage: err.message
+            errorMessage: "Process failed!!!"
         })
 
         console.log(err.message)
@@ -207,7 +207,27 @@ const deleteSuscriberAccount = async (req, res) => {
     try {
         const id = req.params.id;
         const user = await Suscriber.findByIdAndDelete(id)
-        res.status(200).json(user)
+
+        if (user.customerImagePath !== null) {
+            fs.rmSync(user.customerImagePath);
+        }
+        if (user.referee1ImagePath !== null) {
+            fs.rmSync(user.referee1ImagePath);
+        }
+        if (user.referee2ImagePath !== null) {
+            fs.rmSync(user.referee2ImagePath);
+        }
+
+        // const allCustomerImages = await Suscriber.find().customerImagePath;
+        // const allReferee1Images = await Suscriber.find().referee1ImagePath;
+        // const allReferee2Images = await Suscriber.find().referee2ImagePath;
+
+
+
+
+
+
+        return res.status(200).json(user)
     }
     catch (err) {
         res.status(500).json({

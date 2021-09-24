@@ -12,20 +12,31 @@ function AuthenticatedUserTable() {
     function display() {
 
         return userData.map(
-            (user) => {
+            (user, index) => {
 
                 return (
-                    <div key={user._id} className="container table mt-4">
+                    <div key={user._id}>
 
-                        <table className="table container">
+                        <table className="table table-dark table-striped  table-hover">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="row">Name</th>
+                                    <th scope="row">Role Name</th>
+
+                                </tr>
+                            </thead>
+
                             <tbody>
                                 <tr>
-                                    <th scope="row">Name</th>
+                                    <td>{index + 1}</td>
                                     <td>{user.name}</td>
-
-                                    <th scope="row">Role Name</th>
                                     <td>{user.roleName}</td>
-
+                                    <td>  {auth.user.roleName === "admin" && (
+                                        <input type="submit" value="delete" className="btn btn-success"
+                                            onClick={() => { deleteMethod(user._id) }} />
+                                    )}</td>
 
 
                                 </tr>
@@ -33,13 +44,7 @@ function AuthenticatedUserTable() {
                             </tbody>
                         </table>
 
-                        {auth.user.roleName === "admin" && (
-                            <input type="submit" value="delete" className="btn btn-success"
-                                onClick={() => { deleteMethod(user._id) }} />
-                        )}
 
-
-                        <br className="mt-4"></br>
 
                     </div>
                 )
@@ -53,20 +58,11 @@ function AuthenticatedUserTable() {
 
 
     return (
-        <div className="conatiner">
-            <div className="conatiner row">
-                <Navbar />
+        <div>
+            <Navbar />
+            <div className="table-responsive">
+                {userData && display()}
             </div>
-
-
-            <div className="conatainer row">
-                <div className="col-12">
-                    {userData && display()}
-                </div>
-
-            </div>
-
-
         </div>
 
     )

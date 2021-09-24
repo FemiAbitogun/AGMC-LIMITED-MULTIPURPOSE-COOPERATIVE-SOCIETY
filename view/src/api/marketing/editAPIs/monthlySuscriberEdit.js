@@ -12,49 +12,18 @@ const config = {
 
 
 export const editMonthlySuscriber = async (body, id) => {
-
     const result = await axios.patch(
         url + id,
-        body
-    );
-
-    
-
-}
-
-
-
-
-export const editCustomerImage = async (body, id) => {
-
-    const result = await axios.patch(url + "customerImage/" + id,
         body,
         config
     );
-
-
 }
 
 
 
-export const editRef1Image = async (body, id) => {
-
-    const result = await axios.patch(url + "referee1/" + id,
-        body,
-        config
-    );
-
-
-}
 
 
 
-export const editRef2Image = async (body, id) => {
-
-    const result = await axios.patch(url + "referee2/" + id,
-        body,
-        config
-    );
 
 
-}
+

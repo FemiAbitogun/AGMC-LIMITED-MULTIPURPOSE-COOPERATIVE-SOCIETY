@@ -29,16 +29,10 @@ function MonthlyContributionTable() {
         displayMonthlyAccount();
     }
 
-    async function refresh() {
-        setisMounted(true);
-        getMonthlyAccount();
-        displayMonthlyAccount();
-        setisMounted(false);
-    }
 
     useEffect(() => {
         getMonthlyAccount();
-   
+
         return () => {
             setisMounted(false);
         }
@@ -52,9 +46,9 @@ function MonthlyContributionTable() {
             if (isMounted) {
                 var { data } = await axios.get(url)
 
-                data && (setUserData(data)) && displayMonthlyAccount(); 
-      
-                return         
+                data && (setUserData(data)) && displayMonthlyAccount();
+
+                return
             }
             if (!isMounted) {
                 return
@@ -77,167 +71,57 @@ function MonthlyContributionTable() {
     function displayMonthlyAccount() {
 
 
-        return userData.map((user) => {
+        return userData.map((user, index) => {
 
             return (
-                <div key={user._id} className="container table mt-4">
+                <div key={user._id}>
 
-                    <div className="row container mt-2 mb-2 bg-success">
+                    <table className="table table-dark table-striped  table-hover">
 
-                        <div className="col-sm-3">
-                            <label htmlFor="ReferalCode" className="form-label"> <h4>Referal Code</h4> </label>
-                        </div>
-
-                        <div className="col-sm-3 ">
-                            <h5 className="">{user.referalCode} </h5>
-                        </div>
-
-                    </div>
-
-
-                    <img src={`http://localhost:9000/${user.customerImagePath}`} alt="subject_photo" />
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Referal Code</th>
+                                <th scope="col">Full Name</th>
+                                <th scope="col">Unit Code</th>
+                                <th scope="col">File No</th>
+                                <th scope="col">Photo</th>
+                            </tr>
+                        </thead>
 
 
-                    <table className="table container">
 
                         <tbody>
-
-
-
                             <tr>
-                                {/* this */}
-                                <th scope="row">State</th>
-                                <td>{user.state}</td>
-
-
-
-
-                                <th scope="row">Branch</th>
-                                <td>{user.branch}</td>
-
-
-
-
-                                {/* this */}
-                                <th scope="row">Unit Code</th>
-                                <td>{user.unitCode}</td>
-
-
-
-
-                                <th scope="row">File No</th>
-                                <td>{user.formNo}</td>
-
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Residential Address</th>
-                                <td>{user.residentialAddress}</td>
-
-                                <th scope="row">Full Name</th>
+                                <th scope="row">{index + 1}</th>
+                                <td>{user.referalCode}</td>
                                 <td>{user.fullName}</td>
-                            </tr>
+                                <td>{user.unitCode}</td>
+                                <td>{user.formNo}</td>
+                                <td> <img src={`http://localhost:9000/${user.customerImagePath}`} alt="subject_photo" style={{
+                                    width: "auto",
+                                    height: "5em"
+                                }} />
+                                </td>
 
+                                <td>
+                                    {(auth.user.roleName === "admin" || auth.user.roleName === "hdm") && (
+                                        <div className="d-flex justify-content-between flex-wrap"
+                                        >
+                                            <input type="button" value="DELETE" className="btn btn-danger p-1"
+                                                onClick={() => { deleteMethod(user._id) }} />
+                                            <span>
+                                                <button className="btn btn-warning p-1"><Link to={`/editMonthly/edit/${user._id}`}>E D I T</Link> </button>
+                                            </span>
+                                            <span>
+                                                <button className="btn btn-primary p-1"><Link to={`/monthlySubscriber/Details/${user._id}`}>DETAILS</Link> </button>
+                                            </span>
+                                        </div>
 
-                            <tr>
-                                <th scope="row">Email</th>
-                                <td>{user.email}</td>
+                                    )
+                                    }
 
-                                <th scope="row">Phone</th>
-                                <td>{user.phone}</td>
-
-                                <th scope="row">Occupation</th>
-                                <td>{user.occupation}</td>
-
-                            </tr>
-
-
-                            <tr>
-                                <th scope="row">Marital Status</th>
-                                <td>{user.maritalStatus}</td>
-                                <th scope="row">Gender</th>
-                                <td>{user.gender}</td>
-                                <th scope="row">Birthday</th>
-                                <td>{user.birthday}</td>
-                                <th scope="row">Religion</th>
-                                <td>{user.religion}</td>
-
-                            </tr>
-
-
-                            <tr>
-
-                                <th scope="row">State Of Origin</th>
-                                <td>{user.stateOfOrigin}</td>
-                                <th scope="row">LGA</th>
-                                <td>{user.LGA}</td>
-                                <th scope="row">Home Town</th>
-                                <td>{user.homeTown}</td>
-
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Permanent Home Address</th>
-                                <td>{user.permanentHomeAddress}</td>
-
-                                {/* <th scope="row">Preffer Days Of Meeting</th>
-                                <td>{user.prefferDaysOfMeeting}</td> */}
-
-                                <th scope="row">Contribution Plan</th>
-                                <td>{user.contributionPlan}</td>
-                            </tr>
-
-                            <tr>
-
-
-                                <th scope="row">Account Number</th>
-                                <td>{user.accountNumber}</td>
-
-                                <th scope="row">Means Of Identification</th>
-                                <td>{user.meansOfIdentification}</td>
-
-                                <th scope="row">Id Card No</th>
-                                <td>{user.idCardNo}</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-
-
-
-
-
-                    <div className="row">
-                        <h3 className="text-danger">NEXT OF KIN INFORMATION</h3>
-                    </div>
-
-                    <table className="table container">
-                        <tbody>
-                            <tr>
-                                <th scope="row">Address</th>
-                                <td>{user.kinAddress}</td>
-
-                                <th scope="row">Email</th>
-                                <td>{user.kinEmail}</td>
-
-                                <th scope="row">Occupation</th>
-                                <td>{user.kinOccupation}</td>
-
-
-                            </tr>
-
-
-                            <tr>
-
-                                <th scope="row">Office Address</th>
-                                <td>{user.kinOfficeAddress}</td>
-
-                                <th scope="row">Relationship Type</th>
-                                <td>{user.kinRelationshipType}</td>
-
-                                <th scope="row">Years Of Relationship</th>
-                                <td>{user.kinYearOfrelationship}</td>
+                                </td>
 
                             </tr>
                         </tbody>
@@ -245,98 +129,6 @@ function MonthlyContributionTable() {
 
 
 
-
-
-                    <div className="row">
-                        <h3 className="text-danger">REFEREE 1 INFORMATION</h3>
-                    </div>
-                    <img src={`http://localhost:9000/${user.referee1ImagePath}`} alt="subject_photo" />
-
-                    <table className="table container">
-
-                        <tbody>
-                            <tr>
-                                <th scope="row">FullName</th>
-                                <td>{user.referee1FullName}</td>
-                                <th scope="row">Home Address</th>
-                                <td>{user.referee1HomeAddress}</td>
-                                <th scope="row">WorkAddress</th>
-                                <td>{user.referee1WorkAddress}</td>
-                                <th scope="row">Business</th>
-                                <td>{user.referee1Business}</td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Email</th>
-                                <td>{user.referee1Email}</td>
-                                <th scope="row">Religion</th>
-                                <td>{user.referee1Religion}</td>
-                                <th scope="row">Phone</th>
-                                <td>{user.referee1Phone}</td>
-                                <th scope="row">Relationship</th>
-                                <td>{user.referee1Relationship}</td>
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-
-
-                    <div className="row">
-                        <h3 className="text-danger">REFEREE 2 INFORMATION</h3>
-                    </div>
-                    <img src={`http://localhost:9000/${user.referee2ImagePath}`} alt="subject_photo" />
-
-                    <table className="table container">
-                        <tbody>
-                            <tr>
-                                <th scope="row">FullName</th>
-                                <td>{user.referee2FullName}</td>
-                                <th scope="row">Home Address</th>
-                                <td>{user.referee2HomeAddress}</td>
-                                <th scope="row">WorkAddress</th>
-                                <td>{user.referee2WorkAddress}</td>
-                                <th scope="row">Business</th>
-                                <td>{user.referee2Business}</td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Email</th>
-                                <td>{user.referee2Email}</td>
-                                <th scope="row">Religion</th>
-                                <td>{user.referee2Religion}</td>
-                                <th scope="row">Phone</th>
-                                <td>{user.referee2Phone}</td>
-                                <th scope="row">Relationship</th>
-                                <td>{user.referee2Relationship}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-
-
-                    {(auth.user.roleName === "admin" || auth.user.roleName === "hdm") && (
-                        <>
-                            <input type="button" value="DELETE" className="btn btn-danger"
-                                onClick={() => { deleteMethod(user._id) }} />
-                            <span>
-                                <button className="btn btn-warning m-3"><Link to={`/editMonthly/edit/${user._id}`}>E D I T</Link> </button>
-                            </span>
-                        </>
-
-                    )
-                    }
-
-
-
-
-
-
-
-
-
-                    <br className="mt-4"></br>
 
                 </div>
             )
@@ -347,22 +139,25 @@ function MonthlyContributionTable() {
 
 
 
-
-
     return (
 
         <div>
 
             <Navbar></Navbar>
-            <div className="  row text-center text-success"><h4>MONTHLY SUSCRIBERS LIST</h4></div>
-            {userData.length===0 && <div>No user in the database....</div>}
-         
-            {userData && <div className="container mt-4">
-                <div className=" row">
-                    {   
-                   displayMonthlyAccount()
-                    }
-                </div>
+            <div className="text-center container m-3"><b>MONTHLY SUSCRIBERS</b></div>
+            {userData.length === 0 && <div>No user in the database....</div>}
+
+            {userData && <div>
+
+                
+                    <div className="table-responsive" style={{
+                        overflowX:"auto"
+                    }}>
+                        {displayMonthlyAccount()}
+                    </div>
+
+                
+
             </div>}
 
 

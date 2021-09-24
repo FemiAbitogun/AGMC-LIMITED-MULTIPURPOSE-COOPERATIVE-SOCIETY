@@ -20,10 +20,8 @@ code {
     monospace;
 }
 
-
 a{
-
   text-decoration: none;
-  color: crimson;
-  font-weight:bolder;
+  color: white;
+  padding: 2px;
 }

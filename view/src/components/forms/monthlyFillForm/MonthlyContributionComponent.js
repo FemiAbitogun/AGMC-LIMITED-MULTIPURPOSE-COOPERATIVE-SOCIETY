@@ -200,11 +200,11 @@ function MonthlyContributionComponent() {
 
                         <div className="row mt-4 container ">
                             <div className="col-xs-3">
-                                <input type="radio" name="maritalStatus" onClick={(e) => { _setMaritalStatus("Married") }} /> <span>Married</span>
+                                <input type="radio" name="maritalStatus" onClick={(e) => { _setMaritalStatus("Married") }} /><span>Married</span>
                             </div>
 
                             <div className="col-xs-3">
-                                <input type="radio" name="maritalStatus" onClick={(e) => { _setMaritalStatus("Engaged") }} /> <span>Engaged</span>
+                                <input type="radio" name="maritalStatus" onClick={(e) => { _setMaritalStatus("Engaged") }} /><span>Engaged</span>
                             </div>
 
                             <div className="col-xs-3">
@@ -224,43 +224,48 @@ function MonthlyContributionComponent() {
                     {/* gender */}
 
 
-                    <div className="row mt-4 container" >
-                        <div className="col-4 ">
-                            <h5>Gender</h5>
+
+                    <div className="row container mt-1">
+                        <div className="col-sm-6">
+                            <div className="col-2 ">
+                                <h5>Gender</h5>
+                            </div>
+
+                            <div className="col-5">
+                                <input type="radio" name="gender" onClick={(e) => { _setGender("Male") }} /><span>Male</span>
+                            </div>
+
+                            <div className="col-5">
+                                <input type="radio" name="gender" onClick={(e) => { _setGender("Female") }} /><span>Female</span>
+
+                            </div>
                         </div>
 
-                        <div className="col-2">
-                            <input type="radio" name="gender" onClick={(e) => { _setGender("Male") }} /><span>Male</span>
-                        </div>
 
-                        <div className="col-2">
-                            <input type="radio" name="gender" onClick={(e) => { _setGender("Female") }} /><span>Female</span>
 
+                        <div className="col-sm-6 mt-1">
+                            <div className="col-2">
+                                <h5>Religion</h5>
+                            </div>
+
+                            <div className="col-4">
+                                <input type="radio" name="religion" onClick={(e) => { _setReligion("Christian") }} /><span>Christian</span>
+                            </div>
+
+                            <div className="col-3">
+                                <input type="radio" name="religion" onClick={(e) => { _setReligion("Muslim") }} /><span>Muslim</span>
+
+                            </div>
+
+
+                            <div className="col-3">
+                                <input type="radio" name="religion" onClick={(e) => { _setReligion("Other") }} /><span>Other</span>
+                            </div>
                         </div>
                     </div>
 
 
-                    {/* religion */}
 
-                    <div className="row mt-4 container" >
-                        <div className="col-4 ">
-                            <h5>Religion</h5>
-                        </div>
-
-                        <div className="col-2">
-                            <input type="radio" name="religion" onClick={(e) => { _setReligion("Christian") }} /><span>Christian</span>
-                        </div>
-
-                        <div className="col-2">
-                            <input type="radio" name="religion" onClick={(e) => { _setReligion("Muslim") }} /><span>Muslim</span>
-
-                        </div>
-
-
-                        <div className="col-2">
-                            <input type="radio" name="religion" onClick={(e) => { _setReligion("Other") }} /><span> Other</span>
-                        </div>
-                    </div>
 
                     {/* date of birth */}
                     <div className="row mt-4 container" >
@@ -653,7 +658,6 @@ function MonthlyContributionComponent() {
                     <div className="col-xs-3 mb-3">
                         <input type="text" placeholder="Email" className="form-control" required onChange={(e) => { setReferee1Email(e.target.value) }} />
                     </div>
-
 
 
                     <div className="col-xs-3 mb-3">

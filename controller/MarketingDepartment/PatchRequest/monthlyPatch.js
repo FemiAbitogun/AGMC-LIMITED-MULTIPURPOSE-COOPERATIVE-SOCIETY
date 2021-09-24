@@ -3,92 +3,33 @@
 const Suscriber = require('../../../model/Management_team/Marketing_department/monthly_registration');
 
 
-
-
-const editCustomerImage = async (req, res) => {
-    try {
-
-        let suscriber = await Suscriber.findById(req.params.id);
-        suscriber.customerImagePath = req.file.path;
-        await suscriber.save();
-        console.log("customer image" + req.file.path)
-
-    }
-    catch (err) {
-        res.status(500).json({
-            errorMessage: " "
-        })
-
-
-    }
-
-}
-
-
-const editRef2Image = async (req, res) => {
-    try {
-
-        let suscriber = await Suscriber.findById(req.params.id);
-        suscriber.referee2ImagePath = req.file.path;
-        await suscriber.save();
-
-
-        console.log("ref2 image" + req.file.path)
-
-
-    }
-    catch (err) {
-        res.status(500).json({
-            errorMessage: " "
-        })
-
-
-    }
-
-}
-
-
-const editRef1Image = async (req, res) => {
-    try {
-
-
-        let suscriber = await Suscriber.findById(req.params.id);
-        suscriber.referee1ImagePath = req.file.path;
-        await suscriber.save();
-
-
-
-        console.log("ref1 image" + req.file.path)
-
-    }
-    catch (err) {
-        res.status(500).json({
-            errorMessage: " ."
-        })
-
-
-    }
-
-}
-
-
-
 const editMonthlySuscriber = async (req, res) => {
     try {
 
+        // formData.append("customerImage", customerPhoto);
+        // formData.append("referee1Image", referee1);
+        // formData.append("referee2Image", referee2);
+
+
         let suscriber = await Suscriber.findById(req.params.id);
 
-        suscriber.referalCode = req.body.referalCode,
+        if (req.files.customerImage) {
+            suscriber.customerImagePath = req.files.customerImage[0].path
+        }
+
+        if (req.files.referee1Image) {
+            suscriber.referee1ImagePath = req.files.referee1Image[0].path
+        }
+        if (req.files.referee2Image) {
+            suscriber.referee2ImagePath = req.files.referee2Image[0].path
+        }
 
 
-
-
+        suscriber.referalCode = req.body.referalCode
         suscriber.state = req.body.state
         suscriber.branch = req.body.branch
         suscriber.unitCode = req.body.unitCode
         suscriber.formNo = req.body.formNo
-
-
 
 
         suscriber.fullName = req.body.fullName
@@ -143,7 +84,7 @@ const editMonthlySuscriber = async (req, res) => {
 
     catch (err) {
         res.status(500).json({
-            errorMessage: " error getting suscriber from database...."
+            errorMessage: " error editing suscriber from database...."
         })
 
         console.log(err.message)
@@ -154,9 +95,7 @@ const editMonthlySuscriber = async (req, res) => {
 
 
 module.exports = {
-    editRef1Image,
-    editRef2Image,
-    editCustomerImage,
+
     editMonthlySuscriber,
 }
 

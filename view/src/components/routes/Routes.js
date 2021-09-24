@@ -27,11 +27,12 @@ import EditFinanceTable from '../editForms/finance/EditFinanceTable'
 import AdmissionToUnitContext from '../../context/marketing/AdmissionToUnitContext'
 import DailyContributionProvider from '../../context/marketing/DailyContribution'
 import DailyContributionTable from '../tables/DailyContributionTable'
+import MonthlySuscriberDetail from '../tables/details/monthlySuscriber/MonthlySuscriberDetail'
+import FinanceDetail from '../tables/details/financeDataDetails/FinanceDetail'
 
 
 function Routes() {
     const { auth } = useContext(authorized);
-
 
     return (
         <div>
@@ -63,6 +64,13 @@ function Routes() {
                                         <Marketing></Marketing>
                                     </Route>
 
+                                    <Route path="/monthlySubscriber/Details/:id">
+                                        <MonthlySuscriberDetail />
+                                    </Route>
+
+                                    <Route path="/financeDetails/:id">
+                                        <FinanceDetail />
+                                    </Route>
 
                                     {
 

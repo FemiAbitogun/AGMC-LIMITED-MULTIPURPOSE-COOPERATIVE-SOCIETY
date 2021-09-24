@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { useParams, useHistory } from 'react-router-dom';
-import Marketing from '../../../pages/Marketing'
 import Navbar from '../../../Navbar';
 
 
 
-import { editMonthlySuscriber, editCustomerImage, editRef2Image, editRef1Image } from "../../../../api/marketing/editAPIs/monthlySuscriberEdit"
+import { editMonthlySuscriber } from "../../../../api/marketing/editAPIs/monthlySuscriberEdit"
 
 
 
 
 function EditMonthlySuscriber() {
-
 
     const history = useHistory();
 
@@ -95,9 +93,9 @@ function EditMonthlySuscriber() {
     const [referee2FullName, setReferee2FullName] = useState("");
     const [referee2HomeAddress, setReferee2HomeAddress] = useState("");
     const [referee2WorkAddress, setReferee2WorkAddress] = useState("");
-    const [referee2Business, setReferee2Business] = useState("");
-    const [referee2Email, setReferee2Email] = useState("");
-    const [referee2Religion, setReferee2Religion] = useState("");
+    let [referee2Business, setReferee2Business] = useState();
+    const [referee2Email, setReferee2Email] = useState();
+    const [referee2Religion, setReferee2Religion] = useState(undefined);
     const [referee2Phone, setReferee2Phone] = useState("");
     const [referee2Relationship, setReferee2Relationship] = useState("");
 
@@ -110,14 +108,13 @@ function EditMonthlySuscriber() {
     const [referee2, setRef2Photo] = useState("");
 
 
-    const [_data, setData] = useState("");
+    const [_data, setData] = useState(undefined);
 
     async function getMonthlyAccountById() {
-        var { data } = await axios.get("http://localhost:9000/api/monthlyContribution/" + id)
-
 
 
         try {
+            var { data } = await axios.get("http://localhost:9000/api/monthlyContribution/" + id)
 
             if (data) {
                 setData(data)
@@ -189,18 +186,11 @@ function EditMonthlySuscriber() {
 
 
             }
-
-
-
-
-
         }
         catch (err) {
 
             return console.log(err.message)
         }
-
-
 
     }
 
@@ -210,84 +200,68 @@ function EditMonthlySuscriber() {
         e.preventDefault();
 
         try {
+            const formData = new FormData();
+            formData.append("customerImage", customerPhoto);
+            formData.append("referee1Image", referee1);
+            formData.append("referee2Image", referee2);
 
 
-            let body = {
-                referalCode,
-                branch,
-                formNo,
-                fullName,
-                residentialAddress,
-                email,
-                phone,
-                occupation,
-                maritalStatus,
-                religion,
-                gender,
-                birthday,
-                permanentHomeAddress,
-                stateOfOrigin,
-                LGA,
-                homeTown,
+            formData.append("referalCode", referalCode);
+            formData.append("branch", branch);
+            formData.append("formNo", formNo);
+            formData.append("fullName", fullName);
+            formData.append("residentialAddress", residentialAddress);
+            formData.append("email", email);
+            formData.append("phone", phone);
+            formData.append("occupation", occupation);
+            formData.append("maritalStatus", maritalStatus);
+            formData.append("religion", religion);
+            formData.append("gender", gender);
+            formData.append("birthday", birthday);
+            formData.append("permanentHomeAddress", permanentHomeAddress);
+            formData.append("stateOfOrigin", stateOfOrigin);
+            formData.append("LGA", LGA);
+            formData.append("homeTown", homeTown);
 
-                prefferDaysOfMeeting,
-                contributionPlan,
+            formData.append("prefferDaysOfMeeting", prefferDaysOfMeeting);
+            formData.append("contributionPlan", contributionPlan);
 
-                BVN, bankName, accountNumber,
-                meansOfIdentification, idCardNo,
+            formData.append("BVN", BVN);
+            formData.append("bankName", bankName);
+            formData.append("accountNumber", accountNumber);
+            formData.append("meansOfIdentification", meansOfIdentification);
+            formData.append("idCardNo", idCardNo);
 
-
-                kinFullname, kinPhone, kinAddress, kinEmail,
-                kinOccupation,
-                kinOfficeAddress,
-                kinRelationshipType, kinYearOfrelationship,
-
-
-                referee1FullName,
-                referee1HomeAddress,
-                referee1WorkAddress,
-                referee1Business,
-                referee1Email,
-                referee1Religion,
-                referee1Phone,
-                referee1Relationship,
-
-                referee2FullName,
-                referee2HomeAddress,
-                referee2WorkAddress,
-                referee2Business,
-                referee2Email,
-                referee2Religion,
-                referee2Phone,
-                referee2Relationship
-
-            }
-
-            await editMonthlySuscriber(body, id);
+            formData.append("kinFullname", kinFullname);
+            formData.append("kinPhone", kinPhone);
+            formData.append("kinAddress", kinAddress);
+            formData.append("kinEmail", kinEmail);
+            formData.append("kinOccupation", kinOccupation);
+            formData.append("kinOfficeAddress", kinOfficeAddress);
+            formData.append("kinRelationshipType", kinRelationshipType);
+            formData.append("kinYearOfrelationship", kinYearOfrelationship);
 
 
+            formData.append("referee1FullName", referee1FullName);
+            formData.append("referee1HomeAddress", referee1HomeAddress);
+            formData.append("referee1WorkAddress", referee1WorkAddress);
+            formData.append("referee1Business", referee1Business);
+            formData.append("referee1Email", referee1Email);
+            formData.append("referee1Religion", referee1Religion);
+            formData.append("referee1Phone", referee1Phone);
+            formData.append("referee1Relationship", referee1Relationship);
 
-            if (customerPhoto) {
-                const editCustomerPhoto = new FormData();
-                editCustomerPhoto.append("customerImage", customerPhoto)
-                editCustomerImage(editCustomerPhoto, id);
-            }
+            formData.append("referee2FullName", referee2FullName);
+            formData.append("referee2HomeAddress", referee2HomeAddress);
+            formData.append("referee2WorkAddress", referee2WorkAddress);
+            formData.append(" referee2Business", referee2Business);
+            formData.append(" referee2Email", referee2Email);
+            formData.append(" referee2Religion", referee2Religion);
+            formData.append("referee2Phone", referee2Phone);
+            formData.append("referee2Relationship", referee2Relationship);
 
 
-            //REF 1
-            if (referee1) {
-                const editREF1Photo = new FormData();
-                editREF1Photo.append("referee1Image", referee1)
-                editRef1Image(editREF1Photo, id);
-            }
-
-
-            //REF 2
-            if (referee2) {
-                const editREF2Photo = new FormData();
-                editREF2Photo.append("referee2Image", referee2)
-                editRef2Image(editREF2Photo, id);
-            }
+            await editMonthlySuscriber(formData, id);
 
 
             return history.push('/monthlySuscriberTable')
@@ -306,20 +280,8 @@ function EditMonthlySuscriber() {
     }
 
 
-
-
-
-
-
-
-
-    // 
-
     function cancel() {
-        history.push("/home")
-
-
-        // 
+        history.push("/home")     // 
     }
 
 
@@ -330,10 +292,9 @@ function EditMonthlySuscriber() {
     function display() {
 
         return (
-            <div>
+            <div className="container">
 
-                {/*  */}
-                <Navbar />
+
                 <div className="row container mt-3 mb-3">
                     <label htmlFor="ReferalCode" className="col-sm-2 col-form-label">Referal Code</label>
                     <div className="col-sm-3">
@@ -468,43 +429,54 @@ function EditMonthlySuscriber() {
 
 
 
-                {/* gender */}
 
 
                 <div className="row mt-4 container" >
-                    <div className="col-2 ">
-                        <h5>Gender</h5>
-                    </div>
-
-                    <div className="col-2">
-                        <input type="radio" name="gender" onClick={(e) => { setGender("Male") }} /><span>Male</span>
-                    </div>
-
-                    <div className="col-2">
-                        <input type="radio" name="gender" onClick={(e) => { setGender("Female") }} /><span>Female</span>
-
-                    </div>
-                </div>
 
 
-                <div className="row mt-4 container" >
-                    <div className="col-2 ">
-                        <h5>Religion</h5>
-                    </div>
+                    <div className="col-sm-6 ">
 
-                    <div className="col-2">
-                        <input type="radio" name="religion" onClick={(e) => { setReligion("Christian") }} /><span>Christian</span>
-                    </div>
 
-                    <div className="col-2">
-                        <input type="radio" name="religion" onClick={(e) => { setReligion("Muslim") }} /><span>Muslim</span>
+                        <div className="row">
+                            <div className="col-2">
+                                <h5 className="form-label">Gender</h5>
+                            </div>
+                            <div className="col-sm-3">
+                                <input type="radio" name="gender" onClick={(e) => { setGender("Male") }} /><span className="form-label">Male</span>
+                            </div>
 
+                            <div className="col-sm-3">
+                                <input type="radio" name="gender" onClick={(e) => { setGender("Female") }} /><span className="form-label">Female</span>
+
+                            </div>
+                        </div>
                     </div>
 
 
-                    <div className="col-2">
-                        <input type="radio" name="religion" onClick={(e) => { setReligion("Other") }} /><span> Other</span>
+
+                    <div className="col-sm-6">
+
+                        <div className="row">
+
+                            <h5 className="col-sm-2">Religion</h5>
+
+                            <div className="col-sm-3">
+                                <input type="radio" name="religion" onClick={(e) => { setReligion("Christian") }} /><span>Christian</span>
+                            </div>
+
+                            <div className="col-sm-3">
+                                <input type="radio" name="religion" onClick={(e) => { setReligion("Muslim") }} /><span>Muslim</span>
+
+                            </div>
+                            <div className="col-sm-3">
+                                <input type="radio" name="religion" onClick={(e) => { setReligion("Other") }} /><span> Other</span>
+                            </div>
+                        </div>
                     </div>
+
+
+
+
                 </div>
 
 
@@ -772,11 +744,6 @@ function EditMonthlySuscriber() {
 
 
 
-
-
-
-
-
                 {/* referal..1 */}
 
                 <div className="col-sm-3 mt-4 ">
@@ -938,11 +905,25 @@ function EditMonthlySuscriber() {
                     </div>
 
 
+
+
+
+
+
+
+
                     <div className="col-xs-3 mb-3">
                         <input value={referee2Phone} type="text" placeholder="Phone" className="form-control" required onChange={(e) => { setReferee2Phone(e.target.value) }} />
                     </div>
 
                 </div>
+
+
+
+
+
+
+
 
 
                 <div className="container row">
@@ -985,10 +966,8 @@ function EditMonthlySuscriber() {
     return (
 
         <div>
-
-            {_data === "" ? <div>LOADING.....</div> : display()}
-
-
+            <Navbar />
+            {_data === undefined ? <div>LOADING.....</div> : display()}
 
         </div>
 

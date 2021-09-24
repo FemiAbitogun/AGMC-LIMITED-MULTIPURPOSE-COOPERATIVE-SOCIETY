@@ -19,4 +19,3 @@ router.delete('/delete/:id', auth, deleteSuscriberAccount);
 module.exports = router;
 
 
-

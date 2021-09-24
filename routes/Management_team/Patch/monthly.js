@@ -3,25 +3,12 @@ const { upload } = require('../../../fileHelper');
 
 
 const {
-    editRef1Image,
-    editRef2Image,
-    editCustomerImage,
     editMonthlySuscriber,
 } = require('../../../controller/MarketingDepartment/PatchRequest/monthlyPatch');
 
 
-
-
-//router.post('/', createSuscriberAccount); ERROR YOU HAVE THIS ROUTE CONSUMING BAD!!
-const url = "http://localhost:9000/api/monthlyContribution/edit/monthly/"
-
-
-
-router.patch('/monthly/:id', editMonthlySuscriber)
-router.patch('/monthly/referee1/:id', upload.single("referee1Image"), editRef1Image);
-router.patch('/monthly/referee2/:id', upload.single("referee2Image"), editRef2Image);
-router.patch('/monthly/customerImage/:id', upload.single("customerImage"), editCustomerImage);
-
+router.patch('/monthly/:id', upload.fields([{ name: "customerImage", maxCount: 1 },
+{ name: "referee1Image", maxCount: 1 }, { name: "referee2Image", maxCount: 1 }]), editMonthlySuscriber);
 
 
 module.exports = router;

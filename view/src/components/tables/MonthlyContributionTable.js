@@ -74,7 +74,7 @@ function MonthlyContributionTable() {
         return userData.map((user, index) => {
 
             return (
-                <div key={user._id}>
+                <div key={user._id} className="table-responsive" >
 
                     <table className="table table-dark table-striped  table-hover">
 
@@ -138,13 +138,12 @@ function MonthlyContributionTable() {
     }
 
 
-
     return (
 
         <div>
 
-            <Navbar></Navbar>
-            <div className="text-center container m-3"><b>MONTHLY SUSCRIBERS</b></div>
+            <Navbar/>
+            <div className="text-center container mt-3"><b>MONTHLY SUSCRIBERS</b></div>
             {userData.length === 0 && <div>No user in the database....</div>}
 
             {userData && <div>

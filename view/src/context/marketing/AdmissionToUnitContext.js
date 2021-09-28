@@ -10,9 +10,7 @@ function AdmissionToUnitContext(props) {
 
 
     const getAdmissionToUnit = async () => {
-
         setisMounted(true);
-
         try {
             if (isMounted) {
                 var { data } = await axios.get("http://localhost:9000/api/admission")
@@ -22,35 +20,29 @@ function AdmissionToUnitContext(props) {
         } catch (error) {
             console.log(error.message)
         }
-
-
     }
 
 
     useEffect(() => {
 
         getAdmissionToUnit();
-
         return () => {
             setisMounted(false);
-    
         }
     }, [])
 
 
-
-
-
-    function deleteMethod(id) {
-        axios.delete(`http://localhost:9000/api/admission/delete/${id}`)
+   async function deleteMethod(id) {
+       await axios.delete(`http://localhost:9000/api/admission/delete/${id}`)
         setisMounted(true)
         getAdmissionToUnit();
     }
 
 
+
     return (
         <div >
-            <AdmissionContext.Provider value={{isMounted,setisMounted, getAdmissionToUnit, deleteMethod, userData }}>
+            <AdmissionContext.Provider value={{ isMounted, setisMounted, getAdmissionToUnit, deleteMethod, userData }}>
                 {props.children}
             </AdmissionContext.Provider>
         </div>

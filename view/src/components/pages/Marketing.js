@@ -1,16 +1,16 @@
 import React, { useContext} from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { authorized } from '../../context/AuthContext';
 import Navbar from '../Navbar';
 
 function Marketing() {
 
-    const { auth, setAuth } = useContext(authorized);
+    const { auth } = useContext(authorized);
    
     function display() {
         return (
             <div>
-                <Navbar />
+                
 
                 <div className="container mt-4">
                     <h2 className="text-center mt-4 mb-4 text-danger "> MARKETING DEPARTMENT</h2>
@@ -69,6 +69,7 @@ function Marketing() {
 
     return (
         <div>
+            <Navbar />
             {auth && display()}
         </div>
     )

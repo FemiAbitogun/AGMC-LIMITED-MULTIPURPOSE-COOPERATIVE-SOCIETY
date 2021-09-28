@@ -29,6 +29,7 @@ import DailyContributionProvider from '../../context/marketing/DailyContribution
 import DailyContributionTable from '../tables/DailyContributionTable'
 import MonthlySuscriberDetail from '../tables/details/monthlySuscriber/MonthlySuscriberDetail'
 import FinanceDetail from '../tables/details/financeDataDetails/FinanceDetail'
+import AdmissionToUnitDetails from '../tables/details/monthlySuscriber/AdmissionToUnitDetails'
 
 
 function Routes() {
@@ -71,6 +72,14 @@ function Routes() {
                                     <Route path="/financeDetails/:id">
                                         <FinanceDetail />
                                     </Route>
+
+                                    <Route path="/admissionToUnitDetails/:id">
+                                        <AdmissionToUnitContext>
+                                            <AdmissionToUnitDetails />
+                                        </AdmissionToUnitContext>
+                                    </Route>
+
+                              
 
                                     {
 
@@ -115,19 +124,6 @@ function Routes() {
                                         )
 
                                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

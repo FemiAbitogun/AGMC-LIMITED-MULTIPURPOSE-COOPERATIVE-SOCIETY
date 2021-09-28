@@ -16,7 +16,7 @@ function display(){
 
     return (
 
-        <div className="container">
+        <div>
 
             <AuthenticatedUserTable />
 

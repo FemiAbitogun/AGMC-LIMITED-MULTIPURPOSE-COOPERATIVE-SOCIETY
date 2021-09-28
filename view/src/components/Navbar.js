@@ -32,7 +32,7 @@ function Navbar() {
                 {
 
                     auth.user.roleName === "user" ? (
-                        <div className="d-flex  justify-content-between  ">
+                        <div className="d-flex  justify-content-between">
 
                             <Link to="/marketing" className="button btn btn-dark fw-bold">Marketing Department</Link >
                             <div className="dropdown">

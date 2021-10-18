@@ -304,7 +304,10 @@ function EditMonthlySuscriber() {
 
                 <div className="row container mt-4">
                     <div className="col-sm-2 ">
-                        <img src={`http://localhost:9000/${customerImagePath}`} />
+                        <img src={`http://localhost:9000/${customerImagePath}`} style={{
+                            width: "10em",
+                            height: "10em"
+                        }} />
                     </div>
 
                     <div className="col-sm-4  offset-2">
@@ -755,7 +758,13 @@ function EditMonthlySuscriber() {
                 <div className="row container mt-4">
                     <div className="col-sm-2 ">
                         <div className="col-sm-2">
-                            <img src={`http://localhost:9000/${referee1ImagePath}`} />
+                            <img src={`http://localhost:9000/${referee1ImagePath}`}
+
+                                style={{
+                                    width: "10em",
+                                    height: "10em"
+                                }}
+                            />
                         </div>
                     </div>
                     <div className="col-sm-4  offset-2">
@@ -847,7 +856,14 @@ function EditMonthlySuscriber() {
 
                     <div className="col-sm-2 ">
                         <div className="col-sm-2">
-                            <img src={`http://localhost:9000/${referee2ImagePath}`} />
+                            <img src={`http://localhost:9000/${referee2ImagePath}`}
+
+                                style={{
+                                    width: "10em",
+                                    height: "10em"
+                                }}
+
+                            />
                         </div>
                     </div>
 

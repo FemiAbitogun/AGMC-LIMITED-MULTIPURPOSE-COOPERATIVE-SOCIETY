@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from "axios"
-import './Table.css';
-
 import { Link } from 'react-router-dom'
 import Navbar from '../Navbar';
 import { authorized } from '../../context/AuthContext';
@@ -90,7 +88,6 @@ function MonthlyContributionTable() {
                         </thead>
 
 
-
                         <tbody>
                             <tr>
                                 <th scope="row">{index + 1}</th>
@@ -100,22 +97,77 @@ function MonthlyContributionTable() {
                                 <td>{user.formNo}</td>
                                 <td> <img src={`http://localhost:9000/${user.customerImagePath}`} alt="subject_photo" style={{
                                     width: "auto",
-                                    height: "5em"
+                                    height: "4em"
                                 }} />
                                 </td>
-
                                 <td>
                                     {(auth.user.roleName === "admin" || auth.user.roleName === "hdm") && (
-                                        <div className="d-flex justify-content-between flex-wrap"
+                                        <div className="d-flex justify-content-around flex-wrap"
                                         >
-                                            <input type="button" value="DELETE" className="btn btn-danger p-1"
-                                                onClick={() => { deleteMethod(user._id) }} />
-                                            <span>
-                                                <button className="btn btn-warning p-1"><Link to={`/editMonthly/edit/${user._id}`}>E D I T</Link> </button>
+
+
+
+                                            <span style={{
+
+                                                marginTop: ".8em",
+
+                                            }}>
+                                                <Link to={`/monthlySubscriber/Details/${user._id}`} className="fas fa-info-circle fa-2x"
+
+                                                >
+
+                                                </Link>
                                             </span>
-                                            <span>
-                                                <button className="btn btn-primary p-1"><Link to={`/monthlySubscriber/Details/${user._id}`}>DETAILS</Link> </button>
+
+
+
+
+
+
+
+
+
+                                            <span style={{
+                                              
+                                                marginTop: ".8em",
+
+                                            }}>
+                                                
+                                                <Link to={`/editMonthly/edit/${user._id}`} className="far fa-edit fa-2x" 
+                                                style={{
+                                                    color:"yellow"
+                                                }}
+                                                
+                                                >
+                                                </Link>
                                             </span>
+
+
+
+
+
+
+
+
+
+
+
+                                            <div
+                                                onClick={() => { deleteMethod(user._id) }}
+                                                style={{
+                                
+                                                    marginTop: ".8em"
+
+
+                                                }}
+                                            >
+                                                <i className="fas fa-trash-alt fa-2x " style={
+                                                    {
+                                                        color: "red"
+                                                    }
+                                                } ></i>
+                                            </div>
+
                                         </div>
 
                                     )
@@ -142,20 +194,20 @@ function MonthlyContributionTable() {
 
         <div>
 
-            <Navbar/>
+            <Navbar />
             <div className="text-center container mt-3"><b>MONTHLY SUSCRIBERS</b></div>
             {userData.length === 0 && <div>No user in the database....</div>}
 
             {userData && <div>
 
-                
-                    <div className="table-responsive" style={{
-                        overflowX:"auto"
-                    }}>
-                        {displayMonthlyAccount()}
-                    </div>
 
-                
+                <div className="table-responsive" style={{
+                    overflowX: "auto"
+                }}>
+                    {displayMonthlyAccount()}
+                </div>
+
+
 
             </div>}
 

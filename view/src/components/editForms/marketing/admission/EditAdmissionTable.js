@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
 import { useParams, useHistory } from 'react-router-dom';
-
 import { editAdmissionIntoUnitTable } from '../../../../api/marketing/editAPIs/admissionIntoUnitEdit'
 
-
+import Navbar from '../../../Navbar'
 
 function EditAdmissionTable() {
 
@@ -193,6 +192,7 @@ function EditAdmissionTable() {
 
     return (
         <div>
+            <Navbar/>
             {
             _data ? display() : <div>Loading ......</div>
             

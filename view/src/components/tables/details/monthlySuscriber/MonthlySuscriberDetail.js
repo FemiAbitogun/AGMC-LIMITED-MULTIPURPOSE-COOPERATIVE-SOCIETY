@@ -1,11 +1,14 @@
 
 import React, { useEffect, useState, useContext } from 'react'
 import axios from "axios"
-// import './Table.css';
 import { Link, useParams, useHistory } from 'react-router-dom'
 import Navbar from '../../../Navbar';
 import { authorized } from '../../../../context/AuthContext';
 
+
+//jquery
+
+let $ = window.$ = window.jJQuery = require('jquery');
 
 function MonthlySuscriberDetail() {
 
@@ -25,6 +28,8 @@ function MonthlySuscriberDetail() {
     }
 
     useEffect(() => {
+
+        console.log($);
         const _getMonthlyAccount = async () => {
             await getMonthlyAccount();
             setisMounted(false)
@@ -40,7 +45,7 @@ function MonthlySuscriberDetail() {
             if (isMounted) {
                 var { data } = await axios.get("http://localhost:9000/api/monthlyContribution/" + id)
                 data && setUserData(data);
-            
+
                 return
             }
             if (!isMounted) {
@@ -73,7 +78,14 @@ function MonthlySuscriberDetail() {
                 </div>
 
 
-                <img src={`http://localhost:9000/${user.customerImagePath}`} alt="subject_photo" />
+                <img src={`http://localhost:9000/${user.customerImagePath}`} alt="subject_photo" style={{
+                    width: "10em",
+                    height: "10em"
+                }}
+
+
+
+                />
 
 
                 <table className="table">
@@ -226,7 +238,12 @@ function MonthlySuscriberDetail() {
                 <div className="row">
                     <h3 className="text-danger">REFEREE 1 INFORMATION</h3>
                 </div>
-                <img src={`http://localhost:9000/${user.referee1ImagePath}`} alt="subject_photo" />
+
+                <img src={`http://localhost:9000/${user.referee1ImagePath}`} alt="subject1_photo" style={{
+                    width: "10em",
+                    height: "10em"
+                }} />
+
 
                 <table className="table">
 
@@ -262,7 +279,16 @@ function MonthlySuscriberDetail() {
                 <div className="row">
                     <h3 className="text-danger">REFEREE 2 INFORMATION</h3>
                 </div>
-                <img src={`http://localhost:9000/${user.referee2ImagePath}`} alt="subject_photo" />
+
+
+                <img src={`http://localhost:9000/${user.referee2ImagePath}`} alt="subject2_photo" style={{
+                    width: "10em",
+                    height: "10em"
+                }} />
+
+
+
+
 
                 <table className="table">
                     <tbody className="container">
